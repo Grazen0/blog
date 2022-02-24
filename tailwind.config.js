@@ -1,7 +1,12 @@
 module.exports = {
+	mode: 'jit',
 	content: ['src/**/*.{tsx,ts}'],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				display: 'Rubik',
+			},
+		},
 	},
 	plugins: [],
 };
