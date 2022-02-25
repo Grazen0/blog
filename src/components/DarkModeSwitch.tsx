@@ -21,7 +21,9 @@ const DarkModeSwitch: React.FC<Props> = ({ className, ...props }) => {
 			<span
 				className={classNames(
 					"relative cursor-pointer w-16 before:bg-neutral-400 before:dark:bg-slate-900 before:rounded-full before:transition-all before:block before:h-8 before:w-full after:content-['🌞'] dark:after:content-['🌛'] after:bg-neutral-200 after:dark:bg-slate-400 after:transition-all after:absolute after:top-1/2 after:-translate-y-1/2 after:w-6 after:h-6 after:rounded-full after:text-center",
-					`after:translate-x-[calc(${darkMode ? 3.75 : 1.75}rem-100%)]`
+					darkMode
+						? 'after:translate-x-[calc(3.75rem-100%)]'
+						: 'after:translate-x-[calc(1.75rem-100%)]'
 				)}
 				onClick={() => setDarkMode(prev => !prev)}
 			></span>
