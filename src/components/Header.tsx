@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import AnimatedLink from './AnimatedLink';
+import DarkModeSwitch from './DarkModeSwitch';
 
 const links = [
 	{ to: '/about', label: 'About' },
@@ -7,7 +8,7 @@ const links = [
 ];
 
 const Header: React.FC = () => (
-	<header className="flex py-3 px-4 sm:px-6 bg-neutral-300 items-center">
+	<header className="flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center">
 		<h1 className="text-3xl font-display">
 			<Link href="/">Cholo&apos;s Blog</Link>
 		</h1>
@@ -23,6 +24,7 @@ const Header: React.FC = () => (
 				))}
 			</ul>
 		</nav>
+		<DarkModeSwitch className="ml-auto" />
 	</header>
 );
 
