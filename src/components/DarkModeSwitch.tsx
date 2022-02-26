@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ChangeEventHandler, HTMLProps } from 'react';
-import useDarkMode from '../lib/hooks/use-dark-mode';
+import { useDarkMode } from '../providers/dark-mode';
 
 export type Props = HTMLProps<HTMLSpanElement>;
 

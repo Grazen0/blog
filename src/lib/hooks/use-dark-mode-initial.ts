@@ -3,7 +3,7 @@ import { DARK_CLASS } from '../constants';
 import { SetState } from '../types';
 import useLocalStorage from './use-local-storage';
 
-function useDarkMode(): [boolean, SetState<boolean>] {
+function useDarkModeinitial(): [boolean, SetState<boolean>] {
 	const [darkMode, setDarkMode] = useLocalStorage('dark_mode', true);
 
 	useEffect(() => {
@@ -15,4 +15,4 @@ function useDarkMode(): [boolean, SetState<boolean>] {
 	return [darkMode, setDarkMode];
 }
 
-export default useDarkMode;
+export default useDarkModeinitial;
