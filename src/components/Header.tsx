@@ -1,16 +1,28 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { HTMLProps, useState } from 'react';
 import classNames from 'classnames';
 import AnimatedLink from './AnimatedLink';
 import DarkModeSwitch from './DarkModeSwitch';
 import GitHubIcon from './icons/GitHubIcon';
 import MenuIcon from './icons/MenuIcon';
-import { tailwindConfig } from '../lib/constants';
+import NavBar from './NavBar';
+import { LinkInfo } from '../lib/types';
 
-const links = [
+const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
 	{ to: '/posts', label: 'Posts' },
 ];
+
+const SwitchAndGithub: React.FC<HTMLProps<HTMLDivElement>> = props => (
+	<div {...props}>
+		<DarkModeSwitch />
+		<Link href="https://github.com/ElCholoGamer/blog">
+			<a>
+				<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
+			</a>
+		</Link>
+	</div>
+);
 
 const Header: React.FC = () => {
 	const [open, setOpen] = useState(false);
@@ -22,25 +34,12 @@ const Header: React.FC = () => {
 			</h1>
 
 			<div className="sm:flex flex-grow hidden">
-				<nav>
-					<ul className="flex mx-8 items-center">
-						{links.map((link, index) => (
-							<li key={index}>
-								<AnimatedLink href={link.to} className="mx-4 text-lg font-semibold">
-									{link.label}
-								</AnimatedLink>
-							</li>
-						))}
-					</ul>
-				</nav>
-				<div className="ml-auto flex items-center">
-					<DarkModeSwitch />
-					<Link href="https://github.com/ElCholoGamer/blog">
-						<a>
-							<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
-						</a>
-					</Link>
-				</div>
+				<NavBar
+					links={links}
+					ulClassName="flex mx-8 items-center"
+					linkClassName="mx-4 text-lg font-semibold"
+				/>
+				<SwitchAndGithub className="ml-auto flex items-center" />
 			</div>
 
 			<div className="sm:hidden flex flex-grow">
@@ -57,26 +56,11 @@ const Header: React.FC = () => {
 						open ? 'scale-y-100' : 'scale-y-0'
 					)}
 				>
-					<nav>
-						<ul>
-							{links.map((link, index) => (
-								<li
-									key={index}
-									className="py-2 mx-4 border-b border-neutral-600 dark:border-slate-600"
-								>
-									<AnimatedLink href={link.to}>{link.label}</AnimatedLink>
-								</li>
-							))}
-						</ul>
-					</nav>
-					<div className="flex items-center m-4">
-						<DarkModeSwitch />
-						<Link href="https://github.com/ElCholoGamer/blog">
-							<a>
-								<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
-							</a>
-						</Link>
-					</div>
+					<NavBar
+						links={links}
+						liClassName="py-2 mx-4 border-b border-neutral-600 dark:border-slate-600"
+					/>
+					<SwitchAndGithub className="flex items-center m-4" />
 				</div>
 			</div>
 		</header>
