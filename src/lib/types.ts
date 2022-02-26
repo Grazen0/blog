@@ -9,6 +9,7 @@ export interface LinkInfo {
 	label: string;
 }
 
+export type Runnable = () => void;
 export type Mapper<V, R> = (value: V) => R;
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;

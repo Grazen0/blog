@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import React, { HTMLProps, useState } from 'react';
+import React, { HTMLProps, useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
-import AnimatedLink from './AnimatedLink';
 import DarkModeSwitch from './DarkModeSwitch';
 import GitHubIcon from './icons/GitHubIcon';
 import MenuIcon from './icons/MenuIcon';
 import NavBar from './NavBar';
 import { LinkInfo } from '../lib/types';
+import { useClickOutside } from '../lib/hooks/use-click-outside';
 
 const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
@@ -26,9 +26,14 @@ const SwitchAndGithub: React.FC<HTMLProps<HTMLDivElement>> = props => (
 
 const Header: React.FC = () => {
 	const [open, setOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
+	useClickOutside(() => setOpen(false), menuRef);
 
 	return (
-		<header className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center">
+		<header
+			ref={menuRef}
+			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center"
+		>
 			<h1 className="text-3xl font-display">
 				<Link href="/">Cholo&apos;s Blog</Link>
 			</h1>
@@ -45,7 +50,7 @@ const Header: React.FC = () => {
 			<div className="sm:hidden flex flex-grow">
 				<button
 					onClick={() => setOpen(prev => !prev)}
-					className="ml-auto bg-neutral-350 dark:bg-slate-700 rounded outline-neutral-200 dark:outline-slate-400 outline outline-0 transition-all duration-75 focus:outline-[3px]"
+					className="ml-auto bg-neutral-400 dark:bg-slate-700 rounded outline-neutral-200 dark:outline-slate-400 outline outline-0 transition-all duration-75 focus:outline-[3px]"
 					aria-label="Open header menu"
 				>
 					<MenuIcon width={40} height={40} />
