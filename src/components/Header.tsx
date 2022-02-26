@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AnimatedLink from './AnimatedLink';
 import DarkModeSwitch from './DarkModeSwitch';
+import GitHubIcon from './GitHubIcon';
 
 const links = [
 	{ to: '/about', label: 'About' },
@@ -25,7 +26,14 @@ const Header: React.FC = () => (
 				))}
 			</ul>
 		</nav>
-		<DarkModeSwitch className="ml-auto" />
+		<div className="ml-auto flex items-center">
+			<DarkModeSwitch />
+			<Link href="https://github.com/ElCholoGamer/blog">
+				<a>
+					<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
+				</a>
+			</Link>
+		</div>
 	</header>
 );
 
