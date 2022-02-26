@@ -4,6 +4,11 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		extend: {
+			colors: {
+				neutral: {
+					[350]: 'rgb(187, 187, 187)',
+				},
+			},
 			fontFamily: {
 				display: 'Rubik',
 			},

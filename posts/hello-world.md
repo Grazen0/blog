@@ -1,5 +1,6 @@
 ---
 title: Sup, world.
+summary: Testing my new blog
 date: 23/02/2022
 image:
 	url: /img/robots.jpg
