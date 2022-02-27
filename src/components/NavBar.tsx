@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
-import { LinkInfo } from '../lib/types';
+import { LinkInfo } from 'lib/types';
 import AnimatedLink from './AnimatedLink';
 
 export interface Props extends HTMLProps<HTMLDivElement> {

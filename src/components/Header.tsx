@@ -5,8 +5,8 @@ import DarkModeSwitch from './DarkModeSwitch';
 import GitHubIcon from './icons/GitHubIcon';
 import MenuIcon from './icons/MenuIcon';
 import NavBar from './NavBar';
-import { LinkInfo } from '../lib/types';
-import { useClickOutside } from '../lib/hooks/use-click-outside';
+import { LinkInfo } from 'lib/types';
+import { useClickOutside } from 'lib/hooks/use-click-outside';
 
 const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
