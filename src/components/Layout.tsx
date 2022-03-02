@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { HOST } from 'lib/constants';
 import Footer from './Footer';
 import Header from './Header';
+import { completePath } from 'lib/utils';
 
 export interface Props {
 	title: string;
@@ -30,9 +30,9 @@ const Layout: React.FC<Props> = ({ title, description, image, imageAlt, siteName
 				<meta name="author" content="ElCholoGamer" />
 
 				<meta property="og:title" content={title} />
-				<meta property="og:url" content={HOST + router.pathname} />
+				<meta property="og:url" content={completePath(router.asPath)} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={HOST + image} />
+				<meta property="og:image" content={completePath(image)} />
 				<meta property="og:site_name" content={siteName} />
 				{description && <meta property="og:description" content={description} />}
 				{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
