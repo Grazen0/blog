@@ -4,12 +4,42 @@
 
 @layer base {
 	html,
-	body,
 	#__next {
 		@apply m-0 p-0 h-full;
 	}
 
-	#__next {
-		@apply dark:bg-slate-900 dark:text-white transition-colors;
+	body {
+		@apply m-0 p-0 min-h-full h-0 bg-neutral-50 dark:bg-slate-900 dark:text-white transition-colors;
 	}
+}
+
+.hljs-keyword {
+	@apply text-[#a626a4] dark:text-[#c678dd];
+}
+
+.hljs-title.hljs-function {
+	@apply text-[#0184bC] dark:text-[#56B6C2];
+}
+
+.hljs-type,
+.hljs-literal,
+.hljs-number {
+	@apply text-[#986801] dark:text-[#e5c07b];
+}
+
+.hljs-string {
+	@apply text-[#50a14f] dark:text-[#98c379];
+}
+
+.hljs-attr {
+	@apply text-[#e45649] dark:text-[#e06c75];
+}
+
+.hljs-built_in,
+.hljs-title.hljs-class {
+	@apply text-[#c18401] dark:text-[#e5c07b];
+}
+
+.hljs-comment {
+	@apply text-neutral-400 dark:text-slate-600;
 }

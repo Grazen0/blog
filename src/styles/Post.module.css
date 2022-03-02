@@ -1,0 +1,13 @@
+.container pre,
+.container p,
+.container hr {
+	@apply mx-auto text-xl max-w-2xl my-8;
+}
+
+.container p {
+	@apply leading-relaxed;
+}
+
+.container blockquote p {
+	@apply my-0;
+}
