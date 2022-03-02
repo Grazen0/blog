@@ -34,9 +34,9 @@ const Header: React.FC = () => {
 			ref={menuRef}
 			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center"
 		>
-			<h1 className="text-3xl font-display">
+			<a className="text-3xl font-display">
 				<Link href="/">Cholo&apos;s Blog</Link>
-			</h1>
+			</a>
 
 			<div className="sm:flex flex-grow hidden">
 				<NavBar
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
 				<SwitchAndGithub className="ml-auto flex items-center" />
 			</div>
 
-			<div className="sm:hidden flex flex-grow">
+			<div className="sm:hidden flex flex-grow z-50">
 				<button
 					onClick={() => setOpen(prev => !prev)}
 					className="ml-auto bg-neutral-400 dark:bg-slate-700 rounded outline-neutral-200 dark:outline-slate-400 outline outline-0 transition-all duration-75 focus:outline-[3px]"
