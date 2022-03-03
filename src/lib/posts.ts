@@ -3,7 +3,6 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import YAML from 'yaml';
 import { Category, Post } from './types';
-import { parseDate } from './date';
 
 const POSTS_DIR = 'posts';
 
@@ -50,7 +49,6 @@ export function getPost(category: string | null, id: string): Post {
 	return {
 		...info,
 		id,
-		date: parseDate(info.date).getTime(),
 		content: matterResult.content,
 		category: category || null,
 	};

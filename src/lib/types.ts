@@ -10,7 +10,7 @@ export interface Post extends Partial<ImageHolder> {
 	id: string;
 	title: string;
 	summary: string;
-	date: number;
+	date: string;
 	content: string;
 }
 

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { formatDate } from 'lib/date';
 import { Post } from 'lib/types';
 import Card from './Card';
 import { HTMLProps } from 'react';
@@ -17,7 +16,7 @@ const PostList: React.FC<Props> = ({ posts, ...props }) => (
 						<Card
 							title={post.title}
 							description={post.summary}
-							footer={formatDate(new Date(post.date))}
+							footer={post.date}
 							image={post.image}
 							imageAlt={post.image_alt}
 							className="hover:scale-105 transition-all"

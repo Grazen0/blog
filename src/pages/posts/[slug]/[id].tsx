@@ -9,7 +9,6 @@ import MainImage from 'components/post/MainImage';
 import PostImage from 'components/post/PostImage';
 import PostLink from 'components/post/PostLink';
 import AnimatedLink from 'components/AnimatedLink';
-import { formatDate } from 'lib/date';
 import { Post } from 'lib/types';
 import styles from 'styles/Post.module.css';
 import { getPost, listCategories, listPosts } from 'lib/posts';
@@ -46,7 +45,7 @@ const Post: NextPage<Props> = ({ title, summary, image, image_alt, content, date
 			<article className={styles.container}>
 				<h1 className="text-center text-5xl font-bold mt-8 mb-3">{title}</h1>
 				<div className="text-center my-4">
-					Posted on <time>{formatDate(new Date(date))}</time>
+					Posted on <time>{date}</time>
 				</div>
 
 				{image && image_alt && <MainImage src={image} alt={image_alt} />}
