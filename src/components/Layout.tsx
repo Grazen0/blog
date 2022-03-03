@@ -1,49 +1,26 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import OpenGraph, { Props as OpenGraphProps } from './OpenGraph';
 import Footer from './Footer';
 import Header from './Header';
-import { completePath } from 'lib/utils';
 
-export interface Props {
-	title: string;
-	description?: string;
-	image?: string;
-	imageAlt?: string;
-	siteName?: string;
-}
+export type Props = OpenGraphProps;
 
-const Layout: React.FC<Props> = ({ title, description, image, imageAlt, siteName, children }) => {
-	const router = useRouter();
+const Layout: React.FC<Props> = ({ children, ...props }) => (
+	<div className="flex flex-col min-h-full">
+		<Head>
+			<title>
+				{props.title} &middot; {props.siteName}
+			</title>
+			<meta name="description" content={props.description} />
+			<meta name="author" content="ElCholoGamer" />
+		</Head>
+		<OpenGraph {...(props as OpenGraphProps)} />
 
-	if (!image) {
-		image = '/img/cat.jpg';
-		imageAlt = 'An orange cat sitting down with a keyboard';
-	}
-
-	return (
-		<div className="flex flex-col min-h-full">
-			<Head>
-				<title>
-					{title} &middot; {siteName}
-				</title>
-				<meta name="description" content={description} />
-				<meta name="author" content="ElCholoGamer" />
-
-				<meta property="og:title" content={title} />
-				<meta property="og:url" content={completePath(router.asPath)} />
-				<meta property="og:type" content="website" />
-				<meta property="og:image" content={completePath(image)} />
-				<meta property="og:site_name" content={siteName} />
-				{description && <meta property="og:description" content={description} />}
-				{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
-			</Head>
-
-			<Header />
-			<div className="flex-grow">{children}</div>
-			<Footer />
-		</div>
-	);
-};
+		<Header />
+		<div className="flex-grow">{children}</div>
+		<Footer />
+	</div>
+);
 
 Layout.defaultProps = {
 	siteName: "Cholo's Blog",
