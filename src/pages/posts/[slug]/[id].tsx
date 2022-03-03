@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import Layout from 'components/Layout';
+import Layout from 'components/layout/Layout';
 import BlockQuote from 'components/post/BlockQuote';
 import CodeBlock from 'components/post/CodeBlock';
 import MainImage from 'components/post/MainImage';

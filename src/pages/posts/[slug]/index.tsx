@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
-import Layout from 'components/Layout';
+import Layout from 'components/layout/Layout';
 import PostList from 'components/PostList';
 import { getCategory, getPost, isCategory, listCategories, listPosts } from 'lib/posts';
 import { Category, Post } from 'lib/types';

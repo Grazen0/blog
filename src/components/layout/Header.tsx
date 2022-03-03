@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import React, { HTMLProps, useState, useRef, useCallback } from 'react';
+import React, { HTMLProps, useState, useRef } from 'react';
 import classNames from 'classnames';
-import DarkModeSwitch from './DarkModeSwitch';
-import GitHubIcon from './icons/GitHubIcon';
-import MenuIcon from './icons/MenuIcon';
+import DarkModeSwitch from '../DarkModeSwitch';
+import GitHubIcon from '../icons/GitHubIcon';
+import MenuIcon from '../icons/MenuIcon';
 import NavBar from './NavBar';
 import { LinkInfo } from 'lib/types';
 import { useClickOutside } from 'lib/hooks/use-click-outside';

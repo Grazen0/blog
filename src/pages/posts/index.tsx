@@ -1,11 +1,10 @@
 import { GetStaticProps, NextPage } from 'next/types';
-import Layout from 'components/Layout';
-import { Category, Post } from 'lib/types';
-import { getCategory, getPost, listCategories, listPosts } from 'lib/posts';
-import Image from 'next/image';
 import Link from 'next/link';
+import Layout from 'components/layout/Layout';
 import Card from 'components/Card';
-import { formatDate, parseDate } from 'lib/date';
+import PostList from 'components/PostList';
+import { getCategory, getPost, listCategories, listPosts } from 'lib/posts';
+import { Category, Post } from 'lib/types';
 
 interface Props {
 	categories: Category[];
@@ -54,24 +53,7 @@ const Posts: NextPage<Props> = ({ categories, posts }) => (
 			{posts.length > 0 && (
 				<div className="max-w-2xl mx-auto my-16">
 					<h2 className="text-2xl font-semibold my-6">Uncategorized posts:</h2>
-					<ul>
-						{posts.map(post => (
-							<li key={post.id}>
-								<Link href={`/posts/${post.id}/`}>
-									<a>
-										<Card
-											title={post.title}
-											description={post.summary}
-											footer={formatDate(new Date(post.date))}
-											image={post.image}
-											imageAlt={post.image_alt}
-											className="hover:scale-105 transition-all"
-										/>
-									</a>
-								</Link>
-							</li>
-						))}
-					</ul>
+					<PostList posts={posts} />
 				</div>
 			)}
 		</main>
