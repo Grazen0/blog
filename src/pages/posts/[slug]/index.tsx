@@ -49,12 +49,11 @@ const PostOrCategory: NextPage<Props> = props => {
 	if (props.type === 'post') return <PostPage {...props.post} />;
 
 	const { name, description, image, image_alt } = props.category;
-	const title = `Category: ${name}`;
 
 	return (
-		<Layout title={title} description={description} image={image} imageAlt={image_alt}>
+		<Layout title={name} description={description} image={image} imageAlt={image_alt}>
 			<main className="p-6">
-				<h1 className="text-5xl text-center font-bold mt-8 mb-2">{title}</h1>
+				<h1 className="text-5xl text-center font-bold mt-8 mb-2">{name}</h1>
 				<p className="text-center my-6 text-xl">{description}</p>
 				{image && (
 					<div className="relative h-72 w-[30rem] max-w-full mx-auto my-10 shadow-intense dark:shadow-none">
