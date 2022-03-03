@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { DARK_CLASS } from '../constants';
 import { SetState } from '../types';
 import useLocalStorage from './use-local-storage';
+
+export const DARK_CLASS = 'dark';
 
 function useDarkModeinitial(): [boolean, SetState<boolean>] {
 	const [darkMode, setDarkMode] = useLocalStorage('dark_mode', true);
