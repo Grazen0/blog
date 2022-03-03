@@ -14,7 +14,7 @@ const NotFound: NextPage = () => {
 				<h1 className="text-5xl text-center my-8 font-bold">Page Not found :(</h1>
 				<p className="text-center text-xl">Maybe you misspelled something?</p>
 
-				<div className="text-center mx-auto my-12">
+				<div className="text-center mx-auto my-20">
 					<AnimatedLink className="mx-4 text-lg font-semibold" href="/">
 						Home
 					</AnimatedLink>
