@@ -13,6 +13,12 @@
 	}
 }
 
+@layer utilities {
+	.centered-2xl {
+		@apply max-w-2xl mx-auto;
+	}
+}
+
 .hljs-keyword {
 	@apply text-[#a626a4] dark:text-[#c678dd];
 }
