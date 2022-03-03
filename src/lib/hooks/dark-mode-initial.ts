@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { SetState } from '../types';
-import useLocalStorage from './use-local-storage';
+import useLocalStorage from './local-storage';
 
 export const DARK_CLASS = 'dark';
 

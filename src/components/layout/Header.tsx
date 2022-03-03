@@ -6,7 +6,7 @@ import GitHubIcon from '../icons/GitHubIcon';
 import MenuIcon from '../icons/MenuIcon';
 import NavBar from './NavBar';
 import { LinkInfo } from 'lib/types';
-import { useClickOutside } from 'lib/hooks/use-click-outside';
+import { useClickOutside } from 'lib/hooks/click-outside';
 
 const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
