@@ -1,17 +1,20 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Image from 'next/image';
 import Layout from 'components/Layout';
+import PostList from 'components/PostList';
 import { getCategory, getPost, isCategory, listCategories, listPosts } from 'lib/posts';
-import { Category, Post as PostOrCategory } from 'lib/types';
-import Post from './[id]';
+import { Category, Post } from 'lib/types';
+import PostPage from './[id]';
 
 export type Props =
 	| {
 			type: 'post';
-			post: PostOrCategory;
+			post: Post;
 	  }
 	| {
 			type: 'category';
 			category: Category;
+			posts: Post[];
 	  };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -33,6 +36,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 			? {
 					type: 'category',
 					category: getCategory(postOrCategory),
+					posts: listPosts(postOrCategory).map(id => getPost(postOrCategory, id)),
 			  }
 			: {
 					type: 'post',
@@ -42,16 +46,25 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 };
 
 const PostOrCategory: NextPage<Props> = props => {
-	if (props.type === 'post') {
-		return <Post {...props.post} />;
-	}
+	if (props.type === 'post') return <PostPage {...props.post} />;
 
 	const { name, description, image, image_alt } = props.category;
+	const title = `Category: ${name}`;
 
 	return (
-		<Layout title={name} description={description} image={image} imageAlt={image_alt}>
-			<main>
-				<h1>Category: {name}</h1>
+		<Layout title={title} description={description} image={image} imageAlt={image_alt}>
+			<main className="p-6">
+				<h1 className="text-5xl text-center font-bold mt-10 mb-2">{title}</h1>
+				<p className="text-center my-6 text-xl">{description}</p>
+				{image && (
+					<div className="relative h-72 w-[30rem] max-w-full mx-auto my-10 shadow-intense dark:shadow-none">
+						<Image src={image} alt={image_alt} layout="fill" className="rounded object-cover" />
+					</div>
+				)}
+
+				<div className="max-w-2xl mx-auto my-16">
+					<PostList posts={props.posts} />
+				</div>
 			</main>
 		</Layout>
 	);
