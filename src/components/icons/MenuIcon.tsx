@@ -1,4 +1,4 @@
-import { useDarkMode } from 'providers/dark-mode';
+import { useDarkMode } from 'lib/providers/dark-mode';
 
 export interface Props {
 	width?: number;

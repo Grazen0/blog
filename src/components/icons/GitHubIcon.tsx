@@ -1,5 +1,5 @@
 import { tailwindConfig } from 'lib/constants';
-import { useDarkMode } from 'providers/dark-mode';
+import { useDarkMode } from 'lib/providers/dark-mode';
 
 export interface Props {
 	className?: string;
