@@ -15,6 +15,7 @@ export interface Post extends Partial<ImageHolder> {
 }
 
 export interface Category extends Partial<ImageHolder> {
+	id: string;
 	name: string;
 	description: string;
 	image?: string;

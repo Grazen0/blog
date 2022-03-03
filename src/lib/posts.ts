@@ -30,7 +30,12 @@ export function getCategory(category: string): Category {
 	const infoPath = path.join(POSTS_DIR, category, 'category.yml');
 	const content = fs.readFileSync(infoPath).toString();
 
-	return YAML.parse(content);
+	const info = YAML.parse(content);
+
+	return {
+		...info,
+		id: category,
+	};
 }
 
 export function getPost(category: string | null, id: string): Post {
