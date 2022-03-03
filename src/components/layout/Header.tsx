@@ -34,9 +34,9 @@ const Header: React.FC = () => {
 			ref={menuRef}
 			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center"
 		>
-			<a className="text-3xl font-display">
-				<Link href="/">Cholo&apos;s Blog</Link>
-			</a>
+			<Link href="/">
+				<a className="text-3xl font-display">Cholo&apos;s Blog</a>
+			</Link>
 
 			<div className="sm:flex flex-grow hidden">
 				<NavBar
