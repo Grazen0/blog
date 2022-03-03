@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkUnwrapImages from 'remark-unwrap-images';
 import Layout from 'components/layout/Layout';
 import BlockQuote from 'components/post/BlockQuote';
 import CodeBlock from 'components/post/CodeBlock';
@@ -51,7 +52,7 @@ const Post: NextPage<Props> = ({ title, summary, image, image_alt, content, date
 				{image && image_alt && <MainImage src={image} alt={image_alt} />}
 				<div className="my-12">
 					<ReactMarkdown
-						remarkPlugins={[remarkGfm]}
+						remarkPlugins={[remarkGfm, remarkUnwrapImages]}
 						components={{
 							a: PostLink,
 							code: CodeBlock,
