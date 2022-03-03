@@ -55,3 +55,28 @@ export function getPost(category: string | null, id: string): Post {
 		category: category || null,
 	};
 }
+
+export function getLatestPosts(max: number): Post[] {
+	const out: Post[] = [];
+	const categories = [null, ...listCategories()];
+
+	for (const category of categories) {
+		const posts = listPosts(category).map(id => getPost(category, id));
+
+		for (const post of posts) {
+			for (let i = 0; i < max; i++) {
+				if (i >= out.length) {
+					out.push(post);
+					break;
+				}
+
+				if (out[i].date < post.date) {
+					out.splice(i, 0, post);
+					break;
+				}
+			}
+		}
+	}
+
+	return out;
+}
