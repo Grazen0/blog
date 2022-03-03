@@ -1,10 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { ToString } from '../types';
 
-function useLocalStorage<T extends ToString>(
-	key: string,
-	defaultValue: T
-): [T, Dispatch<SetStateAction<T>>] {
+function useLocalStorage<T>(key: string, defaultValue: T): [T, Dispatch<SetStateAction<T>>] {
 	const [value, setValue] = useState(defaultValue);
 
 	useEffect(() => {
