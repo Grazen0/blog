@@ -4,7 +4,7 @@ import useLocalStorage from './use-local-storage';
 
 export const DARK_CLASS = 'dark';
 
-function useDarkModeinitial(): [boolean, SetState<boolean>] {
+function useDarkModeInitial(): [boolean, SetState<boolean>] {
 	const [darkMode, setDarkMode] = useLocalStorage('dark_mode', true);
 
 	useEffect(() => {
@@ -16,4 +16,4 @@ function useDarkModeinitial(): [boolean, SetState<boolean>] {
 	return [darkMode, setDarkMode];
 }
 
-export default useDarkModeinitial;
+export default useDarkModeInitial;
