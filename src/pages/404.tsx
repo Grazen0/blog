@@ -11,7 +11,9 @@ const NotFound: NextPage = () => {
 	return (
 		<Layout title="Page Not Found" description="Maybe you misspelled something?">
 			<main className="p-6">
-				<h1 className="text-5xl text-center my-8 font-bold">Page Not found :(</h1>
+				<h1 className="text-5xl text-center my-8 font-bold">
+					Page Not found <span className="whitespace-nowrap">:(</span>
+				</h1>
 				<p className="text-center text-xl">Maybe you misspelled something?</p>
 
 				<div className="text-center mx-auto my-20">
