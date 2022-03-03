@@ -13,6 +13,7 @@ const Layout: React.FC<Props> = ({ children, ...props }) => (
 			</title>
 			<meta name="description" content={props.description} />
 			<meta name="author" content="ElCholoGamer" />
+			<meta name="theme-color" content="#0f172a" />
 		</Head>
 		<OpenGraph {...(props as OpenGraphProps)} />
 
