@@ -1,12 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames';
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react';
-import { ReactMarkdownProps } from 'react-markdown/lib/ast-to-react';
 
-export type Props = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> &
-	ReactMarkdownProps;
+export type Props = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
-const PostImage: React.FC<Props> = ({ node, alt, className, ...props }) => (
+const PostImage: React.FC<Props> = ({ alt, className, ...props }) => (
 	<figure className="my-16 text-center">
 		<img
 			{...props}

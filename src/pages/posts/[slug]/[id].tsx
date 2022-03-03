@@ -55,7 +55,7 @@ const Post: NextPage<Props> = ({ title, summary, image, image_alt, content, date
 						components={{
 							a: PostLink,
 							code: CodeBlock,
-							img: PostImage,
+							img: ({ node, ...props }) => <PostImage {...props} />,
 							blockquote: BlockQuote,
 						}}
 					>
