@@ -18,7 +18,7 @@ const MainImage: React.FC<Props> = ({ src, alt, imgProps, className, ...props })
 				layout="fill"
 				priority
 				className={classNames(
-					'rounded object-cover rounded object-center align-middle',
+					'rounded object-cover object-center align-middle',
 					imgProps?.className
 				)}
 			/>
