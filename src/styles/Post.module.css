@@ -25,3 +25,33 @@
 .container blockquote p {
 	@apply my-0;
 }
+
+.container table {
+	@apply mx-auto my-12;
+}
+
+.container tbody {
+	@apply bg-neutral-200;
+}
+
+:global(.dark) .container tbody {
+	@apply bg-slate-800;
+}
+
+.container thead {
+	@apply bg-neutral-300;
+}
+
+:global(.dark) .container thead {
+	@apply bg-slate-700;
+}
+
+.container th,
+.container td {
+	@apply py-2 px-4 border border-neutral-400;
+}
+
+:global(.dark) .container th,
+:global(.dark) .container td {
+	@apply border-slate-600;
+}
