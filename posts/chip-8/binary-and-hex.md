@@ -68,7 +68,7 @@ Then, we add up our results: `16 + 8 + 4 + 0 + 1 = 29`. _Voilá_! You just conve
 
 As you may realize, a byte is kinda small. More precisely, it can only represent numbers up to 255. The solution? Make it longer!
 
-We can join 2 bytes together to create 16-bit , such as `1011 0101 1001 1100`. This is called a **16-bit number**, and it hold values up to 65535. Not enough? Keep going! Join 4 bytes together to create a **32-bit number**, and 8 for a **64-bit number**. The main takeaway from here is that binary numbers come in different sizes: 8, 16, 32, and 64.
+We can join 2 bytes together to create bigger numbers, such as `1011 0101 1001 1100`. This is called a **16-bit number**, and it hold values up to 65535. Not enough? Keep going! Join 4 bytes together to create a **32-bit number**, and 8 for a **64-bit number**. The main takeaway from here is that binary numbers come in different sizes: 8, 16, 32, and 64.
 
 To make the CHIP-8 emulator, you'll mainly be working 8-bit numbers, and occasionally 16-bit ones. Early computers — such as the ones CHIP-8 was originally created for — had very limited memory space, so they couldn't afford even 32-bit numbers.
 
