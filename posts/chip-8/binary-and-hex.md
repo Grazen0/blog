@@ -60,13 +60,13 @@ To illustrate this, let's take a look at this binary number in a table similar t
 
 |                **Bit** |  1  |  1  |  1  |  0  |  1  |
 | ---------------------: | :-: | :-: | :-: | :-: | :-: |
-|           **Position** |  3  |  3  |  2  |  1  |  0  |
+|           **Position** |  4  |  3  |  2  |  1  |  0  |
 |              **Value** | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 |
 | **Value (calculated)** | 16  |  8  |  4  |  0  |  1  |
 
 Then, we add up our results: `16 + 8 + 4 + 0 + 1 = 29`. _Voilá_! You just converted a binary number to decimal.
 
-As you may realize, a byte is kinda small. More precisely, it can only represent numbers up to 255. The solution? Make it longer!
+As you may realize, a byte is kinda small. More precisely, it can only represent numb up to 255. The solution? Make it longer!
 
 We can join 2 bytes together to create bigger numbers, such as `1011 0101 1001 1100`. This is called a **16-bit number**, and it hold values up to 65535. Not enough? Keep going! Join 4 bytes together to create a **32-bit number**, and 8 for a **64-bit number**. The main takeaway from here is that binary numbers come in different sizes: 8, 16, 32, and 64.
 
