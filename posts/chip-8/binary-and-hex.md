@@ -42,15 +42,15 @@ As you probably already know, computers at their bare minimum can only work with
 
 To counter this, some pretty smart guys came up with the idea of **binary numbers**. They're the same thing as a decimal/regular number, just that they're represented in a different way.
 
-First, a bit of terminology (I swear, pun not intended). In a binary number, each digit is called a **bit**. A bit is the smallest unit of data in a computer. It can hold a single value: either `1` or `0`. Well, I guess you could also say it's either "on" or "off", but the numeric representation is the most popular one, and it's easier to write down anyway. A single bit is not very useful for storing things, though, so they're commonly grouped together in **nibbles** and **bytes**. A nibble is simply a group of 4 bits, and a byte is a group of **2 nibbles**, or **8 bits**, such `1101 0011` or `1010 1001`.
+First, a _bit_ of terminology (I swear, pun not intended). In a binary number, each digit is called a **bit**. A bit is the smallest unit of data in a computer. It can hold a single value: either `1` or `0`. Well, I guess you could also say it's either "on" or "off", but the numeric representation is the most popular one, and it's easier to write down anyway. A single bit is not very useful for storing things, though, so they're commonly grouped together in **nibbles** and **bytes**. A nibble is simply a group of 4 bits, and a byte is a group of **2 nibbles**, or **8 bits**, such `1101 0011` or `1010 1001`.
 
 Okay, back to numbers. So, a byte has 8 bits, each of which can have a value of either `1` or `0`, right? Binary numbers are represented using these.
 
 Let's take a look at a comparison between decimal and binary, shall we? I'll use the number 29 as an example:
 
-| Decimal |  Binary  |
-| :-----: | :------: |
-|   29    | 00011101 |
+| Decimal |   Binary    |
+| :-----: | :---------: |
+|   29    | `0001 1101` |
 
 Okay, cool. But why?
 
@@ -68,9 +68,9 @@ Then, we add up our results: `16 + 8 + 4 + 0 + 1 = 29`. _Voilá_! You just conve
 
 As you may realize, a byte is kinda small. More precisely, it can only represent numb up to 255. The solution? Make it longer!
 
-We can join 2 bytes together to create bigger numbers, such as `1011 0101 1001 1100`. This is called a **16-bit number**, and it hold values up to 65535. Not enough? Keep going! Join 4 bytes together to create a **32-bit number**, and 8 for a **64-bit number**. The main takeaway from here is that binary numbers come in different sizes: 8, 16, 32, and 64.
+We can join 2 bytes together to create something bigger, like `1011 0101 1001 1100`. This is called a **16-bit number**, and it can hold values up to 65535. Not enough? Keep going! Join 4 bytes together to create a **32-bit number**, and 8 for a **64-bit number**. These are even bigger! The main takeaway from here is that binary numbers come in different sizes: mainly 8, 16, 32, and 64.
 
-To make the CHIP-8 emulator, you'll mainly be working 8-bit numbers, and occasionally 16-bit ones. Early computers — such as the ones CHIP-8 was originally created for — had very limited memory space, so they couldn't afford even 32-bit numbers.
+To make the CHIP-8 emulator, you'll mainly be working with 8-bit numbers, and occasionally 16-bit ones. Early computers — such as the ones CHIP-8 was originally created for — had very limited memory space, so they couldn't afford even 32-bit numbers.
 
 Now, you don't need to be able to read binary easily to go on with this project, or anything like that. However, it's important to know how the system works and what it represents.
 
@@ -107,9 +107,9 @@ Hold on, but why would we want to use these? Well, let's compare a number with i
 | :-----: | :-------------------: | :---------: |
 |  63323  | `1111 0111 0101 1011` |   `F75B`    |
 
-This is just a 16-bit number, but see how big the binary representation is compared to its hex counterpart!
+This is just a 16-bit number, but see how long the binary representation is compared to its hex counterpart!
 
-Now, the decimal representation is shorter too, so why would we want to use hex instead of decimal? See, hexadecimal numbers are a better representation of each nibble (group of 4 bits) in the binary number.
+Now, the decimal representation is shorter too, so why would we want to use hex instead of decimal? See, each digit in a hexadecimal number represents precisely a nibble of its binary representation.
 
 |  `F`   |  `7`   |  `5`   |  `B`   |
 | :----: | :----: | :----: | :----: |
