@@ -5,6 +5,7 @@ import classNames from 'classnames';
 export interface Props extends HTMLProps<HTMLSpanElement> {
 	title: string;
 	description: string;
+	head?: string;
 	footer?: string;
 	image?: string;
 	imageAlt?: string;
@@ -13,6 +14,7 @@ export interface Props extends HTMLProps<HTMLSpanElement> {
 const Card: React.FC<Props> = ({
 	title,
 	description,
+	head,
 	footer,
 	image,
 	imageAlt,
@@ -23,15 +25,16 @@ const Card: React.FC<Props> = ({
 		{...props}
 		className={classNames(
 			className,
-			'overflow-hidden rounded-lg flex flex-col xs:flex-row items-stretch bg-neutral-200 dark:bg-slate-700 my-8 shadow-intense dark:shadow-none'
+			'my-8 overflow-hidden rounded-lg flex flex-col xs:flex-row bg-neutral-200 dark:bg-slate-700 shadow-intense dark:shadow-none'
 		)}
 	>
 		{image && (
-			<span className="relative w-auto xs:w-1/3 h-32 xs:h-auto bg-slate-800">
+			<span className="relative basis-1/2 xs:w-1/3 h-32 xs:h-auto bg-slate-800">
 				<Image src={image} alt={imageAlt} layout="fill" className="object-cover text-center" />
 			</span>
 		)}
-		<span className="px-3 py-5">
+		<span className="px-3 py-4">
+			{head && <p className="text-md mb-2">{head}</p>}
 			<h3 className="text-2xl xs:text-3xl mb-3 font-semibold">{title}</h3>
 			<p className="xs:text-xl">{description}</p>
 			{footer && (
