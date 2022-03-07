@@ -14,6 +14,15 @@ export interface Post extends Partial<ImageHolder> {
 	content: string;
 }
 
+export interface SortedPost extends Post {
+	prevPost?: SortedPost;
+	nextPost?: SortedPost;
+}
+
+export interface FullPost extends Omit<Post, 'category'> {
+	category: Category;
+}
+
 export interface Category extends Partial<ImageHolder> {
 	id: string;
 	name: string;

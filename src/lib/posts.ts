@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import YAML from 'yaml';
-import { Category, Post } from './types';
+import { Category, FullPost, Post, SortedPost } from './types';
 
 const POSTS_DIR = 'posts';
 
@@ -52,6 +52,43 @@ export function getPost(category: string | null, id: string): Post {
 		content: matterResult.content,
 		category: category || null,
 	};
+}
+
+export function getFullPost(category: string, id: string): FullPost {
+	const post = getPost(category, id);
+
+	return {
+		...post,
+		category: getCategory(category),
+	};
+}
+
+export function getPosts(category: string | null): Post[] {
+	return listPosts(category).map(id => getPost(category, id));
+}
+
+export function getSortedPosts(category: string | null): SortedPost[] {
+	const posts = getPosts(category);
+	posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+	return posts.map((post: SortedPost, index) => {
+		if (index > 0) post.prevPost = posts[index - 1];
+		if (index < posts.length - 1) post.nextPost = posts[index + 1];
+		return post;
+	});
+}
+
+export function getSortedPost(category: string | null, id: string) {
+	const posts = getPosts(category);
+	posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+	const index = posts.findIndex(post => post.id === id);
+
+	const sortedPost: SortedPost = posts[index];
+	if (index > 0) sortedPost.prevPost = posts[index - 1];
+	if (index < posts.length - 1) sortedPost.nextPost = posts[index + 1];
+
+	return sortedPost;
 }
 
 export function getLatestPosts(max: number): Post[] {

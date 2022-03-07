@@ -3,17 +3,21 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import Layout from 'components/layout/Layout';
+import NextPostLinks from 'components/layout/NextPostLinks';
 import BlockQuote from 'components/post/BlockQuote';
 import CodeBlock from 'components/post/CodeBlock';
 import MainImage from 'components/post/MainImage';
 import PostImage from 'components/post/PostImage';
 import PostLink from 'components/post/PostLink';
 import AnimatedLink from 'components/AnimatedLink';
-import { Post } from 'lib/types';
+import { Category, Post, SortedPost } from 'lib/types';
+import { listCategories, listPosts, getSortedPost, getCategory } from 'lib/posts';
 import styles from 'styles/Post.module.css';
-import { getPost, listCategories, listPosts } from 'lib/posts';
 
-export type Props = Post;
+interface Props {
+	post: SortedPost;
+	category?: Category;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const categories = listCategories();
@@ -28,22 +32,33 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-	const category = params?.slug?.toString();
+	const categoryId = params?.slug?.toString();
 	const id = params?.id?.toString();
-	if (!category || !id) throw new Error('Category or post ID parameters missing');
+	if (!categoryId || !id) throw new Error('Category or post ID parameters missing');
+
+	const post = getSortedPost(categoryId, id);
+	if (!post) throw new Error('Post not found');
+
+	const category = getCategory(categoryId);
 
 	return {
-		props: getPost(category, id),
+		props: { post, category },
 	};
 };
 
-const Post: NextPage<Props> = ({ title, summary, image, image_alt, content, date, category }) => (
+const Post: NextPage<Props> = ({
+	post: { title, summary, image, image_alt, content, date, nextPost, prevPost },
+	category,
+}) => (
 	<Layout title={title} description={summary} image={image} imageAlt={image_alt}>
 		<main className="p-6">
-			<AnimatedLink href={category ? `/posts/${category}/` : '/posts'}>&#8592; Back</AnimatedLink>
+			<AnimatedLink href={category ? `/posts/${category.id}/` : '/posts/'}>
+				&#8592; Back
+			</AnimatedLink>
 
 			<article className={styles.container}>
-				<h1 className="text-center text-5xl font-bold mt-8 mb-3">{title}</h1>
+				{category && <p className="text-2xl text-center font-semibold my-0">{category.name}</p>}
+				<h1 className="text-center text-5xl font-bold mt-0 mb-3">{title}</h1>
 				<div className="text-center my-4">
 					Posted on <time>{date}</time>
 				</div>
@@ -63,6 +78,8 @@ const Post: NextPage<Props> = ({ title, summary, image, image_alt, content, date
 					</ReactMarkdown>
 				</div>
 			</article>
+
+			{(prevPost || nextPost) && <NextPostLinks previous={prevPost} next={nextPost} />}
 		</main>
 	</Layout>
 );
