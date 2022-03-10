@@ -37,7 +37,7 @@ The program counter is just a 16-bit number that points to the current instructi
 
 ### Registers
 
-You can think of registers as sort of "variables" a program has access to. The CHIP-8 had 16 8-bit registers, which are labelled `V0` through `VF`. The last register (`VF`) is also called the carry flag, as it's used to indicate when an arithmetic operation has caused an integer overflow.
+You can think of registers as sort of "variables" a program has access to. CHIP-8 has 16 8-bit registers, which are labelled `V0` through `VF`. The last register (`VF`) is also called the carry flag, as it's used to indicate when an arithmetic operation has caused an integer overflow.
 
 To implement the registers, you can simply use an array of 8-bit numbers with the length 16.
 
