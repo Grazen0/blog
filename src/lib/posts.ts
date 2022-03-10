@@ -68,8 +68,7 @@ export function getPosts(category: string | null): Post[] {
 }
 
 export function getSortedPosts(category: string | null): SortedPost[] {
-	const posts = getPosts(category);
-	posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	const posts = getPosts(category).sort(sortByDate);
 
 	return posts.map((post: SortedPost, index) => {
 		if (index > 0) post.prevPost = posts[index - 1];
@@ -79,9 +78,7 @@ export function getSortedPosts(category: string | null): SortedPost[] {
 }
 
 export function getSortedPost(category: string | null, id: string) {
-	const posts = getPosts(category);
-	posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
+	const posts = getPosts(category).sort(sortByDate);
 	const index = posts.findIndex(post => post.id === id);
 
 	const sortedPost: SortedPost = posts[index];
@@ -115,3 +112,8 @@ export function getLatestPosts(max: number): Post[] {
 
 	return out;
 }
+
+export const sortByDate = (a: Post, b: Post) =>
+	new Date(a.date).getTime() - new Date(b.date).getTime();
+
+export const sortbyDateInverse = (a: Post, b: Post) => sortByDate(b, a);

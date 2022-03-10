@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Layout from 'components/layout/Layout';
 import Card from 'components/Card';
 import PostList from 'components/PostList';
-import { getCategory, getPost, listCategories, listPosts } from 'lib/posts';
+import { getCategory, getPost, listCategories, listPosts, sortbyDateInverse } from 'lib/posts';
 import { Category, Post } from 'lib/types';
 
 interface Props {
@@ -13,7 +13,9 @@ interface Props {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	const categories = listCategories().map(getCategory);
-	const posts = listPosts(null).map(id => getPost(null, id));
+	const posts = listPosts(null)
+		.map(id => getPost(null, id))
+		.sort(sortbyDateInverse);
 
 	return {
 		props: { categories, posts },

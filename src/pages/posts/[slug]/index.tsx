@@ -2,9 +2,16 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Layout from 'components/layout/Layout';
 import PostList from 'components/PostList';
-import { getCategory, getPost, isCategory, listCategories, listPosts } from 'lib/posts';
-import { Category, Post } from 'lib/types';
 import PostPage from './[id]';
+import { Category, Post } from 'lib/types';
+import {
+	getCategory,
+	getPost,
+	isCategory,
+	listCategories,
+	listPosts,
+	sortbyDateInverse,
+} from 'lib/posts';
 
 export type Props =
 	| {
@@ -36,7 +43,9 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 			? {
 					type: 'category',
 					category: getCategory(postOrCategory),
-					posts: listPosts(postOrCategory).map(id => getPost(postOrCategory, id)),
+					posts: listPosts(postOrCategory)
+						.map(id => getPost(postOrCategory, id))
+						.sort(sortbyDateInverse),
 			  }
 			: {
 					type: 'post',
