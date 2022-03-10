@@ -7,7 +7,7 @@ const About: NextPage = () => (
 	<Layout title="About">
 		<main className="p-6 leading-relaxed text-xl">
 			<h1 className="text-5xl text-center font-bold my-8">About</h1>
-			<div className="centered-2xl my-10">
+			<div className="my-10 post-container">
 				<p className="my-8">
 					Hi! My name is José Grayson, but you probably know me as ElCholoGamer. I&apos;m some
 					15-year old who likes to code a lot. For the past 2-3 years I&apos;ve been experimenting

@@ -13,9 +13,9 @@
 	}
 }
 
-@layer utilities {
-	.centered-2xl {
-		@apply max-w-2xl mx-auto;
+@layer components {
+	.post-container {
+		@apply max-w-2xl mx-auto text-xl leading-loose;
 	}
 }
 

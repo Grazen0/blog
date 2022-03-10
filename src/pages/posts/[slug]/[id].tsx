@@ -64,7 +64,7 @@ const Post: NextPage<Props> = ({
 				</div>
 
 				{image && image_alt && <MainImage src={image} alt={image_alt} />}
-				<div className="my-12">
+				<div className="my-12 post-container">
 					<ReactMarkdown
 						remarkPlugins={[remarkGfm, remarkUnwrapImages]}
 						components={{

@@ -1,13 +1,9 @@
-.container {
-	@apply text-xl;
-}
-
 .container pre,
 .container p,
 .container hr,
 .container h2,
 .container h3 {
-	@apply mx-auto max-w-2xl my-8;
+	@apply my-8;
 }
 
 .container h2 {
@@ -16,10 +12,6 @@
 
 .container h3 {
 	@apply text-3xl font-semibold mt-14;
-}
-
-.container p {
-	@apply leading-loose;
 }
 
 .container blockquote p {
@@ -54,4 +46,13 @@
 :global(.dark) .container th,
 :global(.dark) .container td {
 	@apply border-slate-600;
+}
+
+.container ul,
+.container ol {
+	@apply px-6 mb-12;
+}
+
+.container ul li {
+	@apply my-1 before:content-['-_'];
 }
