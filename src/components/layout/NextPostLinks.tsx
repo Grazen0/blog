@@ -1,12 +1,12 @@
 import { HTMLProps } from 'react';
-import { Post } from 'lib/types';
+import { PartialPost, Post } from 'lib/types';
 import classNames from 'classnames';
 import AnimatedLink from 'components/AnimatedLink';
 import { postUrl } from 'lib/utils';
 
 export interface Props extends HTMLProps<HTMLElement> {
-	previous?: Post;
-	next?: Post;
+	previous?: PartialPost | Post;
+	next?: PartialPost | Post;
 }
 
 const NextPostLinks: React.FC<Props> = ({ previous, next, className, ...props }) => (

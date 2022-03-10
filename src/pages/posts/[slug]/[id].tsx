@@ -10,12 +10,12 @@ import MainImage from 'components/post/MainImage';
 import PostImage from 'components/post/PostImage';
 import PostLink from 'components/post/PostLink';
 import AnimatedLink from 'components/AnimatedLink';
-import { Category, Post, SortedPost } from 'lib/types';
+import { Category, Post, Sorted } from 'lib/types';
 import { listCategories, listPosts, getSortedPost, getCategory } from 'lib/posts';
 import styles from 'styles/Post.module.css';
 
 interface Props {
-	post: SortedPost;
+	post: Sorted<Post>;
 	category?: Category;
 }
 

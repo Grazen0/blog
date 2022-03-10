@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import YAML from 'yaml';
-import { Category, FullPost, Post, SortedPost } from './types';
+import { Category, Post, PartialPost, Sorted, HasDate } from './types';
 
 const POSTS_DIR = 'posts';
 
@@ -37,7 +37,7 @@ export function getCategory(category: string): Category {
 	};
 }
 
-export function getPost(category: string | null, id: string): Post {
+export function getPartialPost(category: string | null, id: string): PartialPost {
 	category ||= '';
 	const content = fs.readFileSync(path.join(POSTS_DIR, category, `${id}.md`));
 
@@ -54,23 +54,24 @@ export function getPost(category: string | null, id: string): Post {
 	};
 }
 
-export function getFullPost(category: string, id: string): FullPost {
-	const post = getPost(category, id);
+export function getPost(category: string | null, id: string): Post {
+	const post = getPartialPost(category, id);
+	const fullPost = post as Post;
 
-	return {
-		...post,
-		category: getCategory(category),
-	};
+	if (post.category) fullPost.category = getCategory(post.category);
+	return fullPost;
 }
 
-export function getPosts(category: string | null): Post[] {
-	return listPosts(category).map(id => getPost(category, id));
-}
+export const getPosts = (category: string | null): Post[] =>
+	listPosts(category).map(id => getPost(category, id));
 
-export function getSortedPosts(category: string | null): SortedPost[] {
-	const posts = getPosts(category).sort(sortByDate);
+export const getPartialPosts = (category: string | null): PartialPost[] =>
+	listPosts(category).map(id => getPartialPost(category, id));
 
-	return posts.map((post: SortedPost, index) => {
+export function getSortedPosts(category: string | null): Sorted<PartialPost>[] {
+	const posts = getPartialPosts(category).sort(sortByDate);
+
+	return posts.map((post: Sorted<PartialPost>, index) => {
 		if (index > 0) post.prevPost = posts[index - 1];
 		if (index < posts.length - 1) post.nextPost = posts[index + 1];
 		return post;
@@ -81,7 +82,7 @@ export function getSortedPost(category: string | null, id: string) {
 	const posts = getPosts(category).sort(sortByDate);
 	const index = posts.findIndex(post => post.id === id);
 
-	const sortedPost: SortedPost = posts[index];
+	const sortedPost: Sorted<Post> = posts[index];
 	if (index > 0) sortedPost.prevPost = posts[index - 1];
 	if (index < posts.length - 1) sortedPost.nextPost = posts[index + 1];
 
@@ -98,6 +99,8 @@ export function getLatestPosts(max: number): Post[] {
 		for (const post of posts) {
 			for (let i = 0; i < max; i++) {
 				if (i >= out.length) {
+					if (post.category) {
+					}
 					out.push(post);
 					break;
 				}
@@ -113,7 +116,7 @@ export function getLatestPosts(max: number): Post[] {
 	return out;
 }
 
-export const sortByDate = (a: Post, b: Post) =>
+export const sortByDate = (a: HasDate, b: HasDate) =>
 	new Date(a.date).getTime() - new Date(b.date).getTime();
 
-export const sortbyDateInverse = (a: Post, b: Post) => sortByDate(b, a);
+export const sortbyDateInverse = (a: HasDate, b: HasDate) => sortByDate(b, a);

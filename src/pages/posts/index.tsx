@@ -4,11 +4,11 @@ import Layout from 'components/layout/Layout';
 import Card from 'components/Card';
 import PostList from 'components/PostList';
 import { getCategory, getPost, listCategories, listPosts, sortbyDateInverse } from 'lib/posts';
-import { Category, Post } from 'lib/types';
+import { Category, PartialPost } from 'lib/types';
 
 interface Props {
 	categories: Category[];
-	posts: Post[];
+	posts: PartialPost[];
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {

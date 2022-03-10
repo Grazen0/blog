@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Layout from 'components/layout/Layout';
+import PostList from 'components/PostList';
 import { Post } from 'lib/types';
 import { getLatestPosts } from 'lib/posts';
-import PostList from 'components/PostList';
 
 interface Props {
 	latestPosts: Post[];

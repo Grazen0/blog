@@ -5,22 +5,25 @@ export interface ImageHolder {
 	image_alt?: string;
 }
 
-export interface Post extends Partial<ImageHolder> {
+export interface HasDate {
+	date: string;
+}
+
+export interface PartialPost extends Partial<ImageHolder>, HasDate {
 	category?: string;
 	id: string;
 	title: string;
 	summary: string;
-	date: string;
 	content: string;
 }
 
-export interface SortedPost extends Post {
-	prevPost?: SortedPost;
-	nextPost?: SortedPost;
-}
+export type Sorted<T extends {}> = T & {
+	prevPost?: T;
+	nextPost?: T;
+};
 
-export interface FullPost extends Omit<Post, 'category'> {
-	category: Category;
+export interface Post extends Omit<PartialPost, 'category'> {
+	category?: Category;
 }
 
 export interface Category extends Partial<ImageHolder> {

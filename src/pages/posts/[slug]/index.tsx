@@ -3,9 +3,10 @@ import Image from 'next/image';
 import Layout from 'components/layout/Layout';
 import PostList from 'components/PostList';
 import PostPage from './[id]';
-import { Category, Post } from 'lib/types';
+import { Category, Post, PartialPost } from 'lib/types';
 import {
 	getCategory,
+	getPartialPost,
 	getPost,
 	isCategory,
 	listCategories,
@@ -21,7 +22,7 @@ export type Props =
 	| {
 			type: 'category';
 			category: Category;
-			posts: Post[];
+			posts: PartialPost[];
 	  };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -44,7 +45,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 					type: 'category',
 					category: getCategory(postOrCategory),
 					posts: listPosts(postOrCategory)
-						.map(id => getPost(postOrCategory, id))
+						.map(id => getPartialPost(postOrCategory, id))
 						.sort(sortbyDateInverse),
 			  }
 			: {
@@ -71,7 +72,7 @@ const PostOrCategory: NextPage<Props> = props => {
 				)}
 
 				<div className="max-w-2xl mx-auto my-16">
-					<PostList posts={props.posts} />
+					<PostList posts={props.posts} showCategories={false} />
 				</div>
 			</main>
 		</Layout>
