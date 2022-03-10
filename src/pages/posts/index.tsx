@@ -3,26 +3,32 @@ import Link from 'next/link';
 import Layout from 'components/layout/Layout';
 import Card from 'components/Card';
 import PostList from 'components/PostList';
-import { getCategory, getPost, listCategories, listPosts, sortbyDateInverse } from 'lib/posts';
 import { Category, PartialPost } from 'lib/types';
+import {
+	getCategory,
+	getPartialPost,
+	listCategories,
+	listPosts,
+	sortbyDateInverse,
+} from 'lib/posts';
 
 interface Props {
 	categories: Category[];
-	posts: PartialPost[];
+	uncategorizedPosts: PartialPost[];
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	const categories = listCategories().map(getCategory);
 	const posts = listPosts(null)
-		.map(id => getPost(null, id))
+		.map(id => getPartialPost(null, id))
 		.sort(sortbyDateInverse);
 
 	return {
-		props: { categories, posts },
+		props: { categories, uncategorizedPosts: posts },
 	};
 };
 
-const Posts: NextPage<Props> = ({ categories, posts }) => (
+const Posts: NextPage<Props> = ({ categories, uncategorizedPosts: posts }) => (
 	<Layout title="All Posts">
 		<main className="p-6">
 			<h1 className="text-center text-5xl font-bold my-8">All posts</h1>
