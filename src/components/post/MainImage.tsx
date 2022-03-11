@@ -5,20 +5,23 @@ import classNames from 'classnames';
 export interface Props extends HTMLProps<HTMLDivElement> {
 	src: string;
 	alt: string;
+	width: number;
+	height: number;
 	imgProps?: Omit<ImageProps, 'src' | 'alt' | 'layout'>;
 }
 
-const MainImage: React.FC<Props> = ({ src, alt, imgProps, className, ...props }) => (
+const MainImage: React.FC<Props> = ({ src, alt, width, height, imgProps, className, ...props }) => (
 	<figure {...props} className={classNames(className, 'my-12')}>
-		<div className="relative max-w-[50rem] h-64 md:h-96 mx-auto my-2 shadow-intense dark:shadow-none">
+		<div className="text-center my-2">
 			<Image
 				{...imgProps}
 				src={src}
 				alt={alt}
-				layout="fill"
+				width={width}
+				height={height}
 				priority
 				className={classNames(
-					'rounded object-cover object-center align-middle',
+					'object-cover object-center align-middle text-center rounded bg-neutral-300 dark:bg-slate-950',
 					imgProps?.className
 				)}
 			/>

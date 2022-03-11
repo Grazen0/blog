@@ -63,7 +63,7 @@ const Post: NextPage<Props> = ({
 					Posted on <time>{date}</time>
 				</div>
 
-				{image && image_alt && <MainImage src={image} alt={image_alt} />}
+				{image && image_alt && <MainImage src={image} alt={image_alt} width={800} height={420} />}
 				<div className="my-12 post-container">
 					<ReactMarkdown
 						remarkPlugins={[remarkGfm, remarkUnwrapImages]}
