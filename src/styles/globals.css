@@ -13,6 +13,14 @@
 	}
 }
 
+@layer utilities {
+	.text-hidden {
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+}
+
 @layer components {
 	.post-container {
 		@apply max-w-2xl mx-auto text-xl leading-loose;

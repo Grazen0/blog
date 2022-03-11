@@ -11,7 +11,7 @@ const PostImage: React.FC<Props> = ({ alt, className, ...props }) => (
 			alt={alt}
 			className={classNames(
 				className,
-				'my-2 max-h-[28rem] rounded mx-auto shadow-intense dark:shadow-none'
+				'text-hidden my-2 max-h-[28rem] rounded mx-auto shadow-intense dark:shadow-none'
 			)}
 		/>
 		<figcaption className="text-center text-base text-neutral-700 dark:text-slate-400">
