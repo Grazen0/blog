@@ -19,6 +19,10 @@
 		white-space: nowrap;
 		overflow: hidden;
 	}
+
+	.list-items-dashed li {
+		@apply before:content-['-_'];
+	}
 }
 
 @layer components {

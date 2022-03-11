@@ -48,8 +48,8 @@ const About: NextPage = () => (
 
 				<p className="mt-0">Alright, she&apos;s gone.</p>
 
-				<h2 className="font-semibold text-3xl mt-10 mb-5">Some stuff about me:</h2>
-				<ul className="pl-8">
+				<h2 className="font-semibold text-3xl mt-10 mb-5">Some stuff about me</h2>
+				<ul className="pl-8 list-items-dashed">
 					<li>🤺 Fencer</li>
 					<li>⭐ Avid Star Wars fan</li>
 					<li>📺 Anime enthusiast</li>
