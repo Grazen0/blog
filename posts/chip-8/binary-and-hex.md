@@ -14,7 +14,7 @@ Alright, let's get started.
 
 To more easily understand binary and hexadecimal, we must first understand decimal and how it works.
 
-Oh, right. "Decimal" is what we call the numeral system we most commonly use; the one they taught you in school. Numbers such as 17, 569, and 3241 all in decimal notation. It's called "decimal" because each of its digits can have one of 10 different values (0..9). As such, each positioned digit in the decimal representation of a number indicates a value 10 times bigger than that of the digit to its left. That's why we call them "ones", "tens", "hundreds", "thousands", and so on.
+Oh, right. "Decimal" is what we call the numeral system we most commonly use; the one they taught you in school. Numbers such as 17, 569, and 3241 all in decimal notation. It's called "decimal" because each of its digits can have one of 10 different values (0..9). As such, each positioned digit in the decimal representation of a number indicates a value 10 times bigger than that of the digit to its right. That's why we call them "ones", "tens", "hundreds", "thousands", and so on.
 
 Now, how do you usually "read" a number in decimal notation? Since we're so used to reading them this way, we don't really think about it much. However, a more detailed representation of the calculation to obtain its value (using the number 4619 as an example) would be the following:
 
@@ -32,7 +32,7 @@ Now, how do you usually "read" a number in decimal notation? Since we're so used
 |              **Value** | 10^3 | 10^2 | 10^1 | 10^0 |
 | **Value (calculated)** | 4000 | 600  |  10  |  9   |
 
-As you can see, to calculate the value of a decimal number, we multiply each digit by `10^n`, where `n` is the position of the digit in the number from right to left, starting at zero. This is because, as I said before, each digit represents a value 10 times bigger than that of the digit to its left. Then, we add everything up. Easy, right?
+As you can see, to calculate the value of a decimal number, we multiply each digit by `10^n`, where `n` is the position of the digit in the number from right to left, starting at zero. This is because, as I said before, each digit represents a value 10 times bigger than that of the digit to its right. Then, we add everything up. Easy, right?
 
 Keep this in mind.
 
@@ -54,7 +54,7 @@ Let's take a look at a comparison between decimal and binary, shall we? I'll use
 
 Okay, cool. But why?
 
-Well, of course, each bit (digit) in a binary number can only have two possible values. Therefore, whereas the value of a decimal digit is 10 times bigger than that of the digit to its left, the value of a bit is 2 times bigger than that of the digit to its left. That's pretty much all there's to it! Apart from the difference in possible values for each digit, it can be calculated like a regular number.
+Well, of course, each bit (digit) in a binary number can only have two possible values. Therefore, whereas the value of a decimal digit is 10 times bigger than that of the digit to its right, the value of a bit is 2 times bigger than that of the digit to its right. That's pretty much all there's to it! Apart from the difference in possible values for each digit, it can be calculated like a regular number.
 
 To illustrate this, let's take a look at this binary number in a table similar to the one I made before. (I'll ignore the last 3 bits, since they don't have any value due to being `0`)
 
@@ -84,7 +84,7 @@ Alright, you might have noticed that these binary numbers were getting pretty bi
 
 You can imagine hexadecimal (or hex for short) numbers as an easier and shorter way of representing binary numbers. That's what they're mostly used for, after all. Whereas a binary digit (bit) can have 2 possible values, and a decimal digit can have 10, a hexadecimal digit can have — you guessed it — 16 possible values. These are the numbers 0 through 9 plus the letters A through F, or `01234567890ABCDEF`. Of course, the letters A-F represent the numbers 10 through 15. Some examples of hex numbers are `7B`, `B2F7`, and `6C29`.
 
-Now, let's calculate the value of a hex number. Say, `06F5`. Since each hexadecimal digit has 16 possible values, each one of them indicates a value 16 times greater than that of the digit to its left. Let's put our calculations in our handy table.
+Now, let's calculate the value of a hex number. Say, `06F5`. Since each hexadecimal digit has 16 possible values, each one of them indicates a value 16 times greater than that of the digit to its right. Let's put our calculations in our handy table.
 
 |          **Hex digit** |  0   |  6   |  F   |  5   |
 | ---------------------: | :--: | :--: | :--: | :--: |
@@ -111,7 +111,7 @@ This is just a 16-bit number, but see how long the binary representation is comp
 
 Now, the decimal representation is shorter too, so why would we want to use hex instead of decimal? See, each digit in a hexadecimal number represents precisely a nibble of its binary representation.
 
-|  `F`   |  `7`   |  `5`   |  `B`   |
+|   F    |   7    |   5    |   B    |
 | :----: | :----: | :----: | :----: |
 | `1111` | `0111` | `0101` | `1011` |
 
