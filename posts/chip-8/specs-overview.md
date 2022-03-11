@@ -18,7 +18,7 @@ These are the specs for the CHIP-8 according to [this document](http://www.cs.co
 - A 16-bit program counter (PC)
 - 16 8-bit registers (V0-VF)
 - A 16-bit index register (I)
-- A 64-byte with an 8-bit stack pointer
+- A 64-byte stack with an 8-bit stack pointer
 - An 8-bit delay timer (DT)
 - An 8-bit sound timer (ST)
 - A 64x32 frame buffer
@@ -51,11 +51,15 @@ Since these two are closely related, I thought I'd put them in the same section.
 
 In case you don't know what a stack is, it's a simple "Last in, first out" data structure. Think of a stack of plates. You add plates to the top, and when you want to get one back, you take it from the top, right? That's a stack. It has two basic operations: "push" and "pop". They add and remove items from the stack, in that order. [Learn more about stacks here](https://www.geeksforgeeks.org/stack-data-structure/)
 
+Now, the spec in the document I found specifies that the stack must be 64-bytes long (have a maximum length of 64 8-bit numbers), but most CHIP-8 programs only use up to 12 or 16 at max.
+
 To implement a stack, the original CHIP-8 interpreter used something similar to an array of 16-bit numbers with length 12 or 16. It also used an 8-bit index number called "stack pointer", which was incremented and decremented accordingly to indicate which was the current number at top of the stack.
 
 You could implement this same solution with an array and a number, _or..._ you could use some growable array type provided by your language, such as an `ArrayList` or `LinkedList` in Java, or a `Vec<u16>` in Rust. Since these lists can vary in size, you can just push and pop items without having to worry about a stack pointer.
 
-I dunno, the choice is yours.
+However, by using a growable list structure, stack overflow errors (which occur when a program tries to push a value to a full stack) won't occur because these data structures are usually of near-infinite maximum length. For this reason, I'd personally recommend using the traditional approach, which lets you catch the afromentioned stack overflow errors.
+
+I dunno, the choice is yours, anyways.
 
 ![Array and stack pointer, or growable list?](/img/the_matrix_choose.gif)
 
