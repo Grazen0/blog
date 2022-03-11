@@ -35,7 +35,7 @@ const Header: React.FC = () => {
 			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center"
 		>
 			<Link href="/">
-				<a className="text-3xl font-display">Cholo&apos;s Blog</a>
+				<a className="text-3xl font-display">Cholo&apos;s Dev Blog</a>
 			</Link>
 
 			<div className="sm:flex flex-grow hidden">
