@@ -2,6 +2,8 @@ import { NextPage } from 'next/types';
 import Layout from 'components/layout/Layout';
 import PostImage from 'components/post/PostImage';
 import AnimatedLink from 'components/AnimatedLink';
+import cat from '../../public/img/my_cat.jpg';
+import Image from 'next/image';
 
 const About: NextPage = () => (
 	<Layout title="About">
@@ -32,16 +34,26 @@ const About: NextPage = () => (
 					Oh yeah, I have a cute cat! Hold on a second, she&apos;s trying to get onto my desk right
 					now.
 				</p>
-				<PostImage src="/img/my_cat.jpg" alt="She's really lazy, by the way." />
+
+				<figure className="my-16 text-center">
+					<Image
+						{...cat}
+						alt="She's really lazy, by the way."
+						className="text-hidden my-2 max-h-[28rem] rounded mx-auto shadow-intense dark:shadow-none"
+					/>
+					<figcaption className="text-center text-base text-neutral-700 dark:text-slate-400">
+						She&apos;s really lazy, by the way.
+					</figcaption>
+				</figure>
 
 				<p className="mt-0">Alright, she&apos;s gone.</p>
 
 				<h2 className="font-semibold text-3xl mt-10 mb-5">Some stuff about me:</h2>
 				<ul className="pl-8">
-					<li>- 🤺 Fencer</li>
-					<li>- ⭐ Avid Star Wars fan</li>
-					<li>- 📺 Anime enthusiast</li>
-					<li>- 👾 Love retro video-games</li>
+					<li>🤺 Fencer</li>
+					<li>⭐ Avid Star Wars fan</li>
+					<li>📺 Anime enthusiast</li>
+					<li>👾 Love retro video-games</li>
 				</ul>
 
 				<h2 className="font-semibold text-3xl mt-14 mb-4">Contact me</h2>
