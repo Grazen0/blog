@@ -24,7 +24,7 @@ const Home: NextPage<Props> = ({ latestPosts }) => {
 				<p className="text-center text-lg">Glad to see you around ;)</p>
 
 				<div className="max-w-2xl mx-auto my-12">
-					<h2 className="text-2xl font-semibold">Latest posts</h2>
+					<h2 className="text-2xl font-semibold">📰 Latest posts</h2>
 					<PostList posts={latestPosts} />
 				</div>
 			</main>
