@@ -23,7 +23,7 @@ In most languages, the following bitwise operators are available:
 |   `<<`   | Bitwise left shift       |
 |   `>>`   | Bitwise right shift      |
 
-<small>(Note: Some symbols may vary for some programming languages. For example, in Rust, the bitwise NOT operator is `!`)</small>
+(Note: Some symbols may vary for some programming languages. For example, in Rust, the bitwise NOT operator is `!`)
 
 Okay, what do these things do?
 
