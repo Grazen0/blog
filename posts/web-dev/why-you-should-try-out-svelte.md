@@ -69,7 +69,7 @@ In Svelte, using state is as simple as declaring a variable! To update the state
 
 <p>Count: {count}</p>
 <p>Count times two: {doubleCount}</p>
-<button on:click="{handleClick}">Click me!</button>
+<button on:click={handleClick}>Click me!</button>
 ```
 
 It's so simple even a kid can do it!
@@ -96,7 +96,7 @@ export const lang = writable('en');
 </script>
 
 <p>Selected language: {$lang}</p>
-<select bind:value="{$lang}">
+<select bind:value={$lang}>
 	<option value="en">English</option>
 	<option value="es">Español</option>
 </select>
