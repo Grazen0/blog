@@ -2,7 +2,7 @@
 title: Intro
 summary: A short introduction to CHIP-8
 date: 03/03/2022
-image: /img/space_invaders.png
+image: /img/chip-8/space_invaders.png
 image_alt: Space Invaders!
 ---
 
