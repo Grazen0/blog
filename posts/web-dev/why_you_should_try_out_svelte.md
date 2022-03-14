@@ -69,7 +69,7 @@ In Svelte, using state is as simple as declaring a variable! To update the state
 
 <p>Count: {count}</p>
 <p>Count times two: {doubleCount}</p>
-<button on:click="{handleClick}">Click me!</button>
+<button on:click={handleClick}>Click me!</button>
 ```
 
 It's so simple even a kid can do it!
@@ -96,13 +96,13 @@ export const lang = writable('en');
 </script>
 
 <p>Selected language: {$lang}</p>
-<select bind:value="{$lang}">
+<select bind:value={$lang}>
 	<option value="en">English</option>
 	<option value="es">Español</option>
 </select>
 ```
 
-There are other types of stores, such as `readable`, `derived`, and even custom ones!
+There are other types of stores, such as readables, derived, and even custom ones!
 
 Having all of this work with zero configuration really is a huge advantage. I don't need to include some full-blown state management library like Redux; it just works out of the box.
 
