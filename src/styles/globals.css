@@ -39,17 +39,16 @@
 	@apply text-[#0184bC] dark:text-[#56B6C2];
 }
 
+.hljs-attr,
 .hljs-type,
 .hljs-literal,
 .hljs-number {
-	@apply text-[#986801] dark:text-[#e5c07b];
+	@apply text-[#986801] dark:text-[#d19a66];
 }
 
 .hljs-string {
 	@apply text-[#50a14f] dark:text-[#98c379];
 }
-
-.hljs-attr,
 .hljs-tag.hljs-name {
 	@apply text-[#e45649] dark:text-[#e06c75];
 }
