@@ -52,17 +52,16 @@ const Post: NextPage<Props> = ({
 }) => (
 	<Layout title={title} description={summary} image={image} imageAlt={image_alt}>
 		<main className="p-6">
-			<AnimatedLink href={category ? `/posts/${category.id}/` : '/posts/'}>
-				&#8592; Back
-			</AnimatedLink>
-
 			<article className={styles.container}>
-				{category && <p className="text-2xl text-center font-semibold my-0">{category.name}</p>}
-				<h1 className="text-center text-5xl font-bold mt-0 mb-3">{title}</h1>
+				<h1 className="text-center text-5xl font-bold mt-12 mb-6">{title}</h1>
 				<div className="text-center my-4">
-					Posted on <time>{date}</time>
+					📅 <time>{date}</time>{' '}
+					{category && (
+						<>
+							&middot; <AnimatedLink href={`/posts/${category.id}`}>{category.name}</AnimatedLink>
+						</>
+					)}
 				</div>
-
 				{image && image_alt && <MainImage src={image} alt={image_alt} width={800} height={420} />}
 				<div className="my-12 post-container">
 					<ReactMarkdown
@@ -78,7 +77,6 @@ const Post: NextPage<Props> = ({
 					</ReactMarkdown>
 				</div>
 			</article>
-
 			{(prevPost || nextPost) && <NextPostLinks previous={prevPost} next={nextPost} />}
 		</main>
 	</Layout>
