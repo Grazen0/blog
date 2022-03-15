@@ -41,3 +41,4 @@ export interface LinkInfo {
 
 export type Runnable = () => void;
 export type SetState<T> = Dispatch<SetStateAction<T>>;
+export type Timeout = ReturnType<typeof setTimeout>;

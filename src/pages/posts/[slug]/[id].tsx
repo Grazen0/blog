@@ -13,6 +13,8 @@ import AnimatedLink from 'components/AnimatedLink';
 import { Category, Post, Sorted } from 'lib/types';
 import { listCategories, listPosts, getSortedPost, getCategory } from 'lib/posts';
 import styles from 'styles/Post.module.css';
+import { completePath, postUrl } from 'lib/utils';
+import ShareSection from 'components/ShareSection';
 
 interface Props {
 	post: Sorted<Post>;
@@ -47,6 +49,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 const Post: NextPage<Props> = ({
+	post,
 	post: { title, summary, image, image_alt, content, date, nextPost, prevPost },
 	category,
 }) => (
@@ -78,6 +81,7 @@ const Post: NextPage<Props> = ({
 				</div>
 			</article>
 			{(prevPost || nextPost) && <NextPostLinks previous={prevPost} next={nextPost} />}
+			<ShareSection post={post} className="max-w-2xl mx-auto text-lg" />
 		</main>
 	</Layout>
 );
