@@ -1,6 +1,6 @@
 ---
 title: Why You Should Try Out Svelte.js
-s.jsummary: A look at a very particular JavaScript framework
+summary: A look at a very particular JavaScript framework
 date: 12/03/2022
 image: /img/web-dev/why_you_should_try_out_svelte.png
 image_alt: Made for success.
