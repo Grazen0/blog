@@ -29,6 +29,7 @@
 		"react-syntax-highlighter": "^15.4.5",
 		"remark-gfm": "^3.0.1",
 		"remark-unwrap-images": "^3.0.1",
+		"sharp": "^0.30.3",
 		"yaml": "^1.10.2"
 	},
 	"devDependencies": {
