@@ -107,6 +107,7 @@ export function getLatestPosts(max: number): Post[] {
 
 				if (out[i].date < post.date) {
 					out.splice(i, 0, post);
+					out.length = Math.min(out.length, max);
 					break;
 				}
 			}
