@@ -2,7 +2,7 @@
 title: Other CHIP-8 Concepts
 summary: The last things you need to know before making a CHIP-8 emulator
 date: 19/03/2022
-image: /img/chip-8/other_chip_8_concepts
+image: /img/chip-8/other_chip_8_concepts.png
 image_alt: Almost there...
 ---
 
