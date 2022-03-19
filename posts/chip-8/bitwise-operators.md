@@ -1,7 +1,7 @@
 ---
 title: Bitwise Operators
 summary: Manipulating numbers and their bits with bitwise operators
-date: 06/03/2022
+date: 03/06/2022
 image: /img/chip-8/bitwise_operators.png
 image_alt: I really like these guys.
 ---

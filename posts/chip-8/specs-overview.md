@@ -1,7 +1,7 @@
 ---
 title: Specs Overview
 summary: A quick look at the specs of the CHIP-8 and their purpose
-date: 09/03/2022
+date: 03/09/2022
 image: /img/chip-8/specs_overview.jpg
 image_alt: A random cool microchip image I found
 ---

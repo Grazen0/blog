@@ -1,7 +1,7 @@
 ---
 title: Understanding Binary and Hexadecimal
 summary: Everything you need to know about binary and hexadecimal notation
-date: 04/03/2022
+date: 03/04/2022
 image: /img/chip-8/binary_and_hex.png
 image_alt: Don't worry, it's not as complicated as it seems.
 ---

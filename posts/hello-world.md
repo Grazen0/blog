@@ -1,7 +1,7 @@
 ---
 title: Sup, world
 summary: Testing my new blog
-date: 01/03/2022
+date: 03/01/2022
 image: /img/robots.jpg
 image_alt: Robots are cool
 ---
