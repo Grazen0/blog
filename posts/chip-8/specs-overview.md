@@ -29,11 +29,11 @@ Alright, let's take a look into each one of these.
 
 To put it simple, you can imagine the memory of the CHIP-8 as an array of 8-bit numbers with the length 4096. Therefore, values can be addressed with the indexes 0-4095. The memory mainly stores program instructions and sprite data (Don't worry, we'll get into sprites later).
 
-When a program is loaded into a CHIP-8 emulator, its contents are copied into memory starting at address `0x200`, or 512 in decimal. This is due to the fact that, back in the COSMAC VIP, the original CHIP-8 interpreter itself occupied the first 512 bytes of available memory. Of course, occupying program memory isn't an issue nowadays, but virtually every existing CHIP-8 program expects itself to be loaded into address `0x200`.
+When a program is loaded into a CHIP-8 emulator, its contents are copied into memory starting at address `0x200`, or 512 in decimal. This offset exists due to the fact that, back in the COSMAC VIP, the original CHIP-8 interpreter itself occupied the first 512 bytes of available memory. Of course, occupying program memory isn't an issue nowadays, but virtually every existing CHIP-8 program expects itself to be loaded starting at address `0x200`.
 
 ### Program counter
 
-The program counter is just a 16-bit number that points to the current instruction in memory. Therefore, it's incremented by a certain amount on each instruction. Simple!
+Labelled `PC`, the program counter is just a 16-bit number that points to the current instruction in memory. Therefore, it's incremented by a certain amount on each instruction. Simple!
 
 ### Registers
 
