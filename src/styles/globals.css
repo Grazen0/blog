@@ -21,7 +21,7 @@
 	}
 
 	.list-items-dashed li {
-		@apply before:content-['-_'];
+		@apply before:content-['·_'];
 	}
 }
 
