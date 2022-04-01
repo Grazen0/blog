@@ -10,11 +10,11 @@ import MainImage from 'components/post/MainImage';
 import PostImage from 'components/post/PostImage';
 import PostLink from 'components/post/PostLink';
 import AnimatedLink from 'components/AnimatedLink';
+import ShareSection from 'components/ShareSection';
+import Comments from 'components/Comments';
 import { Category, Post, Sorted } from 'lib/types';
 import { listCategories, listPosts, getSortedPost, getCategory } from 'lib/posts';
 import styles from 'styles/Post.module.css';
-import { completePath, postUrl } from 'lib/utils';
-import ShareSection from 'components/ShareSection';
 
 interface Props {
 	post: Sorted<Post>;
@@ -82,6 +82,7 @@ const Post: NextPage<Props> = ({
 			</article>
 			{(prevPost || nextPost) && <NextPostLinks previous={prevPost} next={nextPost} />}
 			<ShareSection post={post} className="max-w-2xl mx-auto text-lg" />
+			<Comments className="my-10" />
 		</main>
 	</Layout>
 );
