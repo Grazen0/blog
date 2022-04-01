@@ -11,23 +11,20 @@ export interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 const MainImage: React.FC<Props> = ({ src, alt, width, height, imgProps, className, ...props }) => (
-	<figure {...props} className={classNames(className, 'my-12')}>
-		<div className="text-center my-2">
-			<Image
-				{...imgProps}
-				src={src}
-				alt={alt}
-				width={width}
-				height={height}
-				priority
-				className={classNames(
-					'object-cover object-center align-middle text-center rounded bg-neutral-300 dark:bg-slate-950',
-					imgProps?.className
-				)}
-			/>
-		</div>
-		<figcaption className="text-center my-3 text-neutral-700 dark:text-slate-400">{alt}</figcaption>
-	</figure>
+	<div {...props} className={classNames(className, 'my-12 text-center')}>
+		<Image
+			{...imgProps}
+			src={src}
+			alt={alt}
+			width={width}
+			height={height}
+			priority
+			className={classNames(
+				'object-cover object-center align-middle text-center rounded bg-neutral-300 dark:bg-slate-950',
+				imgProps?.className
+			)}
+		/>
+	</div>
 );
 
 export default MainImage;
