@@ -50,9 +50,13 @@
 
 .container ul,
 .container ol {
-	@apply px-6 mb-12;
+	@apply px-6 my-12;
 }
 
-.container ul li {
-	@apply my-1 before:content-['-_'];
+.container ul {
+	@apply list-disc;
+}
+
+.container ol {
+	@apply list-decimal;
 }
