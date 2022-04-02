@@ -1,6 +1,6 @@
 ---
 title: Getting Started with the CHIP-8 Emulator
-summary: Setting up the project
+summary: Getting our project set up!
 date: 04/01/2022
 image: /img/chip-8/getting_started.jpg
 image_alt: A kid and his dad tinkering with a COSMAC VIP
