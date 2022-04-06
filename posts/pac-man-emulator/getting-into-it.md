@@ -21,7 +21,7 @@ First, I looked up some basic information about the game, mostly about its hardw
 - The display supports sprite-based graphics.
 - The game has a watchdog timer that must constantly be reset, as it's used to automatically restart the machine when it freezes for some reason. Pretty smart solution, I must say!
 
-It's a relief the Z80 is based on the Intel 8080 I emulated for Space Invaders, because that means I won't be starting from scratch. All those opcodes and instructions kinda
+It's a relief the Z80 is based on the Intel 8080 I emulated for Space Invaders, because that means I won't be starting from scratch. All those opcodes and instructions were reaaally tedious to implement.
 
 Also, here are some sources I found for the memory map:
 
