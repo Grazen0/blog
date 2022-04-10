@@ -162,7 +162,7 @@ Uh oh.
 
 Fortunately, from what I've seen on my disassembled output, Pac-Man barely uses many of the Z80's extended instructions (if any). Because of this, I simply skipped implementing the IX and IY instructions. Work smarter, not harder!
 
-Finally, I ran the disassembler one final time.
+Finally, I ran the disassembler on the full Pac-Man ROM one final time.
 
 ```
 0000 F3              di
