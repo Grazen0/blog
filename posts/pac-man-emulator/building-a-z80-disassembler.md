@@ -1,6 +1,6 @@
 ---
 title: Building a Z80 disassembler
-summary: Also trying to reverse-engineer Pac-Man assembly source
+summary: 'To understand Pac-Man, one must first disassemble Pac-Man.'
 date: 04/10/2022
 image: /img/pac-man-emulator/building-a-z80-disassembler.png
 image_alt: Drawing of a stick figure thinking
