@@ -122,7 +122,7 @@ For each parameter, it replaces `"**"` and `"*"` by consuming the next one or tw
 
 ## Adding instructions
 
-I found a really good [Z80 instructions table](https://clrhome.org/table/), which what I used to find the mnemonic and parameters for each opcode. Other than that, the process was fairly straightforward:
+I found a really good [Z80 instructions table](https://clrhome.org/table/), which I used to find the mnemonic and parameters for each opcode. Other than that, the process was fairly straightforward:
 
 ```rust
 pub fn disassemble(&mut self, mut out: impl Write) -> io::Result<()> {
