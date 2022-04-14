@@ -7,7 +7,7 @@ import { retry } from 'lib/utils';
 const handler = createApiHandler();
 
 handler.post(async (req, res) => {
-	if (process.env.ADMIN_KEY && req.headers.authorization !== process.env.ADMIN_KEY) {
+	if (!process.env.ADMIN_KEY || req.headers.authorization !== process.env.ADMIN_KEY) {
 		return res.status(40).json({
 			status: 400,
 			message: 'Unauthorized',
@@ -16,12 +16,9 @@ handler.post(async (req, res) => {
 
 	const subscriptions = await Subscription.find();
 
-	for (const subscription of subscriptions) {
-		await retry(
-			() => sendEmail(notification(req.body, subscription.id), subscription.email),
-			10
-		).catch(console.error);
-	}
+	await Promise.allSettled(
+		subscriptions.map(sub => retry(() => sendEmail(notification(req.body, sub.id), sub.email), 10))
+	).catch(console.error);
 
 	res.json({
 		status: 200,
