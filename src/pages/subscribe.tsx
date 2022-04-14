@@ -3,7 +3,8 @@ import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import Layout from 'components/layout/Layout';
 import Spinner from 'components/icons/Spinner';
-import classNames from 'classnames';
+import Button from 'components/Button';
+import Alert from 'components/Alert';
 
 const Subscribe: NextPage = () => {
 	const [email, setEmail] = useState('');
@@ -67,29 +68,14 @@ const Subscribe: NextPage = () => {
 						className="rounded-full my-8 px-4 py-2 text-md text-neutral-900 bg-neutral-300 dark:bg-neutral-100"
 					/>
 					<br />
-					<button
-						type="submit"
-						disabled={loading}
-						className="flex items-center mx-auto bg-cyan-600 rounded-lg text-xl font-semibold px-4 py-2 cursor-pointer transition-all duration-[50ms] outline outline-0 focus:outline-[3px] outline-cyan-400 active:brightness-[1.15] disabled:brightness-75 disabled:cursor-not-allowed disabled:outline-0"
-					>
+					<Button type="submit" disabled={loading} color="blue" className="text-xl">
 						{loading ? <Spinner /> : '📝 Submit'}
-					</button>
+					</Button>
 				</form>
 				{message && (
-					<div className="mt-20 mb-10 max-w-full">
-						<span
-							className={classNames(
-								'inline-block text-lg text-center font-semibold max-w-3xl mx-auto py-4 px-8 rounded-lg border',
-								status === 'success'
-									? 'text-green-500 border-green-300 bg-green-200'
-									: status === 'warning'
-									? 'text-yellow-500 border-yellow-400 bg-yellow-200'
-									: 'text-red-500 border-red-400 bg-red-200'
-							)}
-						>
-							{message}
-						</span>
-					</div>
+					<Alert color={status === 'success' ? 'green' : status === 'warning' ? 'yellow' : 'red'}>
+						{message}
+					</Alert>
 				)}
 			</main>
 		</Layout>
