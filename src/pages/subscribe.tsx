@@ -65,7 +65,7 @@ const Subscribe: NextPage = () => {
 						onChange={handleChange}
 						placeholder="johndoe@example.com"
 						size={35}
-						className="rounded-full my-8 px-4 py-2 text-md text-neutral-900 bg-neutral-300 dark:bg-neutral-100"
+						className="max-w-full rounded-full my-8 px-4 py-2 text-md text-neutral-900 bg-neutral-300 dark:bg-neutral-100"
 					/>
 					<br />
 					<Button type="submit" disabled={loading} color="blue" className="text-xl">
