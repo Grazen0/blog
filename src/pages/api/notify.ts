@@ -17,9 +17,10 @@ handler.post(async (req, res) => {
 	const subscriptions = await Subscription.find();
 
 	for (const subscription of subscriptions) {
-		retry(() => sendEmail(notification(req.body, subscription.id), subscription.email), 10).catch(
-			console.error
-		);
+		await retry(
+			() => sendEmail(notification(req.body, subscription.id), subscription.email),
+			10
+		).catch(console.error);
 	}
 
 	res.json({

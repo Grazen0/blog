@@ -35,7 +35,9 @@ handler.post(async (req, res) => {
 	subscription = new Subscription({ email });
 	await subscription.save();
 
-	retry(() => sendEmail(subscriptionMessage(subscription!.id), email), 20).catch(console.error);
+	await retry(() => sendEmail(subscriptionMessage(subscription!.id), email), 10).catch(
+		console.error
+	);
 	res.json(subscription);
 });
 
