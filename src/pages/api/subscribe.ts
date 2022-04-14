@@ -38,7 +38,7 @@ handler.post(async (req, res) => {
 	await retry(() => sendEmail(subscriptionMessage(subscription!.id), email), 10).catch(
 		console.error
 	);
-	res.json(subscription);
+	res.status(201).json(subscription);
 });
 
 export default handler;
