@@ -29,3 +29,5 @@ jobs:
               node scripts/notify.js $file
             fi
           done
+        env:
+          ADMIN_KEY: ${{ secrets.NOTIFY_ADMIN_KEY }}
