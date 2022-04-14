@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import { ChangeEventHandler, FormEventHandler, useState } from 'react';
-import axios, { AxiosError } from 'axios';
+import { ChangeEventHandler, useState } from 'react';
+import useSubscriptionHandler from 'lib/hooks/subscription-handler';
 import Layout from 'components/layout/Layout';
 import Spinner from 'components/icons/Spinner';
 import Button from 'components/Button';
@@ -8,43 +8,10 @@ import Alert from 'components/Alert';
 
 const Subscribe: NextPage = () => {
 	const [email, setEmail] = useState('');
-	const [loading, setLoading] = useState(false);
-	const [status, setStatus] = useState<'success' | 'warning' | 'failed'>('warning');
-	const [message, setMessage] = useState<string | null>(null);
+	const { status, loading, message, handleSubmit } = useSubscriptionHandler(email, setEmail);
 
 	const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
 		setEmail(e.target.value.trimStart());
-	};
-
-	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
-		e.preventDefault();
-		if (!email) return;
-
-		setLoading(true);
-		axios
-			.post('/api/subscribe', { email })
-			.then(() => {
-				setEmail('');
-				setStatus('success');
-				setMessage('Done! Check your email for a confirmation message 🥳');
-			})
-			.catch((err: AxiosError) => {
-				console.error(err);
-				setStatus('failed');
-
-				switch (err.response?.status) {
-					case 400:
-						setMessage('This email is invalid 🤔');
-						break;
-					case 409:
-						setMessage('This email is already subscribed 😎');
-						setStatus('warning');
-						break;
-					default:
-						setMessage('Oops, something went wrong! 🤯 Try again later');
-				}
-			})
-			.finally(() => setLoading(false));
 	};
 
 	return (
@@ -68,7 +35,7 @@ const Subscribe: NextPage = () => {
 						className="max-w-full rounded-full my-8 px-4 py-2 text-md text-neutral-900 bg-neutral-300 dark:bg-neutral-100"
 					/>
 					<br />
-					<Button type="submit" disabled={loading} color="blue" className="text-xl">
+					<Button type="submit" disabled={loading || !email} color="blue" className="text-xl">
 						{loading ? <Spinner /> : '📝 Submit'}
 					</Button>
 				</form>
