@@ -2,6 +2,7 @@ import { createApiHandler } from 'lib/api/handler';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
 import { notification } from 'lib/email/templates';
+import { retry } from 'lib/utils';
 
 const handler = createApiHandler();
 
@@ -16,7 +17,9 @@ handler.post(async (req, res) => {
 	const subscriptions = await Subscription.find();
 
 	for (const subscription of subscriptions) {
-		sendEmail(notification(req.body, subscription.id), subscription.email).catch(console.error);
+		retry(() => sendEmail(notification(req.body, subscription.id), subscription.email), 10).catch(
+			console.error
+		);
 	}
 
 	res.json({
