@@ -9,9 +9,9 @@ export interface Props
 
 const classes = {
 	blue: {
-		base: 'outline-cyan-300',
-		normal: 'bg-cyan-600',
-		border: 'text-cyan-600 hover:bg-cyan-600 shadow-[0_0_0_2px_theme(colors.cyan.600)_inset]',
+		base: 'outline-blue-300',
+		normal: 'bg-blue-600',
+		border: 'text-blue-600 hover:bg-blue-600 shadow-[0_0_0_2px_theme(colors.blue.600)_inset]',
 	},
 	red: {
 		base: 'outline-red-300',
