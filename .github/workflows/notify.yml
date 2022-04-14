@@ -24,5 +24,8 @@ jobs:
       - name: Trigger notifications
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
-            node scripts/notify.js $file
+            if [[ $file == *.md ]]
+            then
+              node scripts/notify.js $file
+            fi
           done
