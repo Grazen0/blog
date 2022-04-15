@@ -13,6 +13,7 @@ console.log('Reading post file', file);
 
 const contents = readFileSync(file, 'utf8');
 const { data } = matter(contents);
+data.id = path.basename(file).replace(/\.md$/i, '');
 
 const dir = path.dirname(file);
 if (!dir.endsWith('posts')) {
@@ -20,9 +21,10 @@ if (!dir.endsWith('posts')) {
 	console.log('Reading category file', categoryFile);
 
 	data.category = YAML.parse(readFileSync(categoryFile, 'utf8'));
+	data.category.id = path.basename(dir);
 }
 
-console.log('Sending POST request to server...');
+console.log('Sending POST request to server...', data);
 axios
 	.post('https://blog.elchologamer.me/api/notify', data, {
 		headers: {
