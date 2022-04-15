@@ -24,7 +24,7 @@ if (!dir.endsWith('posts')) {
 
 console.log('Sending POST request to server...');
 axios
-	.post('/api/notify', data, {
+	.post('https://blog.elchologamer.me/api/notify', data, {
 		headers: {
 			Authorization: process.env.ADMIN_KEY,
 		},
