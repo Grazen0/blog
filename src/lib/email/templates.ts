@@ -34,7 +34,7 @@ I hope you have as much fun reading my posts as I have making them!
 		<span>Subscription ID ${subscriptionId}</span>
 		<br />
 		<a style="color:gray!important" href="${completePath(
-			`/unsubscribe?id=${subscriptionId}`
+			`/unsubscribe?sid=${subscriptionId}`
 		)}">Unsubscribe</a>
 	</footer>
 	</div>
@@ -87,7 +87,7 @@ Go check it out at ${url}
 		<span>Subscription ID ${subscriptionId}</span>
 		<br />
 		<a style="color:gray!important" href="${completePath(
-			`/unsubscribe?id=${subscriptionId}`
+			`/unsubscribe?sid=${subscriptionId}`
 		)}">Unsubscribe</a>
 	</footer>
 </div>
