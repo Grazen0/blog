@@ -137,24 +137,25 @@ Don't be overwhelmed by all those instructions, though! We'll go through them on
 
 For starters, part of your "execute" code could look something like this:
 
+<!-- prettier-ignore -->
 ```js
 // ...
 switch (kind) {
 	case 0x0:
 		switch (nnn) {
-			case 0x0e0:
-				clearDisplay();
-				break;
-			case 0x0ee:
-				this.ret();
-				break;
+			case 0x0E0:
+				clearDisplay()
+				break
+			case 0x0EE:
+				this.ret()
+				break
 			default:
-				print('Attempted SYSCALL to address ' + nnn);
+				print('Attempted SYSCALL to address ' + nnn)
 		}
-		break;
+		break
 	case 0x1:
-		this.pc = nnn;
-		break;
+		this.pc = nnn
+		break
 	// ...more instructions down here
 }
 ```
