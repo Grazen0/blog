@@ -60,9 +60,9 @@ Go check it out at ${url}
 		html: `
 <div style="max-width:500px;margin:0 auto;background-color:rgb(15,23,42);color:white;border-radius:2rem;padding:4%;font-size:1.5rem;font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;line-height:1.75em;">
 	<a href="${HOST}" style="font-size:2rem;font-weight:bolder;color:white!important;text-decoration:none!important">Cholo's Dev Blog</a>
-	<h1 style="color:#f7f252;text-align:center;margin:2rem 0 3rem;line-height:1.25em;font-size:2.75rem">New post: "${
+	<h1 style="color:#f7f252;text-align:center;margin:2rem 0 3rem;line-height:1.25em;font-size:2.75rem">${
 		post.title
-	}"</h1>
+	}</h1>
 	${
 		post.category
 			? `<p style="text-align:center">On <span style="font-weight:bold">${post.category.name}</span></p>`
