@@ -1,4 +1,5 @@
 import { createApiHandler } from 'lib/api/handler';
+import { connect as db } from 'lib/database';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
 import { notification } from 'lib/email/templates';
@@ -14,6 +15,7 @@ handler.post(async (req, res) => {
 		});
 	}
 
+	await db();
 	const subscriptions = await Subscription.find();
 
 	await Promise.allSettled(
