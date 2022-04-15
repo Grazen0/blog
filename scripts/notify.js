@@ -26,7 +26,7 @@ console.log('Sending POST request to server...');
 axios
 	.post('https://blog.elchologamer.me/api/notify', data, {
 		headers: {
-			Authorization: process.env.ADMIN_KEY,
+			authorization: process.env.ADMIN_KEY,
 		},
 	})
 	.then(() => console.log(`Notified post "${data.title}"`))
