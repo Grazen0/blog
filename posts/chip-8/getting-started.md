@@ -32,7 +32,7 @@ Well, in the case of the CHIP-8, you aren't exactly emulating an actual CPU per-
 This part's pretty simple: mostly a one-to-one mapping of the [specs](/posts/chip-8/specs-overview). You can achieve it using a class, object, or whatever struct thingy your language has. An example might look like this:
 
 ```rust
-struct CPU {
+CPU {
   memory: u8[4096],  // 4096-byte memory
   pc: u16,           // Program counter
   v: u8[16],         // V0-VF registers
@@ -51,16 +51,14 @@ All memory should be initialized as 0, as well as the registers and timers. The 
 >
 > If you're using a very high-level language like Python or Javascript, avoid using its primitive `number` type if it has one. These are most likely 32/64 bit _signed_ numbers, which can be counter-productive when trying to work with what should be 8-bit or 16-bit numbers. In JavaScript, for example, you can use a `Uint8Array` instead of a number list for the memory and registers.
 
-We'll add the display later, by the way, but let's not worry about that for now.
-
 ## ⬇ Loading a program
 
 A CHIP-8 program is simply a sequence of bytes, 8-bit numbers, or whatever you wanna call them. By "loading", I refer to putting it into memory, starting at address `0x200`.
 
 The process is pretty straightforward:
 
-```rust
-struct CPU {
+```js
+CPU {
   // ...
   load_program(program: u8[]) {
     for (var i = 0; i < program.length; i++) {
@@ -86,17 +84,17 @@ The reason `PC` is increased by 2 is because each instruction is 2 bytes long. A
 
 ## ⏱ Timing
 
-You can't just let the CPU run at the execution speed of a modern computer. It's waaay too fast!
+You can't just let the CPU run your computer's usual speed. It's waaay too fast!
 
-Many CHIP-8 games are designed to run at different speeds. These can sometimes vary a lot, but the usual range is of approximately 500-1000Hz. When making your emulator, you should probably make this configurable.
+Different CHIP-8 games are designed to run at different speeds. These can sometimes vary a lot, but the usual range is of 500-1000Hz. When making your emulator, you should probably make this configurable.
 
 On the other hand, there's the delay and sound timers. These are easier: They decrement at a rate of 60Hz.
 
-By the way, one [hertz](https://en.wikipedia.org/wiki/Hertz) (Hz) simply means "one cycle per second". Therefore, the emulator should run at about 500-1000 cycles per second, and the timers decrease exactly 60 times per second.
+> The [hertz](https://en.wikipedia.org/wiki/Hertz) (Hz) is a unit of frequency, and means "one cycle per second". Therefore, the emulator should run at about 500-1000 cycles per second, and the timers decrease exactly 60 times per second.
 
-The way you achieve these timings depends on your platform. On native platforms, you could just use some sort of `sleep` function, although it might not be precise enough. In the browser, you can use `window.requestAnimationFrame` to execute a callback at the screen's refresh rate.
+The way you achieve these timings depends on your platform. On native platforms, you could just use some sort of `sleep` function, although it might require a bit of work to get just right. In the browser, you can use `window.requestAnimationFrame` to run a callback at the screen's refresh rate.
 
-Executing some code exactly 500-1000 times per second is very difficult to do with precision, which is why, in practice, no emulators do it. Instead of having two threads or independent code loops running at different intervals (one for the CPU cycles, and one for the timers), you can have both of them in a single loop running 60 times per second. To emulate the CPU running at 500Hz, you can simply run multiple cycles on each 60 FPS loop.
+Executing some code exactly 500-1000 times per second is very difficult to do with precision, which is why virtually no emulators do it that way. Instead of having two threads or independent code loops running at different intervals (one for the CPU cycles, and one for the timers), you can have both of them in a single loop running 60 times per second. To emulate the CPU running at 500Hz, you can simply run multiple cycles on each frame.
 
 ```js
 var fps = 60 // Main loop running 60 times per second
@@ -110,8 +108,8 @@ loop {
 
   cpu.decrease_timers()
 
-  sleep(1000 / fps)
+  sleep(1000 / fps) // Wait for next frame
 }
 ```
 
-And... I think that's pretty much all we need to get started on this. Implement this in your programming language, and you should be good to go!
+And... I think that's pretty much all we need to get started. Implement this in your programming language, and you should be good to go!
