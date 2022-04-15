@@ -1,7 +1,9 @@
 ---
 title: Implementing the CPU cycle
-summary: ""This is where the fun begins""
+summary: '"This is where the fun begins"'
 date: 04/14/2022
+image: /img/chip-8/implementing_the_cpu_cycle.png
+image_alt: A render of a  CPU
 ---
 
 The next step is to implement the CHIP-8 instructions on our CPU. Remember the `cycle` method we left empty last post? We'll be implementing it here.
