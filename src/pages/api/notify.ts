@@ -8,8 +8,8 @@ const handler = createApiHandler();
 
 handler.post(async (req, res) => {
 	if (!process.env.ADMIN_KEY || req.headers.authorization !== process.env.ADMIN_KEY) {
-		return res.status(40).json({
-			status: 400,
+		return res.status(401).json({
+			status: 401,
 			message: 'Unauthorized',
 		});
 	}
