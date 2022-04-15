@@ -43,7 +43,7 @@ I hope you have as much fun reading my posts as I have making them!
 };
 
 export const notification = (post: Post, subscriptionId: string): EmailTemplate => {
-	const url = postUrl(post);
+	const url = completePath(postUrl(post));
 
 	return {
 		subject: `📫 New post! "${post.title}"`,
