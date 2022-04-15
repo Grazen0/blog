@@ -33,3 +33,4 @@ jobs:
           done
         env:
           ADMIN_KEY: ${{ secrets.NOTIFY_ADMIN_KEY }}
+          HOST: 'https://blog.elchologamer.me'

@@ -25,8 +25,10 @@ if (!dir.endsWith('posts')) {
 }
 
 console.log('Sending POST request to server...', data);
+
+const host = process.env.HOST || 'http://localhost:3000';
 axios
-	.post('https://blog.elchologamer.me/api/notify', data, {
+	.post(`${host}/api/notify`, data, {
 		headers: {
 			authorization: process.env.ADMIN_KEY,
 		},
