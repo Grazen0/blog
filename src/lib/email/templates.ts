@@ -73,7 +73,7 @@ Go check it out at ${url}
 		post.image
 			? `<img src="${completePath(post.image)}" alt="${
 					post.image_alt || ''
-			  }" style="border-radius:1rem" />`
+			  }" style="border-radius:1rem;max-width:100%" />`
 			: ''
 	}
 
