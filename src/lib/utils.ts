@@ -28,3 +28,5 @@ export const retry = async <T>(promise: () => Promise<T>, max: number): Promise<
 		}
 	}
 };
+
+export const randomRange = (min: number, max: number) => min + Math.random() * (max - min);
