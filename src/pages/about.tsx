@@ -54,7 +54,6 @@ const About: NextPage = () => (
 					<li>⭐ Avid Star Wars fan</li>
 					<li>📺 Anime enthusiast</li>
 					<li>👾 Love retro video-games</li>
-					<li>❤ Got the best girlfriend in the world</li>
 				</ul>
 
 				<h2 className="font-semibold text-3xl mt-14 mb-4">Contact me</h2>
