@@ -5,6 +5,7 @@ import Layout from 'components/layout/Layout';
 import Spinner from 'components/icons/Spinner';
 import Button from 'components/Button';
 import Alert from 'components/Alert';
+import { SubmitStatus } from 'lib/constants';
 
 const Subscribe: NextPage = () => {
 	const [email, setEmail] = useState('');
@@ -40,7 +41,15 @@ const Subscribe: NextPage = () => {
 					</Button>
 				</form>
 				{message && (
-					<Alert color={status === 'success' ? 'green' : status === 'warning' ? 'yellow' : 'red'}>
+					<Alert
+						color={
+							status === SubmitStatus.SUCCESS
+								? 'green'
+								: status === SubmitStatus.WARNING
+								? 'yellow'
+								: 'red'
+						}
+					>
 						{message}
 					</Alert>
 				)}
