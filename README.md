@@ -7,6 +7,6 @@ Source code for my programming blog.
 - [x] About page
 - [ ] Improve homepage
 - [ ] Posts search bar
-- [ ] Email subscription
-- [ ] Image fallbacks
+- [x] Email subscription
+- [x] Image fallbacks
 - [ ] Global contact links
