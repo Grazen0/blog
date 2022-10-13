@@ -20,7 +20,7 @@ handler.post(async (req, res) => {
 
 	await Promise.allSettled(
 		subscriptions.map(sub => retry(() => sendEmail(notification(req.body, sub.id), sub.email), 10))
-	).catch(console.error);
+	);
 
 	res.json({
 		status: 200,

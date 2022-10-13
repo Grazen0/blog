@@ -18,7 +18,7 @@ function useSubscriptionHandler(email: string, setEmail: SetState<string>) {
 				.then(() => {
 					setEmail('');
 					setStatus('success');
-					setMessage('Done! Check your email for a confirmation message 🥳');
+					setMessage('Done! Check your email for a confirmation message. 🥳');
 				})
 				.catch((err: AxiosError) => {
 					console.error(err);
@@ -26,14 +26,14 @@ function useSubscriptionHandler(email: string, setEmail: SetState<string>) {
 
 					switch (err.response?.status) {
 						case 400:
-							setMessage('This email is invalid 🤔');
+							setMessage('This email is invalid! 🤔');
 							break;
 						case 409:
-							setMessage('This email is already subscribed 😎');
+							setMessage('Hey, this email is already subscribed 😎');
 							setStatus('warning');
 							break;
 						default:
-							setMessage('Oops, something went wrong! 🤯 Try again later');
+							setMessage('Oops, something went wrong! 🤯 Try again later.');
 					}
 				})
 				.finally(() => setLoading(false));
