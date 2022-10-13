@@ -22,7 +22,7 @@ Here goes a list of my own pick!
 
 ### [HTML CSS Support](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
 
-![CSS logo](/img/css.png)
+![Ease your CSS pain](/img/css.png)
 
 The name speaks for itself. This extension provides intellisense and auto-completion for CSS files. Absolutely necessary (mandatory, if you may) for working with anything CSS-related.
 
@@ -30,7 +30,7 @@ Just gonna say that I can't live without it. ¯\\\_(ツ)\_/¯
 
 ### [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-![Prettier logo](/img/prettier.png)
+![Looks pretty...](/img/prettier.png)
 
 Make your code _prettier_ with Prettier! (I'm not sorry)
 
@@ -42,7 +42,7 @@ Just adjust a couple of the few formatting options to fit your specific needs, a
 
 ### [Auto Rename Tag (?)](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
-![Auto-rename tag banner with the VSCode logo](/img/auto-rename-tag.jpg)
+![Is it already built-in, though?](/img/auto-rename-tag.jpg)
 
 Not completely sure what's going on with this one. See, this extension allows your editor to change the name of an HTML tag on both ends simultaneously.
 
@@ -52,9 +52,9 @@ Overall, an incredibly useful feature, which may or may not actually require ins
 
 ### [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-![Live Server logo](/img/live-server.jpg)
+![Going live in 3, 2, 1...](/img/live-server.jpg)
 
-This extension makes developing and previewing HTML files an absolute breeze. Just click on the "Go Live" button at the bottom right corner of the screen, and voilà! You got a server open on your machine to see the page from your browser.
+This extension makes developing and previewing HTML files an absolute _breeze_. Just click on the "Go Live" button at the bottom right corner of the screen, and voilà! You got a server open on your machine to see the page from your browser.
 
 Hold on, it doesn't end there!
 
@@ -64,7 +64,7 @@ Just how awesome is that?
 
 ### [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
 
-![Thunder Client logo](/img/thunder-client.png)
+![Bye bye, Postman!](/img/thunder-client.png)
 
 This extension adds an HTTP client directly into VSCode, letting you send and test HTTP requests directly from the comfort of your editor!
 
