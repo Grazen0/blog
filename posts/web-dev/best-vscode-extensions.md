@@ -1,6 +1,6 @@
 ---
 title: The best VSCode extensions for web development
-summary: (At least my favorite ones)
+summary: Handy tools that will improve your productivity!
 date: 12/10/2022
 image: /img/best-vscode-extensions.jpg
 image_alt: A pile of puzzle pieces
@@ -14,9 +14,9 @@ Oh, that's right: extensions.
 
 ## Variety is awesome!
 
-Visual Studio Code's extension marketplace is **huge**, and by that I mean absolutely **ENORMOUS**. Whether you wanna to build a web app, code a Python script, or completely obliterate your sanity with C++, VSCode most likely has just the extensions you need.
+Visual Studio Code's extension marketplace is **huge**, and by that I mean absolutely **ENORMOUS**. Whether you wanna build a web app, code a Python script, or completely obliterate your sanity with C++, VSCode most likely has just the extensions you need.
 
-We're here to talk about [_web dev_](/posts/web-dev), though, aren't we? As you might expect, there's a huge plethora of handy extensions for all your web-dev-related shenanigans.
+We're here to talk about [_web dev_](/posts/web-dev), though, aren't we? As you might expect, the marketplace has a huge plethora of handy extensions for all your web-dev-related shenanigans.
 
 Here goes a list of my own pick!
 
@@ -36,7 +36,7 @@ Make your code _prettier_ with Prettier! (I'm not sorry)
 
 Okay, but speaking for real, this extension is just about as convenient as it gets. As its description says, it's an opinionated code formatter. **Emphasis on "opinionated".** This means that you aren't in complete control over its configuration, so the formatter does a handful of assumptions about your code style.
 
-Why is this a good thing, though? Well, turns out that, if you're like me and don't really care about what foramtting style you use as long as it's consistent, Prettier is an actual blessing from the heavens.
+Why is this a good thing, though? Well, turns out that, if you're like me and don't really care about what formatting style you use as long as it's consistent, Prettier is an actual blessing from the heavens.
 
 Just adjust a couple of the few formatting options to fit your specific needs, and let the extension do the dirty work for you! I can't stress enough just how useful Prettier is for the average web developer.
 
