@@ -1,6 +1,6 @@
 ---
 title: Getting Into It
-summary: Checking out the infromation I need to get started with the emulator
+summary: Checking out the information I need to get started with the emulator
 date: 04/05/2022
 image: /img/pac-man-emulator/getting_into_it.png
 image_alt: Pac-Man arcade gameplay
