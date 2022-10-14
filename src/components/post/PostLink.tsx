@@ -12,6 +12,8 @@ const PostLink: React.FC<Props> = ({ node, children, href, className, ...props }
 		<AnimatedLink
 			{...props}
 			href={href}
+			target="_blank"
+			rel="noreferrer noopener"
 			className={classNames('text-blue-700 dark:text-blue-400', className)}
 		>
 			{children}
