@@ -7,9 +7,9 @@ export interface Props extends HTMLProps<HTMLSpanElement> {
 
 const classes = {
 	blue: 'text-blue-500 border-blue-400 bg-blue-200',
-	green: 'text-green-700 border-green-300 bg-green-200',
-	yellow: 'text-yellow-700 border-yellow-400 bg-yellow-200',
-	red: 'text-red-500 border-red-400 bg-red-200',
+	green: 'text-green-700 border-green-700 bg-green-200',
+	yellow: 'text-yellow-700 border-yellow-700 bg-yellow-200',
+	red: 'text-red-500 border-red-500 bg-red-200',
 };
 
 const Alert: React.FC<Props> = ({ color, className, children, ...props }) => (
