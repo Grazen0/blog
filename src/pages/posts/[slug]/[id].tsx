@@ -64,8 +64,14 @@ const Post: NextPage<Props> = ({
 	views,
 }) => {
 	useEffect(() => {
-		axios.post(`/api/view?post=${encodeURIComponent(post.id)}&category=${category?.id || ''}`);
-	}, []);
+		axios
+			.post(
+				`/api/view?post=${encodeURIComponent(post.id)}&category=${encodeURIComponent(
+					category?.id || ''
+				)}`
+			)
+			.catch(console.error);
+	}, [category?.id, post.id]);
 	return (
 		<Layout title={title} description={summary} image={image} imageAlt={image_alt}>
 			<main className="p-6">
