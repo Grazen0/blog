@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 					post: getPost(null, postOrCategory),
 					views: (await getPostStats(postOrCategory, null)).viewCount,
 			  },
-		revalidate: isCategoryResult ? VIEW_COUNT_REFRESH_RATE : undefined,
+		revalidate: isCategoryResult ? undefined : VIEW_COUNT_REFRESH_RATE,
 	};
 };
 
