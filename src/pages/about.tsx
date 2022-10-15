@@ -11,7 +11,7 @@ const About: NextPage = () => (
 			<h1 className="text-5xl text-center font-bold my-8">About</h1>
 			<div className="my-10 post-container">
 				<p className="my-8">
-					Hi! My name is José Grayson, but you probably know me as ElCholoGamer. I&apos;m some
+					Hi! My name is José Daniel, but you probably know me as ElCholoGamer. I&apos;m some
 					15-year old who likes to code a lot. For the past 2-3 years I&apos;ve been experimenting
 					and tinkering with lots of different programming projects like Minecraft plugins, Discord
 					bots, Terraria mods, and more. However, my main focus is, by far, web development.
