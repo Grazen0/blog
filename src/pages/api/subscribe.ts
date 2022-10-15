@@ -3,7 +3,7 @@ import { connect as db } from 'lib/database';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
 import { subscriptionMessage } from 'lib/email/templates';
-import { retry, validateEmail } from 'lib/utils';
+import { retryPromise, validateEmail } from 'lib/utils';
 
 const handler = createApiHandler();
 
@@ -35,7 +35,7 @@ handler.post(async (req, res) => {
 	subscription = new Subscription({ email });
 	await subscription.save();
 
-	await retry(() => sendEmail(subscriptionMessage(subscription!.id), email), 10).catch(
+	await retryPromise(() => sendEmail(subscriptionMessage(subscription!.id), email), 10).catch(
 		console.error
 	);
 	res.status(201).json(subscription);

@@ -3,7 +3,7 @@ import { connect as db } from 'lib/database';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
 import { notification } from 'lib/email/templates';
-import { retry } from 'lib/utils';
+import { retryPromise } from 'lib/utils';
 
 const handler = createApiHandler();
 
@@ -19,7 +19,9 @@ handler.post(async (req, res) => {
 	const subscriptions = await Subscription.find();
 
 	await Promise.allSettled(
-		subscriptions.map(sub => retry(() => sendEmail(notification(req.body, sub.id), sub.email), 10))
+		subscriptions.map(sub =>
+			retryPromise(() => sendEmail(notification(req.body, sub.id), sub.email), 10)
+		)
 	);
 
 	res.json({
