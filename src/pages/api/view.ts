@@ -17,19 +17,14 @@ handler.post(async (req, res) => {
 
 	const postId = req.query.post?.toString();
 	if (!postId)
-		return res.json({
+		return res.status(400).json({
 			status: 400,
 			message: 'Missing post query parameter',
 		});
 
 	const categoryId = req.query.category?.toString();
 
-	if (!doesPostExist(postId, categoryId)) {
-		return res.json({
-			status: 404,
-			message: 'Post does not exist',
-		});
-	}
+	// TODO - Check if post exists
 
 	await db();
 
@@ -37,7 +32,7 @@ handler.post(async (req, res) => {
 
 	const entry = stats.views.find(e => e.address === address);
 	if (entry && Date.now() < entry.date + VIEW_COOLDOWN) {
-		return res.json({
+		return res.status(204).json({
 			status: 204,
 			message: 'Cooldown in progress',
 		});
