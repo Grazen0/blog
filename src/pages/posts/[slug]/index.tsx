@@ -13,7 +13,7 @@ import {
 	listPosts,
 	sortbyDateInverse,
 } from 'lib/posts';
-import { getPostStats } from 'lib/database';
+import { connect as db, getPostStats } from 'lib/database';
 import { VIEW_COUNT_REFRESH_RATE } from 'lib/constants';
 
 export type Props =
@@ -43,6 +43,8 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 	if (!postOrCategory) throw new Error('Missing slug parameter');
 
 	const isCategoryResult = isCategory(postOrCategory);
+
+	if (!isCategoryResult) await db();
 
 	return {
 		props: isCategoryResult
