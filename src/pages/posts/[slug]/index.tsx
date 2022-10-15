@@ -13,11 +13,14 @@ import {
 	listPosts,
 	sortbyDateInverse,
 } from 'lib/posts';
+import { getPostStats } from 'lib/database';
+import { VIEW_COUNT_REFRESH_RATE } from 'lib/constants';
 
 export type Props =
 	| {
 			type: 'post';
 			post: Post;
+			views: number;
 	  }
 	| {
 			type: 'category';
@@ -39,8 +42,10 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 	const postOrCategory = ctx.params?.slug?.toString();
 	if (!postOrCategory) throw new Error('Missing slug parameter');
 
+	const isCategoryResult = isCategory(postOrCategory);
+
 	return {
-		props: isCategory(postOrCategory)
+		props: isCategoryResult
 			? {
 					type: 'category',
 					category: getCategory(postOrCategory),
@@ -51,12 +56,14 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 			: {
 					type: 'post',
 					post: getPost(null, postOrCategory),
+					views: (await getPostStats(postOrCategory, null)).viewCount,
 			  },
+		revalidate: isCategoryResult ? VIEW_COUNT_REFRESH_RATE : undefined,
 	};
 };
 
 const PostOrCategory: NextPage<Props> = props => {
-	if (props.type === 'post') return <PostPage post={props.post} />;
+	if (props.type === 'post') return <PostPage post={props.post} views={props.views} />;
 
 	const { name, description, image, image_alt } = props.category;
 

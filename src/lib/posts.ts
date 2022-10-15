@@ -8,6 +8,9 @@ const POSTS_DIR = 'posts';
 
 const fileToPostId = (file: string) => path.basename(file).replace(/\.md$/, '');
 
+const postFilePath = (postId: string, categoryId: string | null) =>
+	path.join(POSTS_DIR, categoryId || '', `${postId}.md`);
+
 export function listCategories(): string[] {
 	const items = fs.readdirSync(POSTS_DIR);
 	return items.filter(item => fs.statSync(path.join(POSTS_DIR, item)).isDirectory());
@@ -39,7 +42,7 @@ export function getCategory(category: string): Category {
 
 export function getPartialPost(category: string | null, id: string): PartialPost {
 	category ||= '';
-	const content = fs.readFileSync(path.join(POSTS_DIR, category, `${id}.md`));
+	const content = fs.readFileSync(postFilePath(id, category));
 
 	const matterResult = matter(content, { language: 'yaml' });
 	const info: any = matterResult.data;
@@ -121,3 +124,6 @@ export const sortByDate = (a: HasDate, b: HasDate) =>
 	new Date(a.date).getTime() - new Date(b.date).getTime();
 
 export const sortbyDateInverse = (a: HasDate, b: HasDate) => sortByDate(b, a);
+
+export const doesPostExist = (postId: string, categoryId: string | null) =>
+	fs.existsSync(postFilePath(postId, categoryId));
