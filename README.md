@@ -10,3 +10,5 @@ Source code for my programming blog.
 - [x] Email subscription
 - [x] Image fallbacks
 - [ ] Global contact links
+- [ ] View and like counters
+- [ ] Push notifications
