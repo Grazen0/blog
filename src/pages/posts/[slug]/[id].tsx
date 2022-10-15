@@ -72,6 +72,7 @@ const Post: NextPage<Props> = ({
 			)
 			.catch(console.error);
 	}, [category?.id, post.id]);
+
 	return (
 		<Layout title={title} description={summary} image={image} imageAlt={image_alt}>
 			<main className="p-6">
