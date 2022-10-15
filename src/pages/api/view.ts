@@ -1,7 +1,5 @@
 import { createApiHandler } from 'lib/api/handler';
 import { VIEW_COOLDOWN } from 'lib/constants';
-import PostStats from 'lib/database/models/post-stats';
-import { doesPostExist } from 'lib/posts';
 import { connect as db, getPostStats } from '../../lib/database';
 
 const handler = createApiHandler();
