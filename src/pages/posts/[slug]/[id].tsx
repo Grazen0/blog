@@ -24,6 +24,7 @@ interface Props {
 	post: Sorted<Post>;
 	category?: Category;
 	views: number;
+	randomTestNumber: number;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -52,7 +53,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 	const stats = await getPostStats(id, categoryId);
 
 	return {
-		props: { post, category, views: stats.viewCount },
+		props: {
+			post,
+			category,
+			views: stats.viewCount,
+			randomTestNumber: Math.floor(Math.random() * 1000),
+		},
 		revalidate: VIEW_COUNT_REFRESH_RATE,
 	};
 };
@@ -62,6 +68,7 @@ const Post: NextPage<Props> = ({
 	post: { title, summary, image, image_alt, content, date, nextPost, prevPost },
 	category,
 	views,
+	randomTestNumber,
 }) => {
 	useEffect(() => {
 		axios
@@ -85,7 +92,7 @@ const Post: NextPage<Props> = ({
 								&middot; <AnimatedLink href={`/posts/${category.id}`}>{category.name}</AnimatedLink>{' '}
 							</>
 						)}
-						&middot; 👁‍🗨 {views} view{views !== 1 && 's'}
+						&middot; 👁‍🗨 {views} view{views !== 1 && 's'} &middot; Test number: {randomTestNumber}
 					</div>
 					{image && image_alt && <MainImage src={image} alt={image_alt} width={800} height={420} />}
 					<div className="my-12 post-container">
