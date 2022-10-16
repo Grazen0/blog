@@ -65,8 +65,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 };
 
 const PostOrCategory: NextPage<Props> = props => {
-	if (props.type === 'post')
-		return <PostPage post={props.post} views={props.views} randomTestNumber={-1} />;
+	if (props.type === 'post') return <PostPage post={props.post} views={props.views} />;
 
 	const { name, description, image, image_alt } = props.category;
 
