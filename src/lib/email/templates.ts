@@ -1,6 +1,7 @@
 import { HOST } from 'lib/constants';
-import { Post } from 'lib/types';
-import { completePath, postUrl } from 'lib/utils';
+import { IPopulatedPost } from 'lib/database/models/post';
+import { SerializedPopulatedPost } from 'lib/types';
+import { withHost, postUrl } from 'lib/utils';
 import { EmailTemplate } from '.';
 
 export const subscriptionMessage = (subscriptionId: string): EmailTemplate => {
@@ -33,7 +34,7 @@ I hope you have as much fun reading my posts as I have making them!
 		<footer style="opacity:0.5;color:gray;font-size:0.75rem;line-height:1.75em">
 		<span>Subscription ID ${subscriptionId}</span>
 		<br />
-		<a style="color:gray!important" href="${completePath(
+		<a style="color:gray!important" href="${withHost(
 			`/unsubscribe?sid=${subscriptionId}`
 		)}">Unsubscribe</a>
 	</footer>
@@ -42,8 +43,11 @@ I hope you have as much fun reading my posts as I have making them!
 	};
 };
 
-export const notification = (post: Post, subscriptionId: string): EmailTemplate => {
-	const url = completePath(postUrl(post));
+export const notification = (
+	post: SerializedPopulatedPost,
+	subscriptionId: string
+): EmailTemplate => {
+	const url = withHost(postUrl(post));
 
 	return {
 		subject: `📫 New post! "${post.title}"`,
@@ -71,8 +75,8 @@ Go check it out at ${url}
 
 	${
 		post.image
-			? `<img src="${completePath(post.image)}" alt="${
-					post.image_alt || ''
+			? `<img src="${withHost(post.image)}" alt="${
+					post.imageAlt || ''
 			  }" style="border-radius:1rem;max-width:100%" />`
 			: ''
 	}
@@ -86,7 +90,7 @@ Go check it out at ${url}
 	<footer style="opacity:0.5;color:gray;font-size:0.75rem;line-height:1.75em;margin:1.5rem 0">
 		<span>Subscription ID ${subscriptionId}</span>
 		<br />
-		<a style="color:gray!important" href="${completePath(
+		<a style="color:gray!important" href="${withHost(
 			`/unsubscribe?sid=${subscriptionId}`
 		)}">Unsubscribe</a>
 	</footer>

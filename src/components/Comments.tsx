@@ -1,5 +1,5 @@
 import { useDarkMode } from 'lib/providers/dark-mode';
-import { HTMLProps, useEffect, useRef, useState } from 'react';
+import { HTMLProps, useEffect, useRef } from 'react';
 
 const Comments: React.FC<HTMLProps<HTMLDivElement>> = props => {
 	const [darkMode] = useDarkMode();

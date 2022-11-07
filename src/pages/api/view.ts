@@ -1,6 +1,8 @@
 import { createApiHandler } from 'lib/api/handler';
 import { VIEW_COOLDOWN } from 'lib/constants';
-import { connect as db, getPostStats } from '../../lib/database';
+import Post from 'lib/database/models/post';
+import ViewRecord from 'lib/database/models/view-record';
+import { connect as db } from '../../lib/database';
 
 const handler = createApiHandler();
 
@@ -20,30 +22,37 @@ handler.post(async (req, res) => {
 			message: 'Missing post query parameter',
 		});
 
-	const categoryId = req.query.category?.toString();
-
-	// TODO - Check if post exists
-
 	await db();
 
-	const stats = await getPostStats(postId, categoryId);
+	const post = await Post.findById(postId);
+	if (!post) {
+		return res.status(400).json({
+			status: 400,
+			message: 'Post not found',
+		});
+	}
 
-	const entry = stats.views.find(e => e.address === address);
-	if (entry && Date.now() < entry.date + VIEW_COOLDOWN) {
-		return res.status(204).json({
-			status: 204,
+	const record = await ViewRecord.findOne({ post: postId, address });
+
+	if (record && Date.now() < record.date.getTime() + VIEW_COOLDOWN) {
+		return res.json({
+			status: 200,
 			message: 'Cooldown in progress',
 		});
 	}
 
-	if (!entry) {
-		stats.views.push({ address, date: Date.now() });
+	if (!record) {
+		await ViewRecord.create({
+			post: postId,
+			address,
+		});
 	} else {
-		entry.date = Date.now();
+		record.date = new Date();
+		await record.save();
 	}
 
-	stats.viewCount++;
-	await stats.save();
+	post.views++;
+	await post.save();
 
 	res.json({
 		status: 200,

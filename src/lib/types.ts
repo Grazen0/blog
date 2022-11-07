@@ -1,42 +1,40 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface ImageHolder {
-	image: string;
-	image_alt?: string;
-}
-
-export interface HasDate {
-	date: string;
-}
-
-export interface PartialPost extends Partial<ImageHolder>, HasDate {
-	category?: string;
-	id: string;
-	title: string;
-	summary: string;
-	content: string;
-}
-
 export type Sorted<T extends {}> = T & {
-	prevPost?: T;
-	nextPost?: T;
+	previous?: T;
+	next?: T;
 };
-
-export interface Post extends Omit<PartialPost, 'category'> {
-	category?: Category;
-}
-
-export interface Category extends Partial<ImageHolder> {
-	id: string;
-	name: string;
-	description: string;
-	image?: string;
-	image_alt?: string;
-}
 
 export interface LinkInfo {
 	to: string;
 	label: string;
+}
+
+export interface SerializedCategory {
+	id: string;
+	slug: string;
+	name: string;
+	description: string;
+	image: string;
+	imageAlt: string;
+}
+
+export interface SerializedPost {
+	id: string;
+	category: string;
+	slug: string;
+	title: string;
+	summary?: string;
+	image: string;
+	imageAlt: string;
+	content: string;
+	views: number;
+	createdAt: number;
+	updatedAt: number;
+}
+
+export interface SerializedPopulatedPost extends Omit<SerializedPost, 'category'> {
+	category: SerializedCategory;
 }
 
 export type Runnable = () => void;

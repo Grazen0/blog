@@ -1,9 +1,8 @@
 import { NextPage } from 'next/types';
 import Layout from 'components/layout/Layout';
-import PostImage from 'components/post/PostImage';
 import AnimatedLink from 'components/AnimatedLink';
 import cat from '../../public/img/my_cat.jpg';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 const About: NextPage = () => (
 	<Layout title="About">

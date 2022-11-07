@@ -1,15 +1,16 @@
 import { HTMLProps } from 'react';
-import { PartialPost, Post } from 'lib/types';
 import classNames from 'classnames';
 import AnimatedLink from 'components/AnimatedLink';
 import { postUrl } from 'lib/utils';
+import { SerializedCategory, SerializedPost } from 'lib/types';
 
 export interface Props extends HTMLProps<HTMLElement> {
-	previous?: PartialPost | Post;
-	next?: PartialPost | Post;
+	category: SerializedCategory;
+	previous: SerializedPost | null;
+	next: SerializedPost | null;
 }
 
-const NextPostLinks: React.FC<Props> = ({ previous, next, className, ...props }) => (
+const NextPostLinks: React.FC<Props> = ({ previous, next, category, className, ...props }) => (
 	<nav
 		{...props}
 		className={classNames(
@@ -18,11 +19,13 @@ const NextPostLinks: React.FC<Props> = ({ previous, next, className, ...props })
 		)}
 	>
 		{previous && (
-			<AnimatedLink href={postUrl(previous)}>&#8592; Previous: {previous.title}</AnimatedLink>
+			<AnimatedLink href={postUrl(previous, category)}>
+				&#8592; Previous: {previous.title}
+			</AnimatedLink>
 		)}
 		<div className="flex-grow"></div>
 		{next && (
-			<AnimatedLink href={postUrl(next)} className="text-right">
+			<AnimatedLink href={postUrl(next, category)} className="text-right">
 				Next: {next.title} &#8594;
 			</AnimatedLink>
 		)}
