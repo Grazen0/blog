@@ -23,7 +23,7 @@ const Posts: NextPage<Props> = ({ categories }) => (
 	<Layout title="All Posts">
 		<main className="p-6">
 			<h1 className="text-center text-5xl font-bold my-8">Categories</h1>
-			<ul>
+			<ul className="max-w-2xl mx-auto">
 				{categories.map(category => (
 					<li key={category.id}>
 						<Link href={`/posts/${category.slug}/`}>
