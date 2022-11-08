@@ -1,10 +1,10 @@
-import { Document, FilterQuery } from 'mongoose';
+import { Document } from 'mongoose';
 import Post, { IPopulatedPost, IPost } from './database/models/post';
 
 export const getAdjacentPost = async (
 	postDate: Date,
 	place: -1 | 1,
-	filter: FilterQuery<IPost>
+	filter: Partial<IPost>
 ): Promise<(Document & IPost) | null> => {
 	const result = await Post.find({
 		...filter,
