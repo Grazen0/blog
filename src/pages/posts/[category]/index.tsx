@@ -5,7 +5,8 @@ import PostList from 'components/PostList';
 import { connect as db } from 'lib/database';
 import Category from 'lib/database/models/category';
 import Post from 'lib/database/models/post';
-import { SerializedCategory, SerializedPopulatedPost, SerializedPost } from 'lib/types';
+import { SerializedCategory, SerializedPost } from 'lib/types';
+import { populatePosts } from 'lib/utils';
 
 export interface Props {
 	category: SerializedCategory;
@@ -45,12 +46,7 @@ const CategoryPage: NextPage<Props> = ({
 	category: { name, description, image, imageAlt },
 	posts,
 }) => {
-	const populatedPosts = posts.map<SerializedPopulatedPost>(post => {
-		return {
-			...post,
-			category: category,
-		};
-	});
+	const populatedPosts = populatePosts(posts, category);
 	return (
 		<Layout title={name} description={description} image={image} imageAlt={imageAlt}>
 			<main className="p-6">

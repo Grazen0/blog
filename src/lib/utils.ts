@@ -42,3 +42,10 @@ export const randomRange = (min: number, max: number) => min + Math.random() * (
 export const formatDate = (date: Date) => {
 	return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 };
+
+export const populatePosts = (posts: SerializedPost[], category: SerializedCategory) => {
+	return posts.map(post => ({
+		...post,
+		category,
+	}));
+};
