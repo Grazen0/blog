@@ -4,7 +4,6 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkUnwrapImages from 'remark-unwrap-images';
-import queryString from 'query-string';
 import Layout from 'components/layout/Layout';
 import NextPostLinks from 'components/layout/NextPostLinks';
 import BlockQuote from 'components/post/BlockQuote';
@@ -82,8 +81,7 @@ const PostPage: NextPage<Props> = ({
 	category,
 }) => {
 	useEffect(() => {
-		const query = { post: post.id, category: category.id };
-		axios.post(`/api/view?${queryString.stringify(query)}`).catch(console.error);
+		axios.post(`/api/view?post=${encodeURIComponent(post.id)}`).catch(console.error);
 	}, [category.id, post.id]);
 
 	return (
