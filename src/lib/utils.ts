@@ -58,7 +58,16 @@ export const formatDate = (date: Date) => {
 	const month = MONTHS[date.getMonth()];
 	const day = date.getDate();
 	const lastDigit = day % 10;
-	const daySuffix = lastDigit === 1 ? 'st' : lastDigit === 2 ? 'nd' : lastDigit === 3 ? 'rd' : 'th';
+	const daySuffix =
+		day > 3 && day < 21
+			? 'th'
+			: lastDigit === 1
+			? 'st'
+			: lastDigit === 2
+			? 'nd'
+			: lastDigit === 3
+			? 'rd'
+			: 'th';
 
 	return `${month} ${day}${daySuffix}, ${date.getFullYear()}`;
 };
