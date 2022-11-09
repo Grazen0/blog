@@ -1,10 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type Sorted<T extends {}> = T & {
-	previous?: T;
-	next?: T;
-};
-
 export interface LinkInfo {
 	to: string;
 	label: string;
