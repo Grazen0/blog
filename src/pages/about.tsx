@@ -11,7 +11,7 @@ const About: NextPage = () => (
 			<div className="my-10 post-container">
 				<p className="my-8">
 					Hi! My name is José Daniel, but you probably know me as ElCholoGamer. I&apos;m some
-					15-year old who likes to code a lot. For the past 2-3 years I&apos;ve been experimenting
+					16-year old who likes to code a lot. For the past 2-3 years, I&apos;ve been experimenting
 					and tinkering with lots of different programming projects like Minecraft plugins, Discord
 					bots, Terraria mods, and more. However, my main focus is, by far, web development.
 				</p>
@@ -21,13 +21,8 @@ const About: NextPage = () => (
 				</p>
 				<p className="my-8">
 					I&apos;m making this blog because I want to share my knowledge about coding and software
-					development, and possibly help someone along their programming journey. There&apos;s lots
-					of things I would&apos;ve wanted to know as I learned things, so you could take this blog
-					as a really big{' '}
-					<span className="italic">
-						&quot;What I wish I&apos;d have known when I learned X&quot;
-					</span>
-					.
+					development, and possibly help someone along their programming journey. Who knows, maybe
+					you could learn something new here!
 				</p>
 				<p className="my-8">
 					Oh yeah, I have a cute cat! Hold on a second, she&apos;s trying to get onto my desk right
@@ -44,8 +39,6 @@ const About: NextPage = () => (
 						She&apos;s really lazy, by the way.
 					</figcaption>
 				</figure>
-
-				<p className="mt-0">Alright, she&apos;s gone.</p>
 
 				<h2 className="font-semibold text-3xl mt-10 mb-5">Some stuff about me</h2>
 				<ul className="pl-8 list-items-dashed">
