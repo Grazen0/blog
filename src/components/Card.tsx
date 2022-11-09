@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { HTMLProps } from 'react';
 import classNames from 'classnames';
 
@@ -17,7 +17,7 @@ const Card: React.FC<Props> = ({
 	head,
 	footer,
 	image,
-	imageAlt,
+	imageAlt = '',
 	className,
 	...props
 }) => (
@@ -30,7 +30,7 @@ const Card: React.FC<Props> = ({
 	>
 		{image && (
 			<span className="relative bg-slate-800">
-				<Image src={image} alt={imageAlt} layout="fill" className="object-cover text-center" />
+				<Image src={image} alt={imageAlt} fill className="object-cover text-center" />
 			</span>
 		)}
 		<span className="px-6 py-4 flex-grow">

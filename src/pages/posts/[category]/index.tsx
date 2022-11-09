@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Layout from 'components/layout/Layout';
 import PostList from 'components/PostList';
 import { connect as db } from 'lib/database';
@@ -54,7 +54,7 @@ const CategoryPage: NextPage<Props> = ({
 				<p className="text-center my-6 text-xl">{description}</p>
 				{image && (
 					<div className="relative h-72 w-[30rem] max-w-full mx-auto my-10 shadow-intense dark:shadow-none">
-						<Image src={image} alt={imageAlt} layout="fill" className="rounded object-cover" />
+						<Image src={image} alt={imageAlt} fill className="rounded object-cover" />
 					</div>
 				)}
 

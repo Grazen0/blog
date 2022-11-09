@@ -2,7 +2,7 @@ import { NextPage } from 'next/types';
 import Layout from 'components/layout/Layout';
 import AnimatedLink from 'components/AnimatedLink';
 import cat from '../../public/img/my_cat.jpg';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 const About: NextPage = () => (
 	<Layout title="About">
@@ -36,7 +36,7 @@ const About: NextPage = () => (
 
 				<figure className="my-16 text-center">
 					<Image
-						{...cat}
+						src={cat}
 						alt="She's really lazy, by the way."
 						className="text-hidden my-2 max-h-[28rem] rounded mx-auto shadow-intense dark:shadow-none"
 					/>
