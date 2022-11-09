@@ -1,5 +1,5 @@
 import { useDarkMode } from 'lib/providers/dark-mode';
-import { HTMLProps, useEffect, useRef, useState } from 'react';
+import { HTMLProps, useEffect, useRef } from 'react';
 
 const Comments: React.FC<HTMLProps<HTMLDivElement>> = props => {
 	const [darkMode] = useDarkMode();
@@ -16,7 +16,7 @@ const Comments: React.FC<HTMLProps<HTMLDivElement>> = props => {
 		script.setAttribute('theme', `github-${darkMode ? 'dark' : 'light'}`);
 		script.setAttribute('issue-term', 'pathname');
 		script.setAttribute('repo', 'ElCholoGamer/blog');
-		script.setAttribute('label', '💬 comments');
+		script.setAttribute('label', 'comments');
 
 		container.appendChild(script);
 

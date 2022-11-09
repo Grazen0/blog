@@ -28,7 +28,7 @@ const PostStatsSchema = new Schema(
 		timestamps: { createdAt: false, updatedAt: true },
 		toJSON: {
 			versionKey: false,
-			transform: (doc, ret) => transformIdField(ret),
+			transform: (doc: any, ret: any) => transformIdField(ret),
 		},
 	}
 );

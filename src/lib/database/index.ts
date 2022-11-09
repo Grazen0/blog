@@ -1,11 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import PostStats from './models/post-stats';
+import './models/post';
+import './models/category';
 
 export async function connect() {
 	const url = process.env.DATABASE_URL;
 	if (!url) throw new Error('Database URL enviroment variable not found.');
 
-	await mongoose.connect(url);
+	await mongoose.connect(url, { autoIndex: process.env.NODE_ENV === 'development' });
 }
 
 export const transformIdField = (doc: any) => {

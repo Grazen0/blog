@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { completePath } from 'lib/utils';
+import { withHost } from 'lib/utils';
 
 export interface Props {
 	title: string;
@@ -21,9 +21,9 @@ const OpenGraph: React.FC<Props> = ({ title, image, siteName, description, image
 	return (
 		<Head>
 			<meta property="og:title" content={title} />
-			<meta property="og:url" content={completePath(router.asPath)} />
+			<meta property="og:url" content={withHost(router.asPath)} />
 			<meta property="og:type" content="website" />
-			<meta property="og:image" content={completePath(image)} />
+			<meta property="og:image" content={withHost(image)} />
 			<meta property="og:site_name" content={siteName} />
 			{description && <meta property="og:description" content={description} />}
 			{imageAlt && <meta property="og:image:alt" content={imageAlt} />}

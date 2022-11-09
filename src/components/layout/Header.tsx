@@ -24,8 +24,8 @@ const Header: React.FC = () => {
 			ref={menuRef}
 			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center top-0 z-50"
 		>
-			<Link href="/">
-				<a className="text-3xl font-display">Cholo&apos;s Dev Blog</a>
+			<Link href="/" className="text-3xl font-display">
+				Cholo&apos;s Dev Blog
 			</Link>
 
 			<div className="flex flex-grow z-50">
@@ -51,17 +51,16 @@ const Header: React.FC = () => {
 					/>
 
 					<div className="flex flex-wrap items-center m-4 sm:m-0 sm:ml-auto">
-						<Link href="/subscribe">
-							<a className="relative font-semibold dark:text-neutral-900 shadow-md dark:shadow-none mr-8 my-2 md:my-0 rounded-md px-4 py-1.5 transition-all z-50 overflow-hidden duration-150 bg-yellow-300 before:absolute before:w-[105%] before:h-full before:bg-yellow-400 before:top-0 before:left-0 before:z-[-1] before:translate-x-[105%] hover:before:translate-x-0 before:transition-all">
-								✉ Subscribe!
-							</a>
+						<Link
+							href="/subscribe"
+							className="relative font-semibold dark:text-neutral-900 shadow-md dark:shadow-none mr-8 my-2 md:my-0 rounded-md px-4 py-1.5 transition-all z-50 overflow-hidden duration-150 bg-yellow-300 before:absolute before:w-[105%] before:h-full before:bg-yellow-400 before:top-0 before:left-0 before:z-[-1] before:translate-x-[105%] hover:before:translate-x-0 before:transition-all"
+						>
+							✉ Subscribe!
 						</Link>
 						<div className="flex items-center my-2 md:my-1">
 							<DarkModeSwitch />
 							<Link href="https://github.com/ElCholoGamer/blog">
-								<a>
-									<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
-								</a>
+								<GitHubIcon width={30} height={30} className="ml-5 mr-1 inline" /> Source
 							</Link>
 						</div>
 					</div>

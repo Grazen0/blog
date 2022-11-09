@@ -1,33 +1,27 @@
 import Link from 'next/link';
 import { HTMLProps } from 'react';
-import { Post, PartialPost } from 'lib/types';
 import { postUrl } from 'lib/utils';
 import Card from './Card';
+import { SerializedPopulatedPost } from 'lib/types';
 
-export interface Props extends HTMLProps<HTMLUListElement> {
-	posts: (PartialPost | Post)[];
+export type Props = HTMLProps<HTMLUListElement> & {
+	posts: SerializedPopulatedPost[];
 	showCategories?: boolean;
-}
+};
 
 const PostList: React.FC<Props> = ({ posts, showCategories, ...props }) => (
 	<ul {...props}>
 		{posts.map(post => (
 			<li key={post.id}>
 				<Link href={postUrl(post)}>
-					<a>
-						<Card
-							title={post.title}
-							description={post.summary}
-							head={
-								showCategories && typeof post.category !== 'string'
-									? post.category?.name
-									: undefined
-							}
-							image={post.image}
-							imageAlt={post.image_alt}
-							className="hover:scale-105 transition-all"
-						/>
-					</a>
+					<Card
+						title={post.title}
+						description={post.summary || '[No summary available]'}
+						head={showCategories ? post.category.name : undefined}
+						image={post.image}
+						imageAlt={post.imageAlt}
+						className="hover:scale-105 transition-all"
+					/>
 				</Link>
 			</li>
 		))}
