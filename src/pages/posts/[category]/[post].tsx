@@ -18,7 +18,7 @@ import { SerializedCategory, SerializedPost } from 'lib/types';
 import { getAdjacentPost } from 'lib/posts';
 import styles from 'styles/Post.module.css';
 import { connect as db } from 'lib/database';
-import { VIEW_COUNT_REFRESH_RATE } from 'lib/constants';
+import { POST_REVALIDATION_DELAY } from 'lib/constants';
 import Post from 'lib/database/models/post';
 import Category from 'lib/database/models/category';
 import { formatDate } from 'lib/utils';
@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 			nextPost: nextPost?.serializable() || null,
 			category: category.serializable(),
 		},
-		revalidate: VIEW_COUNT_REFRESH_RATE,
+		revalidate: POST_REVALIDATION_DELAY,
 	};
 };
 
