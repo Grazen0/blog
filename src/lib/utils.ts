@@ -39,8 +39,28 @@ export const retryPromise = async <T>(promise: () => Promise<T>, max: number): P
 
 export const randomRange = (min: number, max: number) => min + Math.random() * (max - min);
 
+const MONTHS = [
+	'Jan.',
+	'Feb.',
+	'Mar.',
+	'Apr.',
+	'May',
+	'Jun.',
+	'Jul.',
+	'Aug.',
+	'Sept.',
+	'Oct.',
+	'Nov.',
+	'Dec.',
+];
+
 export const formatDate = (date: Date) => {
-	return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+	const month = MONTHS[date.getMonth()];
+	const day = date.getDate();
+	const lastDigit = day % 10;
+	const daySuffix = lastDigit === 1 ? 'st' : lastDigit === 2 ? 'nd' : lastDigit === 3 ? 'rd' : 'th';
+
+	return `${month} ${day}${daySuffix}, ${date.getFullYear()}`;
 };
 
 export const populatePosts = (posts: SerializedPost[], category: SerializedCategory) => {
