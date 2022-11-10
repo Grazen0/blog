@@ -14,7 +14,7 @@ const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
 ];
 
-const rubik = Rubik({ subsets: [] });
+const rubik = Rubik({ subsets: ['latin'] });
 
 const Header: React.FC = () => {
 	const [open, setOpen] = useState(false);
