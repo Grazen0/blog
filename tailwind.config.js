@@ -12,9 +12,6 @@ module.exports = {
 					[950]: 'rgb(14, 18, 34)',
 				},
 			},
-			fontFamily: {
-				display: 'Rubik',
-			},
 			boxShadow: {
 				intense: '0 0 25px -10px black',
 			},

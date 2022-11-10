@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Rubik } from '@next/font/google';
 import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import DarkModeSwitch from '../DarkModeSwitch';
@@ -13,6 +14,8 @@ const links: LinkInfo[] = [
 	{ to: '/about', label: 'About' },
 ];
 
+const rubik = Rubik({ subsets: [] });
+
 const Header: React.FC = () => {
 	const [open, setOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
@@ -24,7 +27,7 @@ const Header: React.FC = () => {
 			ref={menuRef}
 			className="relative flex py-3 px-4 sm:px-6 bg-neutral-300 dark:bg-slate-800 items-center top-0 z-50"
 		>
-			<Link href="/" className="text-3xl font-display">
+			<Link href="/" className={classNames('text-3xl font-bold', rubik.className)}>
 				Cholo&apos;s Dev Blog
 			</Link>
 
