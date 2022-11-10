@@ -30,7 +30,13 @@ const Card: React.FC<Props> = ({
 	>
 		{image && (
 			<span className="relative bg-slate-800">
-				<Image src={image} alt={imageAlt} fill className="object-cover text-center" />
+				<Image
+					src={image}
+					alt={imageAlt}
+					fill
+					sizes="(max-width: 900px) 100vw, 50vw"
+					className="object-cover text-center"
+				/>
 			</span>
 		)}
 		<span className="px-6 py-4 flex-grow">
