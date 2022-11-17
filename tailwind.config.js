@@ -18,6 +18,15 @@ module.exports = {
 			screens: {
 				xs: '480px',
 			},
+			animation: {
+				hover: 'float 4s ease-in-out infinite',
+			},
+			keyframes: {
+				float: {
+					'0%, 100%': { transform: 'translateY(-4%)' },
+					'50%': { transform: 'translateY(4%)' },
+				},
+			},
 		},
 	},
 	plugins: [],
