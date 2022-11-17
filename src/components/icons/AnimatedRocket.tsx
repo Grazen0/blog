@@ -12,7 +12,7 @@ const AnimatedRocket: React.FC = () => {
 
 	function reset() {
 		xSpeed.current = randomRange(100, 180);
-		ySpeed.current = randomRange(30, 100);
+		ySpeed.current = randomRange(30, 60);
 		acceleration.current = randomRange(0.1, 0.3);
 		setLeftStart(randomRange(-20, 100));
 		setLeft(0);
@@ -32,12 +32,12 @@ const AnimatedRocket: React.FC = () => {
 			return bottom;
 		});
 
-		setLeft(prev => prev + xSpeed.current * delta);
+		setLeft(left => left + xSpeed.current * delta);
 	});
 
 	return (
 		<span
-			className="absolute z-0 text-5xl"
+			className="absolute z-0 text-3xl md:text-5xl"
 			style={{ left: `calc(${leftStart}% + ${left}px)`, bottom: bottom + '%' }}
 		>
 			🚀
