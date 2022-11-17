@@ -25,7 +25,7 @@ const Home: NextPage<Props> = ({ latestPosts }) => (
 	<Layout title="Home">
 		<main>
 			<div className="block bg-neutral-100 dark:bg-slate-950 relative overflow-hidden text-center [box-shadow:inset_0_8px_10px_-10px_gray,inset_0_-4px_15px_-10px_gray] dark:shadow-none">
-				<h1 className="relative text-neutral-900 dark:text-white inline-block text-6xl text-center font-extrabold mx-10 my-20 p-5 leading-snug z-30 [text-shadow:#717171_0_0_8px] max-w-5xl animate-hover">
+				<h1 className="relative text-neutral-900 dark:text-white inline-block text-4xl md:text-6xl md:leading-snug text-center font-extrabold mx-10 my-12 md:my-20 p-5 leading-snug z-30 [text-shadow:#717171_0_0_8px] max-w-5xl animate-hover">
 					The blog of a guy who likes programming <em>a bit</em> too much
 				</h1>
 				<div className="z-10">
