@@ -98,7 +98,7 @@ const PostPage: NextPage<Props> = ({
 						)}
 						&middot; 👁‍🗨 {views} view{views !== 1 && 's'}
 					</div>
-					{image && imageAlt && <MainImage src={image} alt={imageAlt} width={800} height={420} />}
+					{image && <MainImage src={image} alt={imageAlt} width={800} height={420} />}
 					<div className="my-12 post-container">
 						<ReactMarkdown
 							remarkPlugins={[remarkGfm, remarkUnwrapImages]}
