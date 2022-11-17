@@ -20,7 +20,7 @@ const MainImage: React.FC<Props> = ({ src, alt, width, height, imgProps, classNa
 			height={height}
 			priority
 			className={classNames(
-				'object-cover object-center align-middle inline rounded bg-neutral-300 dark:bg-slate-950',
+				'object-cover object-center align-middle inline rounded text-center bg-neutral-300 dark:bg-slate-950',
 				imgProps?.className
 			)}
 		/>
