@@ -8,8 +8,3 @@ export async function connect() {
 
 	await mongoose.connect(url, { autoIndex: process.env.NODE_ENV === 'development' });
 }
-
-export const transformIdField = (doc: any) => {
-	doc.id = doc._id;
-	delete doc._id;
-};

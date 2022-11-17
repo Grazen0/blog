@@ -1,5 +1,4 @@
 import { Schema, model, models, Model } from 'mongoose';
-import { transformIdField } from '..';
 
 export interface ISubscription {
 	email: string;
@@ -12,10 +11,6 @@ const SubscriptionSchema = new Schema(
 	},
 	{
 		timestamps: { createdAt: true, updatedAt: false },
-		toJSON: {
-			versionKey: false,
-			transform: (doc, ret) => transformIdField(ret),
-		},
 	}
 );
 
