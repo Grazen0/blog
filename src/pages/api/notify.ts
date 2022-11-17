@@ -1,5 +1,6 @@
 import { createApiHandler } from 'lib/api/handler';
 import { connect as db } from 'lib/database';
+import Post, { IPopulatedPost } from 'lib/database/models/post';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
 import { notification } from 'lib/email/templates';
@@ -15,12 +16,31 @@ handler.post(async (req, res) => {
 		});
 	}
 
+	const postId = req.query.post?.toString();
+	if (!postId) {
+		return res.status(400).json({
+			status: 400,
+			message: 'Missing "post" query parameter',
+		});
+	}
+
 	await db();
+
+	const post: IPopulatedPost | null = await Post.findById(postId).populate('category');
+	if (!post) {
+		return res.status(404).json({
+			status: 404,
+			message: 'Post not found',
+		});
+	}
+
 	const subscriptions = await Subscription.find();
+
+	const postData = post.serializable();
 
 	await Promise.allSettled(
 		subscriptions.map(sub =>
-			retryPromise(() => sendEmail(notification(req.body, sub.id), sub.email), 10)
+			retryPromise(() => sendEmail(notification(postData, sub.id), sub.email), 10)
 		)
 	);
 

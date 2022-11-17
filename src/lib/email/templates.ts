@@ -1,5 +1,4 @@
 import { HOST } from 'lib/constants';
-import { IPopulatedPost } from 'lib/database/models/post';
 import { SerializedPopulatedPost } from 'lib/types';
 import { withHost, postUrl } from 'lib/utils';
 import { EmailTemplate } from '.';
