@@ -13,12 +13,15 @@ const AnimatedRocket: React.FC = () => {
 	function reset() {
 		xSpeed.current = randomRange(100, 180);
 		ySpeed.current = randomRange(30, 60);
-		acceleration.current = randomRange(0.1, 0.3);
+		acceleration.current = randomRange(0.2, 0.4);
 		setLeftStart(randomRange(-20, 100));
 		setLeft(0);
 	}
 
-	useEffect(reset, []);
+	useEffect(() => {
+		reset();
+		setBottom(randomRange(-10, 90));
+	}, []);
 
 	useAnimationFrame(delta => {
 		setBottom(bottom => {
