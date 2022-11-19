@@ -5,7 +5,7 @@ function useLocalStorage<T>(key: string, defaultValue: T): [T, Dispatch<SetState
 
 	useEffect(() => {
 		const storedValue = localStorage.getItem(key);
-		if (storedValue) {
+		if (storedValue !== null) {
 			setValue(JSON.parse(storedValue));
 		}
 	}, [key]);
