@@ -9,7 +9,7 @@
 	}
 
 	body {
-		@apply m-0 p-0 min-h-full h-0 bg-neutral-50 dark:bg-slate-900 dark:text-white transition-colors;
+		@apply m-0 p-0 min-h-full h-0 bg-neutral-50 dark:bg-slate-900 text-neutral-900 dark:text-white transition-colors;
 	}
 }
 
@@ -25,15 +25,27 @@
 	}
 
 	.text-shadow {
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		text-shadow: 0 0 4px black;
 	}
 
 	.text-shadow-md {
-		text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+		text-shadow: 0 0 8px black;
 	}
 
 	.text-shadow-lg {
-		text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
+		text-shadow: 0 0 30px black;
+	}
+
+	.text-shadow-white {
+		text-shadow: 0 0 4px white;
+	}
+
+	.text-shadow-white-md {
+		text-shadow: 0 0 8px white;
+	}
+
+	.text-shadow-white-lg {
+		text-shadow: 0 0 30px white;
 	}
 
 	.text-shadow-none {

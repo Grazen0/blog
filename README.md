@@ -5,7 +5,7 @@ Source code for my programming blog.
 ## To-do
 
 - [x] About page
-- [ ] Improve homepage
+- [x] Improve homepage
 - [ ] Posts search bar
 - [x] Email subscription
 - [x] Image fallbacks
