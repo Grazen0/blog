@@ -20,7 +20,7 @@ const PostList: React.FC<Props> = ({ posts, showCategories, ...props }) => (
 						head={showCategories ? post.category.name : undefined}
 						image={post.image}
 						imageAlt={post.imageAlt}
-						className="hover:scale-105 transition-all"
+						className="hover:scale-105 my-8 transition-all"
 					/>
 				</Link>
 			</li>

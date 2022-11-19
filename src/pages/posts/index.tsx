@@ -32,7 +32,7 @@ const Posts: NextPage<Props> = ({ categories }) => (
 								description={category.description}
 								image={category.image}
 								imageAlt={category.imageAlt}
-								className="hover:scale-105 transition-all"
+								className="hover:scale-105 my-8 transition-all"
 							/>
 						</Link>
 					</li>

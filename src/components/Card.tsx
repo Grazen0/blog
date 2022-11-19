@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({
 		{...props}
 		className={classNames(
 			className,
-			'my-8 overflow-hidden rounded-lg grid grid-rows-[minmax(0,1.25fr)_minmax(0,1fr)] xs:grid-rows-none xs:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] bg-neutral-200 dark:bg-slate-700 shadow-intense dark:shadow-none'
+			'overflow-hidden rounded-lg grid grid-rows-[minmax(0,1.25fr)_minmax(0,1fr)] xs:grid-rows-none xs:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] bg-neutral-200 dark:bg-slate-700 shadow-intense dark:shadow-none'
 		)}
 	>
 		{image && (
