@@ -1,13 +1,10 @@
 import type { GetStaticProps, NextPage } from 'next';
-import Image from 'next/image';
 import Layout from 'components/layout/Layout';
 import { getLatestPosts } from 'lib/posts';
 import { connect as db } from 'lib/database';
 import { SerializedPopulatedPost } from 'lib/types';
 import AnimatedRocket from 'components/icons/AnimatedRocket';
-import Card from 'components/Card';
 import { postUrl } from 'lib/utils';
-import Link from 'next/link';
 import ImageCard from 'components/ImageCard';
 
 interface Props {
