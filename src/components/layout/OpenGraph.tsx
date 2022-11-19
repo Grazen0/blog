@@ -14,8 +14,8 @@ const OpenGraph: React.FC<Props> = ({ title, image, siteName, description, image
 	const router = useRouter();
 
 	if (!image) {
-		image = '/img/cat.jpg';
-		imageAlt = 'An orange cat sitting down with a keyboard';
+		image = '/og.png';
+		imageAlt = 'Logo of the website';
 	}
 
 	return (
