@@ -23,7 +23,7 @@ const Layout: React.FC<Props> = ({ children, ...props }) => (
 
 Layout.defaultProps = {
 	siteName: "Cholo's Dev Blog",
-	description: "Some guy's point of view about programming and web dev.",
+	description: 'The blog of a guy who likes programming a bit too much.',
 };
 
 export default Layout;
