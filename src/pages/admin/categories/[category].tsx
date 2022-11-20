@@ -35,29 +35,28 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
 
 const CategoryPanel: NextPage<Props> = ({ categoryInfo, postCount }) => {
 	const [status, setStatus] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
-	const [submitDisabled, setSubmitDisabled] = useState(true);
 	const [displayName, setDisplayName] = useState(categoryInfo.name);
 	const [displayImage, setDisplayImage] = useState({
 		src: categoryInfo.image,
 		alt: categoryInfo.imageAlt,
 	});
 
-	const handleSubmit = (data: CategoryFormState) => {
-		axios
-			.put(`/api/category/${categoryInfo.id}`, data)
-			.then(({ data }) => {
-				setDisplayName(data.name);
-				setDisplayImage({
-					src: data.image,
-					alt: data.imageAlt,
-				});
-				setStatus({ type: 'success', message: 'Category updated successfully!' });
-			})
-			.catch((err: AxiosError) => {
-				console.error(err);
-				setStatus({ type: 'error', message: `Error: ${err.message}` });
-				setSubmitDisabled(false);
+	const handleSubmit = async (formData: CategoryFormState) => {
+		try {
+			const { data } = await axios.put(`/api/category/${categoryInfo.id}`, formData);
+
+			setDisplayName(data.name);
+			setDisplayImage({
+				src: data.image,
+				alt: data.imageAlt,
 			});
+			setStatus({ type: 'success', message: 'Category updated successfully!' });
+		} catch (e: unknown) {
+			const err = e as AxiosError;
+			console.error(err);
+			setStatus({ type: 'error', message: `Error: ${err.message}` });
+			throw err;
+		}
 	};
 
 	return (
@@ -92,13 +91,7 @@ const CategoryPanel: NextPage<Props> = ({ categoryInfo, postCount }) => {
 				<hr />
 
 				<h2 className="text-2xl font-semibold text-center my-12">Edit category</h2>
-				<CategoryForm
-					onSubmit={handleSubmit}
-					submitDisabled={submitDisabled}
-					setSubmitDisabled={setSubmitDisabled}
-					initialState={categoryInfo}
-					submitLabel="Update"
-				/>
+				<CategoryForm onSubmit={handleSubmit} initialState={categoryInfo} submitLabel="Update" />
 				{status && (
 					<div className="text-center">
 						<Alert color={status.type === 'success' ? 'green' : 'red'} className="block mx-auto">

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, HTMLProps, useState } from 'react';
 import classNames from 'classnames';
 import useDelayedState from 'lib/hooks/delayed-state';
-import { SetState } from 'lib/types';
 import Button from './Button';
 import TextInput from './form/TextInput';
 
@@ -15,22 +14,19 @@ export interface CategoryFormState {
 }
 
 export interface Props extends Omit<HTMLProps<HTMLFormElement>, 'onSubmit'> {
-	submitDisabled: boolean;
-	setSubmitDisabled: SetState<boolean>;
-	onSubmit: (data: CategoryFormState) => void;
+	onSubmit: (data: CategoryFormState) => Promise<void>;
 	initialState?: CategoryFormState;
 	submitLabel: string;
 }
 
 const CategoryForm: React.FC<Props> = ({
 	className,
-	submitDisabled,
-	setSubmitDisabled,
 	onSubmit,
 	initialState,
 	submitLabel,
 	...props
 }) => {
+	const [submitDisabled, setSubmitDisabled] = useState(true);
 	const [formState, setFormState] = useState<CategoryFormState>({
 		name: initialState?.name || '',
 		description: initialState?.description || '',
@@ -43,7 +39,7 @@ const CategoryForm: React.FC<Props> = ({
 	const handleSubmit: FormEventHandler = e => {
 		e.preventDefault();
 		setSubmitDisabled(true);
-		onSubmit(formState);
+		onSubmit(formState).catch(() => setSubmitDisabled(false));
 	};
 
 	const handleChange =
