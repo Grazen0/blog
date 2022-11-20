@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import axios, { AxiosError } from 'axios';
-import CategoryForm, { CategoryFormState } from 'components/CategoryForm';
+import CategoryForm, { CategoryFormState } from 'components/form/CategoryForm';
 import BackLink from 'components/layout/BackLink';
 import Layout from 'components/layout/Layout';
 import { useState } from 'react';

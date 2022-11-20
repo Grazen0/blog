@@ -11,7 +11,7 @@ import { connect as db } from 'lib/database';
 import axios, { AxiosError } from 'axios';
 import Alert from 'components/Alert';
 import AnimatedLink from 'components/AnimatedLink';
-import CategoryForm, { CategoryFormState } from 'components/CategoryForm';
+import CategoryForm, { CategoryFormState } from 'components/form/CategoryForm';
 
 interface Props {
 	categoryInfo: SerializedCategory;

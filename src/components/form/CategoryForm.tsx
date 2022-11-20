@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, HTMLProps, useState } from 'react';
 import classNames from 'classnames';
 import useDelayedState from 'lib/hooks/delayed-state';
-import Button from './Button';
-import TextInput from './form/TextInput';
+import Button from '../Button';
+import TextInput from './TextInput';
 
 export interface CategoryFormState {
 	name: string;
