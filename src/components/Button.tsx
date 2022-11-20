@@ -1,10 +1,12 @@
-import classNames from 'classnames';
+import Link from 'next/link';
 import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import classNames from 'classnames';
 
 export interface Props
 	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	color?: keyof typeof classes;
 	border?: boolean;
+	href?: string;
 }
 
 const classes = {
@@ -30,19 +32,33 @@ const classes = {
 	},
 };
 
-const Button: React.FC<Props> = ({ color = 'blue', border, className, children, ...props }) => (
-	<button
-		{...props}
-		className={classNames(
-			className,
-			'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-75 disabled:outline-0 disabled:cursor-not-allowed',
-			classes[color].base,
-			!border && classes[color].normal,
-			border && `${classes[color].border} hover:text-white`
-		)}
-	>
-		{children}
-	</button>
-);
+const Button: React.FC<Props> = ({ color = 'blue', border, className, children, href, ...props }) =>
+	href ? (
+		<Link
+			href={href}
+			className={classNames(
+				className,
+				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-75 disabled:outline-0 disabled:cursor-not-allowed',
+				classes[color].base,
+				!border && classes[color].normal + ' text-white',
+				border && `${classes[color].border} hover:text-white`
+			)}
+		>
+			{children}
+		</Link>
+	) : (
+		<button
+			{...props}
+			className={classNames(
+				className,
+				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-75 disabled:outline-0 disabled:cursor-not-allowed',
+				classes[color].base,
+				!border && classes[color].normal,
+				border && `${classes[color].border} hover:text-white`
+			)}
+		>
+			{children}
+		</button>
+	);
 
 export default Button;
