@@ -12,7 +12,7 @@ const NotFound: NextPage = () => {
 		<Layout title="Page Not Found" description="Maybe you misspelled something?">
 			<main className="p-6">
 				<h1 className="text-5xl text-center my-8 font-bold">
-					Page Not found <span className="whitespace-nowrap">:(</span>
+					Page Not Found <span className="whitespace-nowrap">:(</span>
 				</h1>
 				<p className="text-center text-xl">Maybe you misspelled something?</p>
 
@@ -20,6 +20,7 @@ const NotFound: NextPage = () => {
 					<AnimatedLink className="mx-4 text-lg font-semibold" href="/">
 						Home
 					</AnimatedLink>
+					&middot;
 					<AnimatedLink className="mx-4 text-lg font-semibold" href="" onClick={goBack}>
 						Go back
 					</AnimatedLink>
