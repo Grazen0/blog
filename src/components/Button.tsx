@@ -38,7 +38,7 @@ const Button: React.FC<Props> = ({ color = 'blue', border, className, children, 
 			href={href}
 			className={classNames(
 				className,
-				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-75 disabled:outline-0 disabled:cursor-not-allowed',
+				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-[.65] disabled:outline-0 disabled:cursor-not-allowed',
 				classes[color].base,
 				!border && classes[color].normal + ' text-white',
 				border && `${classes[color].border} hover:text-white`
@@ -51,9 +51,9 @@ const Button: React.FC<Props> = ({ color = 'blue', border, className, children, 
 			{...props}
 			className={classNames(
 				className,
-				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-75 disabled:outline-0 disabled:cursor-not-allowed',
+				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-[.65] disabled:outline-0 disabled:cursor-not-allowed',
 				classes[color].base,
-				!border && classes[color].normal,
+				!border && classes[color].normal + ' text-white',
 				border && `${classes[color].border} hover:text-white`
 			)}
 		>
