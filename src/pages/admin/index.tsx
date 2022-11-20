@@ -47,7 +47,11 @@ const Admin: NextPage<Props> = ({ subscriberCount, postCount, categoryCount }) =
 						<p className="my-4 text-6xl">{categoryCount}</p>
 					</div>
 				</div>
-				<Button color="red" border onClick={() => signOut()}>
+				<Button className="text-2xl font-semibold" href="/admin/categories">
+					Go to categories
+				</Button>
+				<br />
+				<Button color="red" border onClick={() => signOut()} className="my-12">
 					Log out
 				</Button>
 			</main>
