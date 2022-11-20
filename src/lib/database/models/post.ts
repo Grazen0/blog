@@ -12,6 +12,7 @@ export interface IPost {
 	imageAlt: string;
 	content: string;
 	views: number;
+	draft: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	serializable(): SerializedPost;
@@ -31,6 +32,7 @@ const PostSchema = new Schema(
 		image: { type: String, required: true, trim: true, minLength: 1 },
 		imageAlt: { type: String, required: true, trim: true },
 		content: { type: String, required: true, trim: true, minlength: 1 },
+		draft: { type: Boolean, required: true, default: true },
 		views: { type: Number, required: true, default: 0, min: 0 },
 	},
 	{
