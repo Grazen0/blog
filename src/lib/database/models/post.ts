@@ -7,11 +7,12 @@ export interface IPost {
 	category: Types.ObjectId;
 	slug: string;
 	title: string;
-	summary?: string;
+	summary: string;
 	image: string;
 	imageAlt: string;
 	content: string;
 	views: number;
+	draft: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	serializable(): SerializedPost;
@@ -27,10 +28,11 @@ const PostSchema = new Schema(
 		category: { type: Types.ObjectId, ref: 'Category', required: false },
 		slug: { type: String, required: true, lowercase: true, trim: true, minlength: 1 },
 		title: { type: String, required: true, trim: true, minlength: 1 },
-		summary: { type: String, required: false, trim: true, minlength: 1 },
+		summary: { type: String, required: true, trim: true, minlength: 1 },
 		image: { type: String, required: true, trim: true, minLength: 1 },
 		imageAlt: { type: String, required: true, trim: true },
 		content: { type: String, required: true, trim: true, minlength: 1 },
+		draft: { type: Boolean, required: true, default: true },
 		views: { type: Number, required: true, default: 0, min: 0 },
 	},
 	{

@@ -19,11 +19,12 @@ export interface SerializedPost {
 	category: string;
 	slug: string;
 	title: string;
-	summary?: string;
+	summary: string;
 	image: string;
 	imageAlt: string;
 	content: string;
 	views: number;
+	draft: boolean;
 	createdAt: number;
 	updatedAt: number;
 }

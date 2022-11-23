@@ -17,5 +17,8 @@ export const getAdjacentPost = async (
 };
 
 export const getLatestPosts = async (limit: number): Promise<(Document & IPopulatedPost)[]> => {
-	return await Post.find().sort({ createdAt: -1 }).limit(limit).populate('category');
+	return await Post.find({ draft: false })
+		.sort({ createdAt: -1 })
+		.limit(limit)
+		.populate('category');
 };

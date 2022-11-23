@@ -1,4 +1,4 @@
-import { HTMLProps, useState } from 'react';
+import { HTMLProps, useRef, useState } from 'react';
 import { SerializedCategory, SerializedPost, Timeout } from 'lib/types';
 import { withHost, postUrl } from 'lib/utils';
 import AnimatedLink from './AnimatedLink';
@@ -10,13 +10,13 @@ export interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 const ShareSection: React.FC<Props> = ({ post, category, ...props }) => {
-	const [handle, setHandle] = useState<Timeout | null>(null);
+	const handle = useRef<Timeout | null>(null);
 	const [status, setStatus] = useState<'none' | 'copied' | 'error'>('none');
 
 	const url = withHost(postUrl(post, category));
 
 	const handleClick = () => {
-		if (handle) clearTimeout(handle);
+		if (handle.current !== null) clearTimeout(handle.current);
 
 		if ('clipboard' in navigator) {
 			navigator.clipboard.writeText(url);
@@ -25,7 +25,7 @@ const ShareSection: React.FC<Props> = ({ post, category, ...props }) => {
 			setStatus('error');
 		}
 
-		setHandle(setTimeout(() => setStatus('none'), 1500));
+		handle.current = setTimeout(() => setStatus('none'), 1500);
 	};
 
 	return (

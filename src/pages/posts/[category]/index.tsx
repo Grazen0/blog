@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 	const category = await Category.findOne({ slug: categorySlug });
 	if (!category) throw new Error('Category not found');
 
-	const posts = await Post.find({ category: category._id });
+	const posts = await Post.find({ category: category._id, draft: false });
 
 	return {
 		props: {
