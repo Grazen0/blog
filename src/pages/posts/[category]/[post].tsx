@@ -37,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const categories = await Category.find();
 	const allParams = await Promise.all(
 		categories.map(async category => {
-			const posts = await Post.find({ category: category._id });
+			const posts = await Post.find({ category: category._id, draft: false });
 			return posts.map(post => ({ category: category.slug, post: post.slug }));
 		})
 	);
@@ -57,11 +57,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 	const category = await Category.findOne({ slug: categorySlug });
 	if (!category) throw new Error('Category not found');
 
-	const post = await Post.findOne({ slug: postSlug, category: category._id });
+	const post = await Post.findOne({ slug: postSlug, category: category._id, draft: false });
 	if (!post) throw new Error('Post not found');
 
-	const previousPost = await getAdjacentPost(post.createdAt, -1, { category: category._id });
-	const nextPost = await getAdjacentPost(post.createdAt, 1, { category: category._id });
+	const previousPost = await getAdjacentPost(post.createdAt, -1, {
+		category: category._id,
+		draft: false,
+	});
+	const nextPost = await getAdjacentPost(post.createdAt, 1, {
+		category: category._id,
+		draft: false,
+	});
 
 	return {
 		props: {
