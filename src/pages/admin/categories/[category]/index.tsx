@@ -4,14 +4,14 @@ import { useState } from 'react';
 import Button from 'components/Button';
 import Layout from 'components/layout/Layout';
 import Category from 'lib/database/models/category';
-import { SerializedCategory } from 'lib/types';
+import { SerializedCategory, SerializedPost } from 'lib/types';
 import BackLink from 'components/layout/BackLink';
 import Post from 'lib/database/models/post';
 import { connect as db } from 'lib/database';
 import axios, { AxiosError } from 'axios';
 import Alert from 'components/Alert';
 import AnimatedLink from 'components/AnimatedLink';
-import CategoryForm, { CategoryFormState } from 'components/form/CategoryForm';
+import { useRouter } from 'next/router';
 
 interface Props {
 	categoryInfo: SerializedCategory;
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
 	const category = await Category.findById(params?.category?.toString());
 	if (!category) return { notFound: true };
 
-	const postCount = await Post.countDocuments();
+	const postCount = await Post.countDocuments({ category: category._id });
 
 	return {
 		props: {
@@ -34,36 +34,27 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
 };
 
 const CategoryPanel: NextPage<Props> = ({ categoryInfo, postCount }) => {
-	const [status, setStatus] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
-	const [displayName, setDisplayName] = useState(categoryInfo.name);
-	const [displayImage, setDisplayImage] = useState({
-		src: categoryInfo.image,
-		alt: categoryInfo.imageAlt,
-	});
+	const router = useRouter();
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-	const handleSubmit = async (formData: CategoryFormState) => {
-		try {
-			const { data } = await axios.put(`/api/category/${categoryInfo.id}`, formData);
+	const deletePrompt = () => {
+		if (!confirm(`Are you sure you want to delete this category and its ${postCount} posts?`))
+			return;
 
-			setDisplayName(data.name);
-			setDisplayImage({
-				src: data.image,
-				alt: data.imageAlt,
+		axios
+			.delete(`/api/category/${categoryInfo.id}`)
+			.then(() => router.push('/admin/categories'))
+			.catch((err: AxiosError) => {
+				console.error(err);
+				setErrorMessage(err.message);
 			});
-			setStatus({ type: 'success', message: 'Category updated successfully!' });
-		} catch (e: unknown) {
-			const err = e as AxiosError;
-			console.error(err);
-			setStatus({ type: 'error', message: `Error: ${err.message}` });
-			throw err;
-		}
 	};
 
 	return (
-		<Layout title={`${categoryInfo.name}`}>
+		<Layout title={categoryInfo.name}>
 			<main className="p-6">
 				<BackLink href="/admin/categories">Categories</BackLink>
-				<h1 className="text-4xl font-bold mt-12 mb-4 text-center">{displayName}</h1>
+				<h1 className="text-4xl font-semibold mt-12 mb-4 text-center">{categoryInfo.name}</h1>
 				<p className="text-center mb-8 text-xl">
 					{postCount} post{postCount !== 1 && 's'} &middot;{' '}
 					<AnimatedLink href={`/posts/${categoryInfo.slug}`} className="font-semibold">
@@ -72,8 +63,8 @@ const CategoryPanel: NextPage<Props> = ({ categoryInfo, postCount }) => {
 				</p>
 				<figure className="text-center block my-12">
 					<Image
-						src={displayImage.src}
-						alt={displayImage.alt}
+						src={categoryInfo.image}
+						alt={categoryInfo.imageAlt}
 						width={800}
 						height={420}
 						priority
@@ -84,19 +75,27 @@ const CategoryPanel: NextPage<Props> = ({ categoryInfo, postCount }) => {
 					</figcaption>
 				</figure>
 				<div className="text-center mb-16">
-					<Button className="text-xl" href={`/admin/categories/${categoryInfo.id}/posts`}>
+					<Button className="text-xl mx-2" href={`/admin/categories/${categoryInfo.id}/posts`}>
 						View posts
 					</Button>
+					<Button className="text-xl mx-2" href={`/admin/categories/${categoryInfo.id}/edit`}>
+						Edit category
+					</Button>
+					<Button className="text-xl mx-2" color="red" border onClick={deletePrompt}>
+						Delete category
+					</Button>
+					<br />
+					<Button
+						color="green"
+						className="text-xl mt-12 inline-block"
+						href={`/admin/categories/${categoryInfo.id}/posts/new`}
+					>
+						+ Create post
+					</Button>
 				</div>
-				<hr />
-
-				<h2 className="text-2xl font-semibold text-center my-12">Edit category</h2>
-				<CategoryForm onSubmit={handleSubmit} initialState={categoryInfo} submitLabel="Update" />
-				{status && (
+				{errorMessage && (
 					<div className="text-center">
-						<Alert color={status.type === 'success' ? 'green' : 'red'} className="block mx-auto">
-							{status.message}
-						</Alert>
+						<Alert color="red">Error: {errorMessage}</Alert>
 					</div>
 				)}
 			</main>

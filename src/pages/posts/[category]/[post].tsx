@@ -22,6 +22,7 @@ import { POST_REVALIDATION_DELAY } from 'lib/constants';
 import Post from 'lib/database/models/post';
 import Category from 'lib/database/models/category';
 import { formatDate } from 'lib/utils';
+import RenderedPostContent from 'components/post/RenderedPostContent';
 
 interface Props {
 	post: SerializedPost;
@@ -100,17 +101,7 @@ const PostPage: NextPage<Props> = ({
 					</div>
 					{image && <MainImage src={image} alt={imageAlt} width={800} height={420} />}
 					<div className="my-12 post-container">
-						<ReactMarkdown
-							remarkPlugins={[remarkGfm, remarkUnwrapImages]}
-							components={{
-								a: PostLink,
-								code: CodeBlock,
-								img: ({ node, ...props }) => <PostImage {...props} />,
-								blockquote: BlockQuote,
-							}}
-						>
-							{post.content}
-						</ReactMarkdown>
+						<RenderedPostContent>{post.content}</RenderedPostContent>
 					</div>
 				</article>
 				{(previousPost || nextPost) && (

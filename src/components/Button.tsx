@@ -37,11 +37,11 @@ const Button: React.FC<Props> = ({ color = 'blue', border, className, children, 
 		<Link
 			href={href}
 			className={classNames(
-				className,
 				'rounded-md py-2 px-4 font-semibold outline outline-0 focus:outline-[3px] transition-all duration-100 disabled:brightness-[.65] disabled:outline-0 disabled:cursor-not-allowed',
 				classes[color].base,
 				!border && classes[color].normal + ' text-white',
-				border && `${classes[color].border} hover:text-white`
+				border && `${classes[color].border} hover:text-white`,
+				className
 			)}
 		>
 			{children}

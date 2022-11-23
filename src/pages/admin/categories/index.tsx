@@ -6,12 +6,14 @@ import Layout from 'components/layout/Layout';
 import Category from 'lib/database/models/category';
 import { SerializedCategory } from 'lib/types';
 import BackLink from 'components/layout/BackLink';
+import { connect as db } from 'lib/database';
 
 interface Props {
 	categories: SerializedCategory[];
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
+	await db();
 	const categories = await Category.find();
 
 	return {
@@ -22,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 };
 
 const AdminPosts: NextPage<Props> = ({ categories }) => (
-	<Layout title="Posts">
+	<Layout title="Post Categories">
 		<main className="p-6">
 			<BackLink href="/admin">Admin panel</BackLink>
 			<h1 className="text-4xl font-bold mt-6 mb-12 text-center">Post Categories</h1>

@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 
 const Admin: NextPage<Props> = ({ subscriberCount, postCount, categoryCount }) => {
 	return (
-		<Layout title="Admin">
+		<Layout title="Admin panel">
 			<main className="p-6 text-lg text-center">
 				<h1 className="font-bold text-center text-5xl my-12">💻 Admin panel</h1>
 				<div className="my-20">

@@ -35,7 +35,6 @@ handler.post(async (req, res) => {
 	}
 
 	const subscriptions = await Subscription.find();
-
 	const postData = post.serializable();
 
 	await Promise.allSettled(

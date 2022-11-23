@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, HTMLProps, useState } from 'react';
 import classNames from 'classnames';
-import useDelayedState from 'lib/hooks/delayed-state';
 import Button from '../Button';
 import TextInput from './TextInput';
+import ImageInput from './ImageInput';
 
 export interface CategoryFormState {
 	name: string;
@@ -34,7 +33,6 @@ const CategoryForm: React.FC<Props> = ({
 		image: initialState?.image || '',
 		imageAlt: initialState?.imageAlt || '',
 	});
-	const imagePreviewSrc = useDelayedState(formState.image);
 
 	const handleSubmit: FormEventHandler = e => {
 		e.preventDefault();
@@ -85,35 +83,12 @@ const CategoryForm: React.FC<Props> = ({
 				required
 				onChange={handleChange('slug', s => s.trimStart().toLowerCase().replaceAll(' ', '-'))}
 			/>
-
-			<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
-				<div>
-					<label htmlFor="image-src">Image source</label>
-					<TextInput
-						id="image-src"
-						required
-						value={formState.image}
-						onChange={handleChange('image', s => s.trim())}
-						placeholder="Image URL..."
-					/>
-					<label htmlFor="image-alt">Alt text</label>
-					<TextInput
-						id="image-alt"
-						value={formState.imageAlt}
-						onChange={handleChange('imageAlt', s => s.trimStart())}
-						placeholder="Image alt text..."
-					/>
-				</div>
-				<div className="w-full h-48 xs:h-64 sm:h-full relative">
-					<Image
-						src={imagePreviewSrc}
-						alt={formState.imageAlt}
-						fill
-						className="object-cover rounded-md bg-neutral-300 dark:bg-slate-800 flex justify-center items-center"
-					/>
-				</div>
-			</div>
-
+			<ImageInput
+				src={formState.image}
+				alt={formState.imageAlt}
+				onSrcChange={handleChange('image', s => s.trim())}
+				onAltChange={handleChange('imageAlt', s => s.trimStart())}
+			/>
 			<Button type="submit" className="ml-auto my-12 block" disabled={submitDisabled}>
 				{submitLabel}
 			</Button>
