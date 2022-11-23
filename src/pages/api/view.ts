@@ -32,7 +32,7 @@ handler.post(async (req, res) => {
 		});
 	}
 
-	const record = await ViewRecord.findOne({ post: postId, address });
+	let record = await ViewRecord.findOne({ post: postId, address });
 
 	if (record && Date.now() < record.date.getTime() + VIEW_COOLDOWN) {
 		return res.json({
@@ -41,15 +41,13 @@ handler.post(async (req, res) => {
 		});
 	}
 
-	if (!record) {
-		await ViewRecord.create({
-			post: postId,
-			address,
-		});
-	} else {
-		record.date = new Date();
-		await record.save();
-	}
+	record ??= new ViewRecord({
+		post: postId,
+		address,
+	});
+
+	record.date = new Date();
+	await record.save();
 
 	post.views++;
 	await post.save();
