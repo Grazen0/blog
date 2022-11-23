@@ -29,7 +29,9 @@ const AdminPosts: NextPage<Props> = ({ categories }) => (
 			<BackLink href="/admin">Admin panel</BackLink>
 			<h1 className="text-4xl font-bold mt-6 mb-12 text-center">Post Categories</h1>
 			<div className="text-center">
-				<Button href="/admin/categories/new">+ Create new</Button>
+				<Button href="/admin/categories/new" color="green">
+					+ Create new
+				</Button>
 			</div>
 			<ul className="max-w-3xl mx-auto my-16">
 				{categories.map(category => (
