@@ -70,12 +70,14 @@ handler.put(async (req, res) => {
 
 	await post.save();
 
-	if (redeploy) {
-		await triggerDeployment();
-	} else {
-		await res.revalidate('/');
-		await res.revalidate(`/posts/${req.category.slug}`);
-		await res.revalidate(`/posts/${req.category.slug}/${post.slug}`);
+	if (!post.draft) {
+		if (redeploy) {
+			await triggerDeployment();
+		} else {
+			await res.revalidate('/');
+			await res.revalidate(`/posts/${req.category.slug}`);
+			await res.revalidate(`/posts/${req.category.slug}/${post.slug}`);
+		}
 	}
 
 	res.json(post.serializable());
@@ -116,7 +118,7 @@ handler.patch(async (req, res) => {
 // Delete a post
 handler.delete(async (req, res) => {
 	await req.post.delete();
-	await triggerDeployment();
+	if (!req.post.draft) await triggerDeployment();
 
 	res.json({
 		status: 200,
