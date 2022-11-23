@@ -17,7 +17,7 @@ const CategorySchema = new Schema(
 		name: { type: String, required: true, trim: true, minlength: 1 },
 		description: { type: String, required: false, trim: true, minlength: 1 },
 		image: { type: String, required: false, trim: true },
-		imageAlt: { type: String, required: false, trim: true },
+		imageAlt: { type: String, required: true, trim: true, minLength: 1 },
 	},
 	{
 		toObject: {

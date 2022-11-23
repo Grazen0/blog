@@ -42,7 +42,7 @@ handler.put(async (req, res) => {
 	if (name) category.name = name;
 	if (description) category.description = description;
 	if (image) category.image = image;
-	category.imageAlt = imageAlt;
+	if (imageAlt) category.imageAlt = imageAlt;
 
 	if (category.slug != slug) {
 		category.slug = slug;

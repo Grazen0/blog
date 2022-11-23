@@ -45,7 +45,7 @@ handler.put(async (req, res) => {
 	if (title) post.title = title;
 	if (summary) post.summary = summary;
 	if (image) post.image = image;
-	post.imageAlt = imageAlt;
+	if (imageAlt) post.imageAlt = imageAlt;
 	if (content) post.content = content;
 
 	let redeploy = false;

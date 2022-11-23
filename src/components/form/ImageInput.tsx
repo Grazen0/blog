@@ -39,6 +39,7 @@ const ImageInput: React.FC<Props> = ({
 				</label>
 				<TextInput
 					id="image-alt"
+					required
 					value={alt}
 					onChange={onAltChange}
 					placeholder="Image alt text..."
@@ -49,6 +50,7 @@ const ImageInput: React.FC<Props> = ({
 					src={imagePreviewSrc}
 					alt={alt}
 					fill
+					sizes="90vw"
 					className="object-cover rounded-md bg-neutral-300 dark:bg-slate-800 flex justify-center items-center"
 				/>
 			</div>

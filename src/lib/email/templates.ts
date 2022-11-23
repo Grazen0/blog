@@ -75,7 +75,7 @@ Go check it out at ${url}
 	${
 		post.image
 			? `<img src="${withHost(post.image)}" alt="${
-					post.imageAlt || ''
+					post.imageAlt
 			  }" style="border-radius:1rem;max-width:100%" />`
 			: ''
 	}

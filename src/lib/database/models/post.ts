@@ -30,7 +30,7 @@ const PostSchema = new Schema(
 		title: { type: String, required: true, trim: true, minlength: 1 },
 		summary: { type: String, required: true, trim: true, minlength: 1 },
 		image: { type: String, required: true, trim: true, minLength: 1 },
-		imageAlt: { type: String, required: true, trim: true },
+		imageAlt: { type: String, required: true, trim: true, minLength: 1 },
 		content: { type: String, required: true, trim: true, minlength: 1 },
 		draft: { type: Boolean, required: true, default: true },
 		views: { type: Number, required: true, default: 0, min: 0 },
