@@ -7,6 +7,7 @@ import Button from 'components/Button';
 import Alert from 'components/Alert';
 import { SubmitStatus } from 'lib/constants';
 import FloatingHeart from 'components/icons/FloatingHeart';
+import TextInput from 'components/form/TextInput';
 
 const Subscribe: NextPage = () => {
 	const [email, setEmail] = useState('');
@@ -25,14 +26,14 @@ const Subscribe: NextPage = () => {
 				<p className="text-2xl my-6">It&apos;s free!</p>
 
 				<form onSubmit={handleSubmit} className="my-10">
-					<input
+					<TextInput
 						type="email"
 						name="email"
 						value={email}
 						onChange={handleChange}
 						placeholder="johndoe@example.com"
 						size={35}
-						className="max-w-full rounded-full my-8 px-4 py-2 text-md text-neutral-900 bg-neutral-300 dark:bg-neutral-100 border-2 border-neutral-700 dark:border-0"
+						className="max-w-full w-[inherit] rounded-full"
 					/>
 					<br />
 					<Button type="submit" disabled={loading || !email} color="blue" className="text-xl">

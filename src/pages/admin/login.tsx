@@ -4,6 +4,7 @@ import { FormEventHandler, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import Layout from 'components/layout/Layout';
 import Button from 'components/Button';
+import TextInput from 'components/form/TextInput';
 
 const Login: NextPage = () => {
 	const router = useRouter();
@@ -26,12 +27,12 @@ const Login: NextPage = () => {
 			<main className="p-6">
 				<h1 className="font-bold text-5xl text-center my-8">🕵️‍♂️ Admin login</h1>
 				<form onSubmit={onSubmit} className="text-center p-4">
-					<input
+					<TextInput
 						type="password"
 						value={passcode}
 						onChange={e => setPasscode(e.target.value)}
 						placeholder="Passcode..."
-						className="text-neutral-900 my-6 rounded-full py-2 px-4 text-lg max-w-full w-80"
+						className="w-[inherit]"
 					/>
 					<br />
 					<Button type="submit" disabled={loading}>
