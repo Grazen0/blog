@@ -7,6 +7,7 @@ import Category from 'lib/database/models/category';
 import Post from 'lib/database/models/post';
 import { SerializedCategory, SerializedPost } from 'lib/types';
 import { populatePosts } from 'lib/utils';
+import BackLink from 'components/layout/BackLink';
 
 export interface Props {
 	category: SerializedCategory;
@@ -50,13 +51,12 @@ const CategoryPage: NextPage<Props> = ({
 	return (
 		<Layout title={name} description={description} image={image} imageAlt={imageAlt}>
 			<main className="p-6">
-				<h1 className="text-5xl text-center font-bold mt-8 mb-2">{name}</h1>
+				<BackLink href="/posts">Categories</BackLink>
+				<h1 className="text-5xl text-center font-bold mt-8 mb-14">{name}</h1>
+				<div className="relative h-72 w-[30rem] max-w-full mx-auto my-10 shadow-intense dark:shadow-none">
+					<Image src={image} alt={imageAlt} fill className="rounded object-cover" />
+				</div>
 				<p className="text-center my-6 text-xl">{description}</p>
-				{image && (
-					<div className="relative h-72 w-[30rem] max-w-full mx-auto my-10 shadow-intense dark:shadow-none">
-						<Image src={image} alt={imageAlt} fill className="rounded object-cover" />
-					</div>
-				)}
 
 				<div className="max-w-2xl mx-auto my-16">
 					<PostList posts={populatedPosts} showCategories={false} />
