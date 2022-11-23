@@ -4,8 +4,8 @@ import { getLatestPosts } from 'lib/posts';
 import { connect as db } from 'lib/database';
 import { SerializedPopulatedPost } from 'lib/types';
 import AnimatedRocket from 'components/icons/AnimatedRocket';
+import ImageCardGrid from 'components/ImageCardGrid';
 import { postUrl } from 'lib/utils';
-import ImageCard from 'components/ImageCard';
 
 interface Props {
 	latestPosts: SerializedPopulatedPost[];
@@ -33,20 +33,17 @@ const Home: NextPage<Props> = ({ latestPosts }) => (
 					<AnimatedRocket key={i} />
 				))}
 			</div>
-			<ul className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-				{latestPosts.map(post => (
-					<li key={post.id}>
-						<ImageCard
-							link={postUrl(post)}
-							head={post.category.name}
-							title={post.title}
-							subtitle={post.summary || '(No summary available)'}
-							image={post.image}
-							imageAlt={post.imageAlt}
-						/>
-					</li>
-				))}
-			</ul>
+			<ImageCardGrid
+				items={latestPosts.map(post => ({
+					key: post.id,
+					link: postUrl(post),
+					head: post.category.name,
+					title: post.title,
+					subtitle: post.summary,
+					image: post.image,
+					imageAlt: post.imageAlt,
+				}))}
+			/>
 		</main>
 	</Layout>
 );

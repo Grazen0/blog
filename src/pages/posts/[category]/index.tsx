@@ -6,8 +6,9 @@ import { connect as db } from 'lib/database';
 import Category from 'lib/database/models/category';
 import Post from 'lib/database/models/post';
 import { SerializedCategory, SerializedPost } from 'lib/types';
-import { populatePosts } from 'lib/utils';
+import { populatePosts, postUrl } from 'lib/utils';
 import BackLink from 'components/layout/BackLink';
+import ImageCardGrid from 'components/ImageCardGrid';
 
 export interface Props {
 	category: SerializedCategory;
@@ -58,9 +59,17 @@ const CategoryPage: NextPage<Props> = ({
 				</div>
 				<p className="text-center my-6 text-xl">{description}</p>
 
-				<div className="max-w-2xl mx-auto my-16">
-					<PostList posts={populatedPosts} showCategories={false} />
-				</div>
+				<ImageCardGrid
+					items={populatedPosts.map(post => ({
+						key: post.id,
+						link: postUrl(post),
+						head: post.category.name,
+						title: post.title,
+						subtitle: post.summary,
+						image: post.image,
+						imageAlt: post.imageAlt,
+					}))}
+				/>
 			</main>
 		</Layout>
 	);
