@@ -160,7 +160,7 @@ const PostForm: React.FC<Props> = ({
 			></textarea>
 			<div
 				className={classNames(
-					'h-[30rem] overflow-auto my-4 bg-slate-950 px-4 text-xl rounded-lg',
+					'h-[30rem] overflow-y-scroll my-4 bg-slate-950 px-4 text-xl rounded-lg',
 					styles.container,
 					!previewMode && 'hidden'
 				)}
