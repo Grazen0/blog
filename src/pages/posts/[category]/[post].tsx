@@ -89,7 +89,7 @@ const PostPage: NextPage<Props> = ({
 			<main className="p-6">
 				<article className={styles.container}>
 					<BackLink href={`/posts/${category.slug}`}>{category.name}</BackLink>
-					<h1 className="text-center text-5xl font-bold mt-12 mb-6">{title}</h1>
+					<h1 className="text-center text-5xl font-bold mt-12 mb-6 px-20 leading-snug">{title}</h1>
 					<div className="text-center my-4">
 						📅 <time>{formatDate(new Date(post.createdAt))}</time> &middot; 👁‍🗨 {views} view
 						{views !== 1 && 's'}
