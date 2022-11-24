@@ -3,13 +3,6 @@ import classNames from 'classnames';
 import ImageInput from './ImageInput';
 import TextInput from './TextInput';
 import Button from 'components/Button';
-import BlockQuote from 'components/post/BlockQuote';
-import CodeBlock from 'components/post/CodeBlock';
-import PostImage from 'components/post/PostImage';
-import PostLink from 'components/post/PostLink';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkUnwrapImages from 'remark-unwrap-images';
 import styles from 'styles/Post.module.css';
 import RenderedPostContent from 'components/post/RenderedPostContent';
 

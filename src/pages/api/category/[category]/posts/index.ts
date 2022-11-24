@@ -1,6 +1,5 @@
 import authenticate from 'lib/api/authenticate';
 import { createApiHandler } from 'lib/api/handler';
-import Category from 'lib/database/models/category';
 import Post from 'lib/database/models/post';
 import { attachCategory, RequestWithCategory } from '..';
 

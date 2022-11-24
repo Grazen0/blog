@@ -36,6 +36,8 @@ const NewPost: NextPage<Props> = ({ category }) => {
 			router.push(`/admin/categories/${data.category}/posts/${data.id}`);
 		} catch (e) {
 			const err = e as AxiosError;
+			console.error(err);
+			setErrorMessage(err.response?.data.message || err.message);
 			throw err;
 		}
 	};

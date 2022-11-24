@@ -22,7 +22,7 @@ const CategorySchema = new Schema(
 	{
 		toObject: {
 			versionKey: false,
-			transform: (doc: any, ret: any) => {
+			transform: (doc: unknown, ret: Document & ICategory) => {
 				ret.id = ret._id.toString();
 				delete ret._id;
 				return ret;

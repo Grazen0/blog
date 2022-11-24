@@ -16,7 +16,7 @@ const RenderedPostContent: React.FC<Props> = ({ children }) => (
 		components={{
 			a: PostLink,
 			code: CodeBlock,
-			img: ({ node, ...props }) => <PostImage {...props} />,
+			img: ({ ...props }) => <PostImage {...props} />,
 			blockquote: BlockQuote,
 		}}
 	>

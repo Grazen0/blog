@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 export type Props = HTMLProps<HTMLAnchorElement> & ReactMarkdownProps;
 
-const PostLink: React.FC<Props> = ({ node, children, href, className, ...props }) => {
+const PostLink: React.FC<Props> = ({ children, href, className, ...props }) => {
 	if (href === undefined) throw new Error('Missing href attribute');
 
 	return (

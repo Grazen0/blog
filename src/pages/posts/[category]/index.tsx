@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Layout from 'components/layout/Layout';
-import PostList from 'components/PostList';
 import { connect as db } from 'lib/database';
 import Category from 'lib/database/models/category';
 import Post from 'lib/database/models/post';

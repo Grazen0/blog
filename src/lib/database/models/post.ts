@@ -39,14 +39,14 @@ const PostSchema = new Schema(
 		timestamps: true,
 		toObject: {
 			versionKey: false,
-			transform: (doc: any, ret: any) => {
+			transform: (doc: unknown, ret: Document & IPost) => {
 				ret.id = ret._id.toString();
 				delete ret._id;
-				ret.createdAt = ret.createdAt.getTime();
-				ret.updatedAt = ret.updatedAt.getTime();
+				ret.createdAt = ret.createdAt.getTime() as unknown as Date;
+				ret.updatedAt = ret.updatedAt.getTime() as unknown as Date;
 
 				if (ret.category instanceof Types.ObjectId) {
-					ret.category = ret.category.toString();
+					ret.category = ret.category.toString() as unknown as Types.ObjectId;
 				}
 
 				return ret;

@@ -35,10 +35,12 @@ handler.post(async (req, res) => {
 	subscription = new Subscription({ email });
 	await subscription.save();
 
-	await retryPromise(() => sendEmail(subscriptionMessage(subscription!.id), email), 10).catch(
-		console.error
-	);
-	res.status(201).json(subscription);
+	await retryPromise(async () => {
+		if (!subscription) throw new Error('Failed to create subscription');
+		await sendEmail(subscriptionMessage(subscription.id), email);
+	}, 10).catch(console.error);
+
+	res.json(subscription);
 });
 
 export default handler;

@@ -12,7 +12,7 @@ export default NextAuth({
 			credentials: {
 				passcode: { label: 'Password', type: 'password' },
 			},
-			authorize(credentials, req) {
+			authorize(credentials) {
 				if (!process.env.ADMIN_PASSCODE) throw new Error('Admin passcode missing');
 
 				if (credentials?.passcode === process.env.ADMIN_PASSCODE) {

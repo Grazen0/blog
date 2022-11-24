@@ -1,4 +1,5 @@
 import resolveConfig from 'tailwindcss/resolveConfig';
+import { Config } from 'tailwindcss/types/config';
 import partialTailwindConfig from '../../tailwind.config';
 
 export const enum SubmitStatus {
@@ -7,7 +8,7 @@ export const enum SubmitStatus {
 	FAILED,
 }
 
-export const tailwindConfig: any = resolveConfig(partialTailwindConfig as any);
+export const tailwindConfig = resolveConfig(partialTailwindConfig as unknown as Config);
 
 export const HOST = process.env.NEXT_PUBLIC_HOST || 'http://localhost:3000';
 export const POST_REVALIDATION_DELAY = 5 * 60; // Every 5 minutes

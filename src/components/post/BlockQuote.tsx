@@ -4,7 +4,7 @@ import { ReactMarkdownProps } from 'react-markdown/lib/ast-to-react';
 
 export type Props = HTMLProps<HTMLElement> & ReactMarkdownProps;
 
-const BlockQuote: React.FC<Props> = ({ node, className, children, ...props }) => (
+const BlockQuote: React.FC<Props> = ({ className, children, ...props }) => (
 	<blockquote
 		className={classNames(
 			className,

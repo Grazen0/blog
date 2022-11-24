@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Button from 'components/Button';
 import Layout from 'components/layout/Layout';
 import Category from 'lib/database/models/category';
-import { SerializedCategory, SerializedPost } from 'lib/types';
+import { SerializedCategory } from 'lib/types';
 import BackLink from 'components/layout/BackLink';
 import Post from 'lib/database/models/post';
 import { connect as db } from 'lib/database';

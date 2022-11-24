@@ -4,7 +4,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 export type Props = CodeProps;
 
-const CodeBlock: React.FC<Props> = ({ node, inline, className = '', children, ...props }) => {
+const CodeBlock: React.FC<Props> = ({ inline, className = '', children, ...props }) => {
 	const content = String(children).trim();
 
 	const match = className

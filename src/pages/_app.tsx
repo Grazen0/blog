@@ -12,6 +12,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
 	return (
 		<DarkModeContext.Provider value={[darkMode, setDarkMode]}>
 			<SessionProvider session={session}>
+				{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
 				{/* @ts-ignore */}
 				<Component {...pageProps} />
 			</SessionProvider>

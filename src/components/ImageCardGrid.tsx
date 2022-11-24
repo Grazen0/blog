@@ -15,7 +15,7 @@ export interface Props extends HTMLProps<HTMLUListElement> {
 }
 
 const ImageCardGrid: React.FC<Props> = ({ items, className, ...props }) => (
-	<ul className={classNames(className, 'grid grid-cols-1 md:grid-cols-2 gap-6 p-6')}>
+	<ul {...props} className={classNames(className, 'grid grid-cols-1 md:grid-cols-2 gap-6 p-6')}>
 		{items.map(item => (
 			<li key={item.key}>
 				<ImageCard {...item} />
