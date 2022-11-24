@@ -1,24 +1,27 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest } from 'next';
 import nc from 'next-connect';
+import HttpError from 'lib/api/response/error';
+import { ExtendedResponse, extendResponse } from './response/extended-response';
 
-export function createApiHandler<
+export const createApiHandler = <
 	Req extends NextApiRequest = NextApiRequest,
-	Res extends NextApiResponse = NextApiResponse
->() {
-	return nc<Req, Res>({
+	Res extends ExtendedResponse = ExtendedResponse
+>() => {
+	const handler = nc<Req, Res>({
 		onNoMatch: (req, res) => {
-			res.status(405).json({
-				status: 405,
-				message: 'Method not allowed',
-			});
+			res.statusResponse(405, 'Method not allowed');
 		},
 		onError: (err, req, res) => {
-			console.error(err);
-
-			res.status(500).json({
-				status: 500,
-				message: 'Internal server error',
-			});
+			if (err instanceof HttpError) {
+				const { status, message, data } = err;
+				res.status(status).json({ status, message, data });
+			} else {
+				console.error('API error:', err.stack);
+				res.statusResponse(500, 'Internal server error');
+			}
 		},
 	});
-}
+
+	handler.use(extendResponse());
+	return handler;
+};

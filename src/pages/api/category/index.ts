@@ -2,6 +2,7 @@ import authenticate from 'lib/api/authenticate';
 import { createApiHandler } from 'lib/api/handler';
 import triggerDeployment from 'lib/api/trigger-deployment';
 import Category from 'lib/database/models/category';
+import { HttpBadRequestError } from 'lib/api/response/error';
 
 const handler = createApiHandler();
 
@@ -10,19 +11,11 @@ handler.use(authenticate());
 // Create a category
 handler.post(async (req, res) => {
 	const { name, description, slug, image, imageAlt = '' } = req.body;
-	if (!name || !description || !slug || !image) {
-		return res.status(400).json({
-			status: 400,
-			message: 'Missing fields in request body',
-		});
-	}
+	if (!name || !description || !slug || !image)
+		throw new HttpBadRequestError('Missing fields in request body');
 
-	if (await Category.exists({ slug })) {
-		return res.status(400).json({
-			status: 400,
-			message: 'Another post with same slug already exists',
-		});
-	}
+	if (await Category.exists({ slug }))
+		throw new HttpBadRequestError('A category with the same slug already exists');
 
 	const category = new Category({ name, description, slug, image, imageAlt });
 	await category.save();

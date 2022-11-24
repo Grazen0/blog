@@ -1,4 +1,5 @@
 import { createApiHandler } from 'lib/api/handler';
+import { HttpBadRequestError, HttpConflictError } from 'lib/api/response/error';
 import { connect as db } from 'lib/database';
 import Subscription from 'lib/database/models/subscription';
 import { sendEmail } from 'lib/email';
@@ -9,28 +10,13 @@ const handler = createApiHandler();
 
 handler.post(async (req, res) => {
 	const { email } = req.body;
-	if (!email)
-		return res.status(400).json({
-			status: 400,
-			message: 'Missing email in request body',
-		});
-
-	if (!validateEmail(email)) {
-		return res.status(400).json({
-			status: 400,
-			message: 'Email is invalid',
-		});
-	}
+	if (!email) throw new HttpBadRequestError('Missing email in request body');
+	if (!validateEmail(email)) throw new HttpBadRequestError('Invalid email');
 
 	await db();
 
 	let subscription = await Subscription.findOne({ email });
-	if (subscription) {
-		return res.status(409).json({
-			status: 409,
-			message: 'Email is already subscribed',
-		});
-	}
+	if (subscription) throw new HttpConflictError('Email is already subscribed');
 
 	subscription = new Subscription({ email });
 	await subscription.save();

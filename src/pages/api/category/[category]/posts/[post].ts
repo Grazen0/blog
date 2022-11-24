@@ -12,6 +12,7 @@ import { notification } from 'lib/email/templates';
 import { SerializedPopulatedPost } from 'lib/types';
 import { retryPromise } from 'lib/utils';
 import Category from 'lib/database/models/category';
+import { HttpBadRequestError, HttpNotFoundError } from 'lib/api/response/error';
 
 type RequestWithPost = RequestWithCategory & { post: IPost & Document };
 
@@ -24,12 +25,7 @@ handler.use(async (req: RequestWithPost, res: NextApiResponse, next) => {
 
 	await db();
 	const post = await Post.findOne({ _id: id, category: req.category._id });
-	if (!post) {
-		return res.status(404).json({
-			status: 404,
-			message: 'Post not found',
-		});
-	}
+	if (!post) throw new HttpNotFoundError('Post not found');
 
 	req.post = post;
 	next();
@@ -58,12 +54,7 @@ handler.put(async (req, res) => {
 	if (categoryId && !post.category.equals(categoryId)) {
 		redeploy = true;
 		const category = await Category.findById(categoryId);
-		if (!category) {
-			return res.status(400).json({
-				status: 400,
-				message: 'Invalid category',
-			});
-		}
+		if (!category) throw new HttpNotFoundError('Post category not found');
 
 		post.category = category._id;
 	}
@@ -88,12 +79,8 @@ handler.patch(async (req, res) => {
 	const { post } = req;
 	const { published } = req.body;
 
-	if (published === undefined) {
-		return res.status(400).json({
-			status: 400,
-			message: 'Missing "published" field in request body',
-		});
-	}
+	if (published === undefined)
+		throw new HttpBadRequestError('Missing "published" field in request body');
 
 	post.draft = !published;
 	await post.save();
@@ -120,10 +107,7 @@ handler.delete(async (req, res) => {
 	await req.post.delete();
 	if (!req.post.draft) await triggerDeployment();
 
-	res.json({
-		status: 200,
-		message: 'Post deleted successfully',
-	});
+	res.statusResponse(200, 'Post deleted successfully');
 });
 
 export default handler;

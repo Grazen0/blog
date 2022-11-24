@@ -1,4 +1,5 @@
 import { createApiHandler } from 'lib/api/handler';
+import { HttpBadRequestError, HttpNotFoundError } from 'lib/api/response/error';
 import { VIEW_COOLDOWN } from 'lib/constants';
 import Post from 'lib/database/models/post';
 import ViewRecord from 'lib/database/models/view-record';
@@ -8,37 +9,20 @@ const handler = createApiHandler();
 
 handler.post(async (req, res) => {
 	const address = req.socket.remoteAddress;
-	if (!address) {
-		return res.json({
-			status: 500,
-			message: 'Internal server error.',
-		});
-	}
+	if (!address) throw new Error('');
 
 	const postId = req.query.post?.toString();
-	if (!postId)
-		return res.status(400).json({
-			status: 400,
-			message: 'Missing post query parameter',
-		});
+	if (!postId) throw new HttpBadRequestError('Missing post ID query parameter');
 
 	await db();
 
 	const post = await Post.findById(postId);
-	if (!post) {
-		return res.status(400).json({
-			status: 400,
-			message: 'Post not found',
-		});
-	}
+	if (!post) throw new HttpNotFoundError('Post not found');
 
 	let record = await ViewRecord.findOne({ post: postId, address });
 
 	if (record && Date.now() < record.date.getTime() + VIEW_COOLDOWN) {
-		return res.json({
-			status: 200,
-			message: 'Cooldown in progress',
-		});
+		return res.statusResponse(200, 'Cooldown in progress');
 	}
 
 	record ??= new ViewRecord({
@@ -52,10 +36,7 @@ handler.post(async (req, res) => {
 	post.views++;
 	await post.save();
 
-	res.json({
-		status: 200,
-		message: 'View added',
-	});
+	res.statusResponse(200, 'View added');
 });
 
 export default handler;

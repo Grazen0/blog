@@ -7,6 +7,7 @@ import { connect as db } from 'lib/database';
 import Category, { ICategory } from 'lib/database/models/category';
 import Post from 'lib/database/models/post';
 import triggerDeployment from 'lib/api/trigger-deployment';
+import { HttpNotFoundError } from 'lib/api/response/error';
 
 export type RequestWithCategory = NextApiRequest & { category: ICategory & Document };
 
@@ -19,12 +20,7 @@ export const attachCategory =
 
 		await db();
 		const category = await Category.findById(id);
-		if (!category) {
-			return res.status(404).json({
-				status: 404,
-				message: 'Category not found',
-			});
-		}
+		if (!category) throw new HttpNotFoundError('Category not found');
 
 		req.category = category;
 		next();
@@ -64,11 +60,7 @@ handler.delete(async (req, res) => {
 
 	await triggerDeployment();
 
-	res.json({
-		status: 200,
-		message: 'Category deleted successfully',
-		deletedCount,
-	});
+	res.statusResponse(200, 'Category deleted successfully', { deletedCount });
 });
 
 export default handler;
