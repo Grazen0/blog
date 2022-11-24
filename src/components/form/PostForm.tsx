@@ -153,7 +153,7 @@ const PostForm: React.FC<Props> = ({
 				value={formState.content}
 				onChange={handleChange('content', s => s.trimStart())}
 				className={classNames(
-					'bg-slate-950 w-full my-4 rounded-lg p-2 font-mono h-[30rem] resize-none',
+					'bg-slate-950 w-full my-4 rounded-lg p-2 font-mono h-[30rem] resize-none overflow-y-scroll',
 					previewMode && 'hidden'
 				)}
 				placeholder="Write your post content here!"
