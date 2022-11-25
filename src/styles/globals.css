@@ -59,7 +59,7 @@
 
 @layer components {
 	.post-container {
-		@apply max-w-2xl mx-auto text-xl leading-loose;
+		@apply max-w-2xl mx-auto text-lg sm:text-xl leading-loose sm:leading-loose;
 	}
 }
 
