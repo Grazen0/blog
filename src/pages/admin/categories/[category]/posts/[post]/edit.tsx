@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import BackLink from 'components/layout/BackLink';
@@ -34,17 +33,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
 };
 
 const EditPostPage: NextPage<Props> = ({ post, categories }) => {
-	const router = useRouter();
-	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+	const [status, setStatus] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
 
 	const handleSubmit = async (postData: PostFormState) => {
 		try {
-			const { data } = await axios.put(`/api/category/${post.category}/posts/${post.id}`, postData);
-			router.push(`/admin/categories/${data.category}/posts/${data.id}`);
+			await axios.put(`/api/category/${post.category}/posts/${post.id}`, postData);
+			setStatus({
+				type: 'success',
+				message: 'Changes saved successfully!',
+			});
 		} catch (e) {
 			const err = e as AxiosError;
 			console.error(err);
-			setErrorMessage(err.response?.data?.message || err.message);
+			setStatus({
+				type: 'error',
+				message: `Error: ${err.response?.data?.message || err.message}`,
+			});
 
 			throw err;
 		}
@@ -63,9 +67,9 @@ const EditPostPage: NextPage<Props> = ({ post, categories }) => {
 					initialState={post}
 					categoryOptions={categories}
 				/>
-				{errorMessage && (
+				{status && (
 					<div className="text-center">
-						<Alert color="red">Error: {errorMessage}</Alert>
+						<Alert color={status.type === 'error' ? 'red' : 'green'}>{status.message}</Alert>
 					</div>
 				)}
 			</main>
