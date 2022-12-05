@@ -3,6 +3,7 @@ import { createApiHandler } from 'lib/api/handler';
 import triggerDeployment from 'lib/api/trigger-deployment';
 import Category from 'lib/database/models/category';
 import { HttpBadRequestError } from 'lib/api/response/error';
+import { connect as db } from 'lib/database';
 
 const handler = createApiHandler();
 
@@ -17,6 +18,7 @@ handler.post(async (req, res) => {
 	if (await Category.exists({ slug }))
 		throw new HttpBadRequestError('A category with the same slug already exists');
 
+	await db();
 	const category = new Category({ name, description, slug, image, imageAlt });
 	await category.save();
 
