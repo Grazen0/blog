@@ -15,10 +15,10 @@ handler.post(async (req, res) => {
 	if (!name || !description || !slug || !image)
 		throw new HttpBadRequestError('Missing fields in request body');
 
+	await db();
 	if (await Category.exists({ slug }))
 		throw new HttpBadRequestError('A category with the same slug already exists');
 
-	await db();
 	const category = new Category({ name, description, slug, image, imageAlt });
 	await category.save();
 
