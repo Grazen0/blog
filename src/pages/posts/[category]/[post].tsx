@@ -6,7 +6,7 @@ import NextPostLinks from 'components/layout/NextPostLinks';
 import MainImage from 'components/post/MainImage';
 import ShareSection from 'components/ShareSection';
 import Comments from 'components/Comments';
-import { SerializedCategory, SerializedPost } from 'lib/types';
+import { SerializedPost, SerializedCategory } from 'lib/types';
 import { getAdjacentPost } from 'lib/posts';
 import styles from 'styles/Post.module.css';
 import { connect as db } from 'lib/database';
@@ -51,13 +51,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 	if (!category) throw new Error('Category not found');
 
 	const post = await Post.findOne({ slug: postSlug, category: category._id, draft: false });
-	if (!post) throw new Error('Post not found');
+	if (!post || post.draft) throw new Error('Post not found');
 
-	const previousPost = await getAdjacentPost(post.createdAt, -1, {
+	const previousPost = await getAdjacentPost(post.publishedAt, -1, {
 		category: category._id,
 		draft: false,
 	});
-	const nextPost = await getAdjacentPost(post.createdAt, 1, {
+	const nextPost = await getAdjacentPost(post.publishedAt, 1, {
 		category: category._id,
 		draft: false,
 	});
@@ -93,7 +93,7 @@ const PostPage: NextPage<Props> = ({
 						{title}
 					</h1>
 					<div className="text-center my-4">
-						📅 <time>{formatDate(new Date(post.createdAt))}</time> &middot; 👁‍🗨 {views} view
+						📅 <time>{formatDate(new Date(post.publishedAt || 0))}</time> &middot; 👁‍🗨 {views} view
 						{views !== 1 && 's'}
 					</div>
 					{image && <MainImage src={image} alt={imageAlt} width={800} height={420} />}

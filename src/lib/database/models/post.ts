@@ -2,7 +2,7 @@ import { SerializedPopulatedPost, SerializedPost } from 'lib/types';
 import { Schema, model, models, Model, Types, Document } from 'mongoose';
 import { ICategory } from './category';
 
-export interface IPost {
+export type IPost = {
 	_id: Types.ObjectId;
 	category: Types.ObjectId;
 	slug: string;
@@ -13,10 +13,18 @@ export interface IPost {
 	content: string;
 	views: number;
 	draft: boolean;
-	createdAt: Date;
-	updatedAt: Date;
+	editedAt?: Date;
 	serializable(): SerializedPost;
-}
+} & (
+	| {
+			draft: true;
+			publishedAt?: Date;
+	  }
+	| {
+			draft: false;
+			publishedAt: Date;
+	  }
+);
 
 export interface IPopulatedPost extends Omit<IPost, 'category' | 'serializable'> {
 	category: ICategory;
@@ -34,16 +42,18 @@ const PostSchema = new Schema(
 		content: { type: String, required: true, trim: true, minlength: 1 },
 		draft: { type: Boolean, required: true, default: true },
 		views: { type: Number, required: true, default: 0, min: 0 },
+		editedAt: { type: Date, required: false },
+		publishedAt: { type: Date, required: false },
 	},
 	{
-		timestamps: true,
 		toObject: {
 			versionKey: false,
 			transform: (doc: unknown, ret: Document & IPost) => {
 				ret.id = ret._id.toString();
 				delete ret._id;
-				ret.createdAt = ret.createdAt.getTime() as unknown as Date;
-				ret.updatedAt = ret.updatedAt.getTime() as unknown as Date;
+
+				ret.publishedAt = (ret.publishedAt?.getTime() || null) as unknown as Date;
+				ret.editedAt = (ret.editedAt?.getTime() || null) as unknown as Date;
 
 				if (ret.category instanceof Types.ObjectId) {
 					ret.category = ret.category.toString() as unknown as Types.ObjectId;

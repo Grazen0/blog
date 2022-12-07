@@ -8,9 +8,10 @@ export const getAdjacentPost = async (
 ): Promise<(Document & IPost) | null> => {
 	const result = await Post.find({
 		...filter,
-		createdAt: { [place === 1 ? '$gt' : '$lt']: postDate },
+		draft: false,
+		publishedAt: { [place === 1 ? '$gt' : '$lt']: postDate },
 	})
-		.sort({ createdAt: place })
+		.sort({ publishedAt: place })
 		.limit(1);
 
 	return result[0] || null;
@@ -18,7 +19,7 @@ export const getAdjacentPost = async (
 
 export const getLatestPosts = async (limit: number): Promise<(Document & IPopulatedPost)[]> => {
 	return await Post.find({ draft: false })
-		.sort({ createdAt: -1 })
+		.sort({ publishedAt: -1 })
 		.limit(limit)
 		.populate('category');
 };

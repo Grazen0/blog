@@ -14,7 +14,7 @@ export interface SerializedCategory {
 	imageAlt: string;
 }
 
-export interface SerializedPost {
+export type SerializedPost = {
 	id: string;
 	category: string;
 	slug: string;
@@ -25,8 +25,13 @@ export interface SerializedPost {
 	content: string;
 	views: number;
 	draft: boolean;
-	createdAt: number;
-	updatedAt: number;
+	publishedAt?: Date;
+	editedAt?: Date;
+};
+
+export interface PublishedSerializedPost extends SerializedPost {
+	draft: false;
+	publishedAt: Date;
 }
 
 export interface SerializedPopulatedPost extends Omit<SerializedPost, 'category'> {

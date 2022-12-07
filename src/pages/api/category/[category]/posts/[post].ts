@@ -59,6 +59,7 @@ handler.put(async (req, res) => {
 		post.category = category._id;
 	}
 
+	post.editedAt = new Date();
 	await post.save();
 
 	if (!post.draft) {
@@ -83,6 +84,7 @@ handler.patch(async (req, res) => {
 		throw new HttpBadRequestError('Missing "published" field in request body');
 
 	post.draft = !published;
+	if (published) post.publishedAt ||= new Date();
 	await post.save();
 
 	if (published) {
