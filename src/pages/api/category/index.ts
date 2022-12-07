@@ -3,6 +3,7 @@ import { createApiHandler } from 'lib/api/handler';
 import triggerDeployment from 'lib/api/trigger-deployment';
 import Category from 'lib/database/models/category';
 import { HttpBadRequestError } from 'lib/api/response/error';
+import { connect as db } from 'lib/database';
 
 const handler = createApiHandler();
 
@@ -14,6 +15,7 @@ handler.post(async (req, res) => {
 	if (!name || !description || !slug || !image)
 		throw new HttpBadRequestError('Missing fields in request body');
 
+	await db();
 	if (await Category.exists({ slug }))
 		throw new HttpBadRequestError('A category with the same slug already exists');
 
