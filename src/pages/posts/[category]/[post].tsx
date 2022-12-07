@@ -105,7 +105,7 @@ const PostPage: NextPage<Props> = ({
 					<NextPostLinks category={category} previous={previousPost} next={nextPost} />
 				)}
 				<ShareSection post={post} category={category} className="max-w-2xl mx-auto text-lg" />
-				<Comments className="my-10" />
+				<Comments className="my-10 max-w-2xl mx-auto" />
 			</main>
 		</Layout>
 	);
