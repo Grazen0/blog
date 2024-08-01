@@ -36,7 +36,7 @@
 		"react-syntax-highlighter": "^15.4.5",
 		"remark-gfm": "^3.0.1",
 		"remark-unwrap-images": "^3.0.1",
-		"sharp": "^0.30.5"
+		"sharp": "^0.32.6"
 	},
 	"devDependencies": {
 		"@types/gtag.js": "^0.0.8",
