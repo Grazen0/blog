@@ -26,7 +26,7 @@
 		"classnames": "^2.3.1",
 		"form-data": "^4.0.0",
 		"mailgun.js": "^5.2.0",
-		"mongoose": "^6.4.6",
+		"mongoose": "^6.13.5",
 		"next": "^14.2.15",
 		"next-auth": "^4.20.1",
 		"next-connect": "^0.12.2",
